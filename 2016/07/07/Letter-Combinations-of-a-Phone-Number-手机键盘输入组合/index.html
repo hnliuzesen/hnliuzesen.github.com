@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80426918-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Letter Combinations of a Phone Number 手机键盘输入组合 | Hello Underground World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目17. Letter Combinations of a Phone NumberGiven a digit string, return all possible letter combinations that the number could represent.A mapping of digit to letters (just like on the telephone butto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Letter Combinations of a Phone Number 手机键盘输入组合">
+<meta property="og:url" content="http://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/">
+<meta property="og:site_name" content="Hello Underground World">
+<meta property="og:description" content="题目17. Letter Combinations of a Phone NumberGiven a digit string, return all possible letter combinations that the number could represent.A mapping of digit to letters (just like on the telephone butto">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/1.webp">
+<meta property="article:published_time" content="2016-07-07T04:50:29.000Z">
+<meta property="article:modified_time" content="2020-04-30T13:49:26.594Z">
+<meta property="article:author" content="张矿长">
+<meta property="article:tag" content="String">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Backtracking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/1.webp">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground World</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Letter-Combinations-of-a-Phone-Number-手机键盘输入组合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" class="article-date">
+  <time datetime="2016-07-07T04:50:29.000Z" itemprop="datePublished">2016-07-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>►<a class="article-category-link" href="/categories/Algorithms/LeetCode/">LeetCode</a>►<a class="article-category-link" href="/categories/Algorithms/LeetCode/Medium/">Medium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Letter Combinations of a Phone Number 手机键盘输入组合
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="17-Letter-Combinations-of-a-Phone-Number"><a href="#17-Letter-Combinations-of-a-Phone-Number" class="headerlink" title="17. Letter Combinations of a Phone Number"></a><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">17. Letter Combinations of a Phone Number</a></h3><p>Given a digit string, return all possible letter combinations that the number could represent.<br>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+<img src="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/1.webp" class="">
+
+<p>用户按数字键，程序输出所有的可能组合。</p>
+<a id="more"></a>
+
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:Digit string <span class="string">"23"</span></span><br><span class="line">Output: [<span class="string">"ad"</span>, <span class="string">"ae"</span>, <span class="string">"af"</span>, <span class="string">"bd"</span>, <span class="string">"be"</span>, <span class="string">"bf"</span>, <span class="string">"cd"</span>, <span class="string">"ce"</span>, <span class="string">"cf"</span>].</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果只有两个按键<code>1</code>、<code>2</code>，对应<code>[A, B, C]</code>、<code>[D, E, F]</code>，那么它有 3×3=9 种组合，为了一个不漏首先从最后一个来变换，也就是先写<code>A</code>，然后轮流写<code>D</code>、<code>E</code>、<code>F</code>，生成<code>AD</code>、<code>AE</code>、<code>AF</code>后将第一位换为B，这样有顺序的排列组合可以保证不遗漏所有情况。</p>
+<p>接下来就是使用代码实现这种排列组合了，相当于是循环第一位可能对应的字母，每个字母后面再循环第二位可能对应的字母，可以使用递归来实现，但是一般语言递归都有深度限制，题目中未限制用户输入长度，所以需要将递归转换为循环。</p>
+<p>如何将递归转换为循环，可以类比生活中箱子上的密码锁，4位的密码锁如果想破解可能有10000种组合，肯定是从<code>0000</code>开始试，一直到<code>9999</code>才不会漏掉，假设用户输入的数字每个可以对应3种可能，那就可以将这些组合用3进制表示，只需要列出<code>0000</code>、<code>0001</code>、<code>0002</code>、<code>0010</code>到<code>2222</code>就包含了所有组合，每一位数字对应用户输入所可能映射的列表下表。因为<code>7</code>、<code>9</code>对应4种字母，所以用4进制表示，遇到输入不是<code>7</code>、<code>9</code>的就跳过第四种可能。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    keyMapping = [[], [], [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], [<span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>],</span><br><span class="line">                  [<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>], [<span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>], [<span class="string">'m'</span>, <span class="string">'n'</span>, <span class="string">'o'</span>],</span><br><span class="line">                  [<span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>], [<span class="string">'t'</span>, <span class="string">'u'</span>, <span class="string">'v'</span>], [<span class="string">'w'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type digits: str</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> digits == <span class="string">""</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        lenth = len(digits)</span><br><span class="line">        result = [];</span><br><span class="line">        num = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> num &lt; <span class="number">4</span> ** lenth:</span><br><span class="line">            str = <span class="string">""</span></span><br><span class="line">            numCopy = num</span><br><span class="line">            <span class="keyword">for</span> index <span class="keyword">in</span> range(lenth):</span><br><span class="line">                deep = numCopy // <span class="number">4</span> ** (lenth - <span class="number">1</span> - index)</span><br><span class="line">                numCopy -= <span class="number">4</span> ** (lenth - <span class="number">1</span> - index) * deep</span><br><span class="line">                <span class="keyword">if</span> digits[index] != <span class="string">'7'</span> <span class="keyword">and</span> digits[index] != <span class="string">'9'</span> <span class="keyword">and</span> deep == <span class="number">3</span>:</span><br><span class="line">                    num += <span class="number">4</span> ** (lenth - <span class="number">1</span> - index)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                str += self.keyMapping[int(digits[index])][deep]</span><br><span class="line">            <span class="keyword">if</span> len(str) != lenth:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            result.append(str)</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>提交后耗时60ms，最快的用户是36ms，这里想到了两种优化方式</p>
+<ul>
+<li>因为是模拟了4进制，数字比较特殊，在做数字与4进制变换时，可以用位运算移2位来代替除法，应该可以加快速度。</li>
+<li>可以先跑表，既然可以列出0-9对应的字母，那么也可以列出00-99所对应的字母，<code>1</code>对应<code>[A, B, C]</code>，那么<code>11</code>就对应<code>[AA, AB, AC, BA, BB, BC, CA, CB, CC]</code>。将此表事先写好在程序里，处理用户输入的时候就可以两位两位处理，应该可以加快一倍速度。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" data-id="ck9mu9rcq00021gkn7pbc5p76" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/" rel="tag">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Median of Two Sorted Arrays 双数组中位数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/06/What-s-Next/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">What&#39;s Next?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/">AI</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/Machine-learning/">Machine learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/AI/Machine-learning/Learning-Models/">Learning Models</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/AI/Machine-learning/TensorFlow/">TensorFlow</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/">HackerRank</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/Moderate/">Moderate</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Medium/">Medium</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/Kindle/">Kindle</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Environment/">Environment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Environment/System/">System</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Environment/System/Linux/">Linux</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JAVA/">JAVA</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JAVA/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/JAVA/Tool/">Tool</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 张矿长<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
