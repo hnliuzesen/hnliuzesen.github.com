@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-80426918-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>寄存器 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分类通用目的寄存器   64 位 32 位 16 位    RAX EAX AX   RBX EBX BX   RCX ECX CX   RDX EDX DX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寄存器">
+<meta property="og:url" content="http://liuzesen.com/2020/11/24/%E5%AF%84%E5%AD%98%E5%99%A8/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="分类通用目的寄存器   64 位 32 位 16 位    RAX EAX AX   RBX EBX BX   RCX ECX CX   RDX EDX DX">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-23T16:28:06.000Z">
+<meta property="article:modified_time" content="2020-11-23T16:28:06.000Z">
+<meta property="article:author" content="小张矿长">
+<meta property="article:tag" content="Embedded">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-寄存器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/24/%E5%AF%84%E5%AD%98%E5%99%A8/" class="article-date">
+  <time datetime="2020-11-23T16:28:06.000Z" itemprop="datePublished">2020-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Develop/">Develop</a>►<a class="article-category-link" href="/categories/Develop/Embedded/">Embedded</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      寄存器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="通用目的寄存器"><a href="#通用目的寄存器" class="headerlink" title="通用目的寄存器"></a>通用目的寄存器</h3><table>
+<thead>
+<tr>
+<th align="center">64 位</th>
+<th align="center">32 位</th>
+<th align="center">16 位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RAX</td>
+<td align="center">EAX</td>
+<td align="center">AX</td>
+</tr>
+<tr>
+<td align="center">RBX</td>
+<td align="center">EBX</td>
+<td align="center">BX</td>
+</tr>
+<tr>
+<td align="center">RCX</td>
+<td align="center">ECX</td>
+<td align="center">CX</td>
+</tr>
+<tr>
+<td align="center">RDX</td>
+<td align="center">EDX</td>
+<td align="center">DX</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<p>|RSI|ESI|SI|<br>|RDI|EDI|DI|<br>|RBP|EBP|BP|<br>|RSP|ESP|SP|<br>|R8-R15|||</p>
+<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><table>
+<thead>
+<tr>
+<th align="center">32 位</th>
+<th align="center">16 位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CS</td>
+<td align="center">CS</td>
+</tr>
+<tr>
+<td align="center">DS</td>
+<td align="center">DS</td>
+</tr>
+<tr>
+<td align="center">ES</td>
+<td align="center">ES</td>
+</tr>
+<tr>
+<td align="center">SS</td>
+<td align="center">SS</td>
+</tr>
+<tr>
+<td align="center">FS</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">GS</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="指令指针寄存器"><a href="#指令指针寄存器" class="headerlink" title="指令指针寄存器"></a>指令指针寄存器</h3><table>
+<thead>
+<tr>
+<th align="center">64 位</th>
+<th align="center">32 位</th>
+<th align="center">16 位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RIP</td>
+<td align="center">EIP</td>
+<td align="center">IP</td>
+</tr>
+</tbody></table>
+<h3 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h3><table>
+<thead>
+<tr>
+<th align="center">64 位</th>
+<th align="center">32 位</th>
+<th align="center">16 位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RFLAGS</td>
+<td align="center">EFLAGS</td>
+<td align="center">FLAGS</td>
+</tr>
+</tbody></table>
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
+<li><em>rax/eax</em>: 默认累加寄存器，乘法等操作会将其中一部分结果自动存放到 <em>rax/eax</em> 中，调用函数的时候也需要把返回值保存在 <em>rax/eax</em> 中。执行这些操<br>作时不要用 <em>rax/eax</em> 保存一般数据。</li>
+<li><em>rcx/ecx</em>: 在执行循环的过程中记录循环计数器的值。在循环内部不要用 <em>rcx/ecx</em> 保存一般数据。</li>
+<li><em>rbp/ebp</em>: 用作栈帧中的帧指针。用来指向栈中的数据，应只当作专门寄存器使用。</li>
+<li><em>rsp/esp</em>: 栈指针寄存器。指向活动栈帧的顶部，应只当作专门寄存器使用。</li>
+<li><em>rsi/esi</em> &amp; <em>rdi/edi</em>: 索引寄存器（变址寄存器）。与 STOSB、MOVSB、SCASB 这些字符串操作结合使用，以保存、加载、或扫描大量数据。这些操作会把<br>CPU 置于一种自动循环模式中，比开发者手工编写循环更有效率。</li>
+<li><em>rip/eip</em>: 扩展版指令指针寄存器。指向内存中的地址，以表示接下来应该获取、解码并执行的指令。在程序运行过程中自动调整，不应该通过编程修改。</li>
+<li><em>rflags/eflags</em>: 状态与控制寄存器。LAHF、SAHF 等特殊指令会把 CPU 的一些状态标志载入 <em>ah</em> 寄存器，或是将 <em>ah</em> 寄存器的值保存到状态寄存器中。<br>除此之外，不应该用其他手段直接修改 <em>rflags/eflags</em>。该寄存器中的二进制位是在执行完算术运算之后根据一套布尔规则自动设置的。尽管 <em>rflags</em> 是 64 位，<br>但其中能够用到的只有低 32 位，因此 x86 与 x86_64 处理器用的是同一套状态标志。</li>
+</ul>
+<h2 id="标志位"><a href="#标志位" class="headerlink" title="标志位"></a>标志位</h2><table>
+<thead>
+<tr>
+<th>标志</th>
+<th align="center">代号</th>
+<th align="center">二进制位位置</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Carry（进位）</td>
+<td align="center">CF</td>
+<td align="center">0000 0000 0001(0)</td>
+<td>无符号整数的加法最高有效位需要进位、无符号整数的减法最高有效位需要借位</td>
+</tr>
+<tr>
+<td>Parity（奇偶；校验）</td>
+<td align="center">PF</td>
+<td align="center">0000 0000 0100(2)</td>
+<td>结果中值为 1 的二进制位是偶数个</td>
+</tr>
+<tr>
+<td>Auxiliary Carry（辅助进位）、Adjust（调整）</td>
+<td align="center">AF</td>
+<td align="center">0000 0001 0000(4)</td>
+<td>BCD（以二进制形式编码的十进制数）运算中，低 4 位（二进制位）需要向高 4 位进位或借位</td>
+</tr>
+<tr>
+<td>Zero（零）</td>
+<td align="center">ZF</td>
+<td align="center">0000 0100 0000(6)</td>
+<td>运算结果为 0</td>
+</tr>
+<tr>
+<td>Sign（符号）</td>
+<td align="center">SF</td>
+<td align="center">0000 1000 0000(7)</td>
+<td>运算结果是负值（结果以补码形式表示最高有效位是 1）</td>
+</tr>
+<tr>
+<td>Interrupt（中断）</td>
+<td align="center">IF</td>
+<td align="center">0010 0000 0000(9)</td>
+<td>如果该标志位 set，计算机就能够处理可屏蔽的硬件中断或者说中断请求</td>
+</tr>
+<tr>
+<td>Direction（方向）</td>
+<td align="center">DF</td>
+<td align="center">0100 0000 0000(10)</td>
+<td>clear，字符串按从左到右的顺序处理，体现为 rsi/esi 及 rdi/edi 这两个字符串索引寄存器会在每次字符串操作后递增。set，按照从右到左的顺序处理</td>
+</tr>
+<tr>
+<td>Overflow（溢出）</td>
+<td align="center">OF</td>
+<td align="center">1000 0000 0000(11)</td>
+<td>set，运算结果以补码形式表示时所需二进制位超过该运算所采取的个数。此标志针对带符号整数</td>
+</tr>
+</tbody></table>
+<h3 id="通过-LAHF-SAHF-指令可以编辑的标志位及序号"><a href="#通过-LAHF-SAHF-指令可以编辑的标志位及序号" class="headerlink" title="通过 LAHF/SAHF 指令可以编辑的标志位及序号"></a>通过 LAHF/SAHF 指令可以编辑的标志位及序号</h3><table>
+<thead>
+<tr>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SF</td>
+<td>ZF</td>
+<td>U</td>
+<td>AF</td>
+<td>U</td>
+<td>PF</td>
+<td>U</td>
+<td>CF</td>
+</tr>
+</tbody></table>
+<p>1、3、5 号二进制位是用不到的保留位。通过 SAHF 指令把 <em>ah</em> 的内容保存到标志寄存器时，这些二进制位的值不应该改变，3、5 始终为 0，1 号始终为 1。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://liuzesen.com/2020/11/24/%E5%AF%84%E5%AD%98%E5%99%A8/" data-id="ckhvf3dq8002ir0kn1cip2grd" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">最旧</strong>
+      <div class="article-nav-title">Google Play下载一直等待WLAN</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Medium/">Medium</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Embedded/">Embedded</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/JAVA/">JAVA</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-learning/">Machine learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 小张矿长<br>
+      提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//ajax.loli.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

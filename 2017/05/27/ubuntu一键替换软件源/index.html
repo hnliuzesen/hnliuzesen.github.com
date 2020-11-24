@@ -28,7 +28,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="使用 Ubuntu 可以直接在设置中测试最快的软件源并更换，但是有时候没有图形化界面，比如在 Server 版，或者 Docker File 中想要批量替换软件源，这时候可以使用 sed 命令，因为 sed 命令在大多数环境中不用安装都可运行，而在最简 Ubuntu Docker 镜像中是没有 vim 的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-05-27T01:31:49.000Z">
-<meta property="article:modified_time" content="2020-05-09T08:26:34.292Z">
+<meta property="article:modified_time" content="2017-05-27T01:31:49.000Z">
 <meta property="article:author" content="小张矿长">
 <meta property="article:tag" content="Ubuntu">
 <meta name="twitter:card" content="summary">
@@ -43,7 +43,7 @@ ga('send', 'pageview');
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
   <div id="container">
@@ -86,7 +86,7 @@ ga('send', 'pageview');
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/System/">System</a>►<a class="article-category-link" href="/categories/System/Linux/">Linux</a>
+    <a class="article-category-link" href="/categories/Develop/">Develop</a>►<a class="article-category-link" href="/categories/Develop/Linux/">Linux</a>
   </div>
 
   </div>
@@ -108,17 +108,17 @@ ga('send', 'pageview');
         <p>使用 Ubuntu 可以直接在设置中测试最快的软件源并更换，但是有时候没有图形化界面，比如在 Server 版，或者 Docker File 中想要批量替换软件源，这时候可以使用 <code>sed</code> 命令，因为 <code>sed</code> 命令在大多数环境中不用安装都可运行，而在最简 Ubuntu Docker 镜像中是没有 vim 的。</p>
 <a id="more"></a>
 
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/archive.ubuntu.com/mirrors.aliyun.com/g&#x27; /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p>在 Docker 中的命令如下</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN sed -i &#x27;s/archive.ubuntu.com/mirrors.aliyun.com/g&#x27; /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p>这条命令只针对 Ubuntu ，如果是其他系统可以先去查看一下 sources.list ，然后在淘宝镜像上查询到对应的源，再替换命令中的地址。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="cka7u36i100073skn1efghm6l" class="article-share-link">分享</a>
+      <a data-url="http://liuzesen.com/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="ckhvf3dpa0007r0kn3sloe21b" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
@@ -157,7 +157,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/">HackerRank</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/Moderate/">Moderate</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Medium/">Medium</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/">JAVA</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/Tool/">Tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/">Machine learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/Learning-Models/">Learning Models</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/TensorFlow/">TensorFlow</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Other/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/Kindle/">Kindle</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/System/Linux/">Linux</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Domains/">Domains</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Medium/">Medium</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Embedded/">Embedded</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/JAVA/">JAVA</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-learning/">Machine learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/WEB/">WEB</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -167,7 +167,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
     </div>
   </div>
 

@@ -28,7 +28,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，GooglePlay 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-11T06:24:38.000Z">
-<meta property="article:modified_time" content="2020-05-11T06:44:33.807Z">
+<meta property="article:modified_time" content="2020-05-11T06:24:38.000Z">
 <meta property="article:author" content="小张矿长">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Google Play">
@@ -45,7 +45,7 @@ ga('send', 'pageview');
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
   <div id="container">
@@ -88,7 +88,7 @@ ga('send', 'pageview');
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Other/">Other</a>►<a class="article-category-link" href="/categories/Other/Android/">Android</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>►<a class="article-category-link" href="/categories/Note/Android/">Android</a>
   </div>
 
   </div>
@@ -110,18 +110,18 @@ ga('send', 'pageview');
         <p>手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google<br>Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置<br>多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多方法，虽然最后发现<br>可能是刷的系统的问题，但还是记录一下有用的命令。</p>
 <a id="more"></a>
 
-<p>主要参考 <a href="https://v2ex.com/t/461403" target="_blank" rel="noopener">V2EX</a> 。</p>
+<p>主要参考 <a target="_blank" rel="noopener" href="https://v2ex.com/t/461403">V2EX</a> 。</p>
 <figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看 job</span></span><br><span class="line">❯ adb shell dumpsys jobscheduler com.android.providers.downloads</span><br></pre></td></tr></table></figure>
 
 <p>关键字是 <code>UNMETERED</code> ，意思是不按使用量计费。</p>
 <figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 强制启动 job</span></span><br><span class="line">❯ adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID</span><br></pre></td></tr></table></figure>
 
-<p>Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考<br><a href="https://developer.android.com/reference/android/app/job/JobScheduler" target="_blank" rel="noopener">JobScheduler</a></p>
+<p>Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考<br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/app/job/JobScheduler">JobScheduler</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="cka7u36ih000t3sknadzk89mc" class="article-share-link">分享</a>
+      <a data-url="http://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckhvf3dq7002gr0knbopwdpie" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li></ul>
@@ -131,6 +131,15 @@ ga('send', 'pageview');
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/11/24/%E5%AF%84%E5%AD%98%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">最新</strong>
+      <div class="article-nav-title">
+        
+          寄存器
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
@@ -151,7 +160,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/">HackerRank</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/HackerRank/Moderate/">Moderate</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/">LeetCode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/LeetCode/Medium/">Medium</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/">JAVA</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA/Tool/">Tool</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/">Machine learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/Learning-Models/">Learning Models</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-learning/TensorFlow/">TensorFlow</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Other/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/Kindle/">Kindle</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/System/Linux/">Linux</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/Domains/">Domains</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Hard/">Hard</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Medium/">Medium</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Embedded/">Embedded</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/JAVA/">JAVA</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-learning/">Machine learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/WEB/">WEB</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -161,7 +170,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JAVA/" style="font-size: 16.67px;">JAVA</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Machine-learning/" style="font-size: 10px;">Machine learning</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
     </div>
   </div>
 
