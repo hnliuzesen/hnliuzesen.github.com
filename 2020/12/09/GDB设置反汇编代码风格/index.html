@@ -20,12 +20,12 @@ ga('send', 'pageview');
   
   <title>GDB设置反汇编代码风格 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语法script123set disassembly-flavor attset disassembly-flavor intelshow disassembly-flavor  模式attGDB 使用 AT&amp;T 语法风格，一般 Linux 上使用这种风格。但其实在 Linux 上使用 NASM 是 Intel 语法风格，使用 GAS 是 AT&amp;T 风格。 123mov    %r">
+  <meta name="description" content="语法script123set disassembly-flavor attset disassembly-flavor intelshow disassembly-flavor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GDB设置反汇编代码风格">
 <meta property="og:url" content="http://liuzesen.com/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="语法script123set disassembly-flavor attset disassembly-flavor intelshow disassembly-flavor  模式attGDB 使用 AT&amp;T 语法风格，一般 Linux 上使用这种风格。但其实在 Linux 上使用 NASM 是 Intel 语法风格，使用 GAS 是 AT&amp;T 风格。 123mov    %r">
+<meta property="og:description" content="语法script123set disassembly-flavor attset disassembly-flavor intelshow disassembly-flavor">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-08T16:03:43.000Z">
 <meta property="article:modified_time" content="2020-12-08T16:03:43.000Z">
@@ -107,6 +107,8 @@ ga('send', 'pageview');
       
         <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set disassembly-flavor att</span><br><span class="line">set disassembly-flavor intel</span><br><span class="line">show disassembly-flavor</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><h3 id="att"><a href="#att" class="headerlink" title="att"></a>att</h3><p>GDB 使用 AT&amp;T 语法风格，一般 Linux 上使用这种风格。但其实在 Linux 上使用 NASM 是 Intel 语法风格，使用 GAS 是 AT&amp;T 风格。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov    %rsp,%rbp</span><br><span class="line">sub    $0x10,%rsp</span><br><span class="line">movl   $0x2,-0xc(%rbp)</span><br></pre></td></tr></table></figure>
 
@@ -119,7 +121,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckig703l8002wbwkn3qzr5kg6" class="article-share-link">分享</a>
+      <a data-url="http://liuzesen.com/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckig73ib9002kbwkn0it2e8bg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
