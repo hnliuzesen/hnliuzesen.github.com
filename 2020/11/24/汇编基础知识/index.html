@@ -520,7 +520,31 @@ ga('send', 'pageview');
 </tr>
 </tbody></table>
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>汇编：<code>nasm -f &#123;elf32|elf64&#125; -o out.o source.asm</code><br>链接：<code>ld -e _main -melf_i386 -o out source.o</code><br><code>clang -o out -m32 source.o</code><br><code>gcc -o out -m32 source.o</code></p>
+<h2 id="内联汇编代码-x86-约束修饰符"><a href="#内联汇编代码-x86-约束修饰符" class="headerlink" title="内联汇编代码 x86 约束修饰符"></a>内联汇编代码 x86 约束修饰符</h2><ul>
+<li><em>r、R</em>：通用寄存器</li>
+<li><em>q</em>：寄存器中的低 8 位</li>
+<li><em>Q</em>：寄存器中的高 8 位</li>
+<li><em>a、b、c、d</em>：ax/eax/rax、bx/ebx/rbx、cx/ecx/rcx、dx/edx/rdx</li>
+<li><em>S</em>：si/esi/rsi</li>
+<li><em>D</em>：di/edi/rdi</li>
+<li><em>A</em>：ax/eax/rax 和 dx/edx/rdx，存放双字结果</li>
+<li><em>f</em>：任何一个 x87 栈寄存器</li>
+<li><em>t</em>：x87 栈顶 st0</li>
+<li><em>u</em>：x87 第二个寄存器 st1</li>
+<li><em>y</em>：任何一个 MMX 寄存器</li>
+<li><em>x</em>：任何一个 SSE 寄存器</li>
+<li><em>m</em>：任何一个内存操作数</li>
+<li><em>o</em>：可用作偏移量的内存操作数</li>
+<li><em>V</em>：不用做偏移量的内存操作数</li>
+<li><em>g</em>：任何一个通用寄存器或内存或立即数</li>
+<li><em>X</em>：任何操作数</li>
+<li><em>p</em>：可以作为有效内存地址即指针来使用的操作数</li>
+<li><em>i</em>：可以当成立即常量来使用的整数操作数</li>
+<li><em>F</em>：可以当成立即常量来使用的浮点操作数</li>
+</ul>
+<h2 id="内联汇编方言设置"><a href="#内联汇编方言设置" class="headerlink" title="内联汇编方言设置"></a>内联汇编方言设置</h2><h3 id="代码声明"><a href="#代码声明" class="headerlink" title="代码声明"></a>代码声明</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;.att_syntax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $1, %%eax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $0, %%ebx \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add %%ebx, %%eax \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;%eax&quot;</span>, <span class="string">&quot;%ebx&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;.intel_syntax noprefix \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov eax, 1 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov ebx, 0 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add eax, ebx \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ebx&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
+<h3 id="命令指定"><a href="#命令指定" class="headerlink" title="命令指定"></a>命令指定</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-masm=att</span><br><span class="line">-masm=intel</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
