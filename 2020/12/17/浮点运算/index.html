@@ -212,6 +212,66 @@ ga('send', 'pageview');
 <td>_____000 00000000 00000000 00000000</td>
 </tr>
 </tbody></table>
+<h2 id="数据类型对应"><a href="#数据类型对应" class="headerlink" title="数据类型对应"></a>数据类型对应</h2><table>
+<thead>
+<tr>
+<th>X87 FPU</th>
+<th>NASM</th>
+<th>MASM</th>
+<th>GAS</th>
+<th>lenght</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Single precision</td>
+<td>DD</td>
+<td>REAL4</td>
+<td>.float .single</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Double precision</td>
+<td>DQ</td>
+<td>REAL8</td>
+<td>.double</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Double extended</td>
+<td>DT</td>
+<td>REAL10</td>
+<td>.tfloat</td>
+<td>80</td>
+</tr>
+<tr>
+<td>Word integer</td>
+<td>DW</td>
+<td>WORD</td>
+<td>.word</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Doubleword integer</td>
+<td>DD</td>
+<td>DWORD</td>
+<td>.long .int</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Quadword integer</td>
+<td>DQ</td>
+<td>QWORD</td>
+<td>.quad</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Packed BCD integer</td>
+<td>DT</td>
+<td>TBYTE</td>
+<td>不支持</td>
+<td>80</td>
+</tr>
+</tbody></table>
 <h2 id="X87-寄存器"><a href="#X87-寄存器" class="headerlink" title="X87 寄存器"></a>X87 寄存器</h2><h3 id="80-位寄存器"><a href="#80-位寄存器" class="headerlink" title="80 位寄存器"></a>80 位寄存器</h3><p>保存浮点数。0 ~ 63 位：有效数。64 ~ 78 位：指数。79 位：符号。</p>
 <ul>
 <li>R7</li>
@@ -324,71 +384,19 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h2 id="数据类型对应"><a href="#数据类型对应" class="headerlink" title="数据类型对应"></a>数据类型对应</h2><table>
-<thead>
-<tr>
-<th>X87 FPU</th>
-<th>NASM</th>
-<th>MASM</th>
-<th>GAS</th>
-<th>lenght</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Single precision</td>
-<td>DD</td>
-<td>REAL4</td>
-<td>.float .single</td>
-<td>32</td>
-</tr>
-<tr>
-<td>Double precision</td>
-<td>DQ</td>
-<td>REAL8</td>
-<td>.double</td>
-<td>64</td>
-</tr>
-<tr>
-<td>Double extended</td>
-<td>DT</td>
-<td>REAL10</td>
-<td>.tfloat</td>
-<td>80</td>
-</tr>
-<tr>
-<td>Word integer</td>
-<td>DW</td>
-<td>WORD</td>
-<td>.word</td>
-<td>16</td>
-</tr>
-<tr>
-<td>Doubleword integer</td>
-<td>DD</td>
-<td>DWORD</td>
-<td>.long .int</td>
-<td>32</td>
-</tr>
-<tr>
-<td>Quadword integer</td>
-<td>DQ</td>
-<td>QWORD</td>
-<td>.quad</td>
-<td>64</td>
-</tr>
-<tr>
-<td>Packed BCD integer</td>
-<td>DT</td>
-<td>TBYTE</td>
-<td>不支持</td>
-<td>80</td>
-</tr>
-</tbody></table>
+<h4 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h4><p>每 2 位与 R 寄存器对应的标志。</p>
+<ul>
+<li>00：该 R 寄存器内是有效非零值。</li>
+<li>01：该 R 寄存器内是 0 或等价于 0 的值。</li>
+<li>10：该 R 寄存器内是 NaN、inf、-inf 或非正规数等特殊值。</li>
+<li>11：该 R 寄存器为空。（FINIT 与 弹出指令会置空）</li>
+</ul>
+<h4 id="操作码寄存器"><a href="#操作码寄存器" class="headerlink" title="操作码寄存器"></a>操作码寄存器</h4><p>保存最近执行的非控制指令的第一字节低 3 位（FPU 操作指令首字节高 5 位相同）和指令的第二个字节。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckisit66t0030jkkn7snj4pkp" class="article-share-link">分享</a>
+      <a data-url="http://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckiwp1osv002yegkngxen8xun" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
