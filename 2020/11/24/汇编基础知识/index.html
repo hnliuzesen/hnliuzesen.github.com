@@ -23,13 +23,12 @@ ga('send', 'pageview');
   <meta name="description" content="分类通用目的寄存器   64 位 32 位 16 位    RAX EAX AX   RBX EBX BX   RCX ECX CX   RDX EDX DX   RSI ESI SI   RDI EDI DI   RBP EBP BP   RSP ESP SP   R8-R15">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编基础知识">
-<meta property="og:url" content="http://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+<meta property="og:url" content="https://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 <meta property="og:site_name" content="Hello Underground">
 <meta property="og:description" content="分类通用目的寄存器   64 位 32 位 16 位    RAX EAX AX   RBX EBX BX   RCX ECX CX   RDX EDX DX   RSI ESI SI   RDI EDI DI   RBP EBP BP   RSP ESP SP   R8-R15">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-23T16:28:06.000Z">
 <meta property="article:modified_time" content="2020-11-23T16:28:06.000Z">
-<meta property="article:author" content="小张矿长">
 <meta property="article:tag" content="Embedded">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@hnliuzesen">
@@ -43,7 +42,7 @@ ga('send', 'pageview');
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -73,7 +72,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
@@ -159,7 +158,7 @@ ga('send', 'pageview');
 <td align="center"></td>
 </tr>
 </tbody></table>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><table>
 <thead>
@@ -542,13 +541,13 @@ ga('send', 'pageview');
 <li><em>i</em>：可以当成立即常量来使用的整数操作数</li>
 <li><em>F</em>：可以当成立即常量来使用的浮点操作数</li>
 </ul>
-<h2 id="内联汇编方言设置"><a href="#内联汇编方言设置" class="headerlink" title="内联汇编方言设置"></a>内联汇编方言设置</h2><h3 id="代码声明"><a href="#代码声明" class="headerlink" title="代码声明"></a>代码声明</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;.att_syntax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $1, %%eax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $0, %%ebx \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add %%ebx, %%eax \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;%eax&quot;</span>, <span class="string">&quot;%ebx&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">asm</span>(<span class="string">&quot;.intel_syntax noprefix \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov eax, 1 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov ebx, 0 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add eax, ebx \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ebx&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="内联汇编方言设置"><a href="#内联汇编方言设置" class="headerlink" title="内联汇编方言设置"></a>内联汇编方言设置</h2><h3 id="代码声明"><a href="#代码声明" class="headerlink" title="代码声明"></a>代码声明</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">asm</span></span>(<span class="string">&quot;.att_syntax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $1, %%eax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $0, %%ebx \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add %%ebx, %%eax \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;%eax&quot;</span>, <span class="string">&quot;%ebx&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in"><span class="keyword">asm</span></span>(<span class="string">&quot;.intel_syntax noprefix \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov eax, 1 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov ebx, 0 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add eax, ebx \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ebx&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <h3 id="命令指定"><a href="#命令指定" class="headerlink" title="命令指定"></a>命令指定</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-masm=att</span><br><span class="line">-masm=intel</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckiwusofr002yp4kne86z3kw3" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqny8hii003b94kn269m394d" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
@@ -609,7 +608,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 小张矿长<br>
+      &copy; 2021 Hello Underground<br>
       提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

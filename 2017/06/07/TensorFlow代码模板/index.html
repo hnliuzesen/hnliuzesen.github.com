@@ -23,13 +23,12 @@ ga('send', 'pageview');
   <meta name="description" content="通过看《面向机器智能的TensorFlow实践》总结的使用 TensorFlow 的推荐编程方式和注意事项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow代码模板">
-<meta property="og:url" content="http://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">
+<meta property="og:url" content="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">
 <meta property="og:site_name" content="Hello Underground">
 <meta property="og:description" content="通过看《面向机器智能的TensorFlow实践》总结的使用 TensorFlow 的推荐编程方式和注意事项">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-06-07T11:33:25.000Z">
 <meta property="article:modified_time" content="2017-06-07T11:33:25.000Z">
-<meta property="article:author" content="小张矿长">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="TensorFlow">
 <meta name="twitter:card" content="summary">
@@ -44,7 +43,7 @@ ga('send', 'pageview');
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -74,7 +73,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
@@ -107,7 +106,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>通过看《面向机器智能的TensorFlow实践》总结的使用 TensorFlow 的推荐编程方式和注意事项</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="训练模型框架"><a href="#训练模型框架" class="headerlink" title="训练模型框架"></a>训练模型框架</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里写模型的主要算法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inference</span>(<span class="params">X</span>):</span></span><br><span class="line">    <span class="comment"># 计算输入 X 时，模型的输出</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loss</span>(<span class="params">X, Y</span>):</span></span><br><span class="line">    <span class="comment"># 根据输入 X 和期望 Y 算出损失</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">input</span>(<span class="params">total_loss</span>):</span></span><br><span class="line">    <span class="comment"># 读取训练数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">total_loss</span>):</span></span><br><span class="line">    <span class="comment"># 根据计算的总损失调整模型参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate</span>(<span class="params">sess, X, Y</span>):</span></span><br><span class="line">    <span class="comment"># 对模型进行评估</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Saver 对象用于保存检查点</span></span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    tf.initialize_all_variables().run()</span><br><span class="line">    </span><br><span class="line">    X, Y = inputs()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 好像少了个 inference，感觉应该是 total_loss = loss(inference(X), Y) 才对，算出来损失</span></span><br><span class="line">    total_loss = loss(X, Y)</span><br><span class="line">    <span class="comment"># 根据损失调教模型</span></span><br><span class="line">    train_op = train(total_loss)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> 这个应该是多线程的代码？</span></span><br><span class="line">    coord = tf.train.Coordinator()</span><br><span class="line">    threads = tf.train.start_queue_runners(sess=sess, coord=coord)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 训练次数</span></span><br><span class="line">    training_steps = <span class="number">1000</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 使用 Saver 获取检查点</span></span><br><span class="line">    initial_step = <span class="number">0</span></span><br><span class="line">    ckpt = tf.train.get_checkpoint_state(os.path.dirname(__file__))</span><br><span class="line">    <span class="keyword">if</span> chkpt <span class="keyword">and</span> ckpt.model_checkpoint_path:</span><br><span class="line">        saver.restore(sess, ckpt.model_checkpoint_path)</span><br><span class="line">        initial_step = <span class="built_in">int</span>(ckpt.model_checkpoint_path.rsplit(<span class="string">&#x27;-&#x27;</span>, <span class="number">1</span>)[<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 打印出每次训练的结果</span></span><br><span class="line">    <span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(initial_step, training_steps):</span><br><span class="line">        sess.run([train_op])</span><br><span class="line">        <span class="keyword">if</span> step % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&quot;loss:&quot;</span>, sess.run([total_loss])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 模型评估</span></span><br><span class="line">    evaluate(sess, X, Y)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每 1000 次训练保存检查点一次</span></span><br><span class="line">    saver.save(sess, <span class="string">&#x27;my-model&#x27;</span>, global_step=training_steps)</span><br><span class="line">    saver.close()</span><br><span class="line">    </span><br><span class="line">    coord.request_stop()</span><br><span class="line">    coord.join(threads)</span><br><span class="line">    sess.close()</span><br></pre></td></tr></table></figure>
 
@@ -117,7 +116,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckiwusoes000ap4kncbndficv" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckqny8hhg000a94kn9tw0948t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li></ul>
@@ -178,7 +177,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 小张矿长<br>
+      &copy; 2021 Hello Underground<br>
       提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

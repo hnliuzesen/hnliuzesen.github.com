@@ -23,24 +23,23 @@ ga('send', 'pageview');
   <meta name="description" content="想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只有 IPv4 的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 地址是可以外网访问的。正好自己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="路由器自动绑定IP到CloudFlare">
-<meta property="og:url" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/">
+<meta property="og:url" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/">
 <meta property="og:site_name" content="Hello Underground">
 <meta property="og:description" content="想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只有 IPv4 的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 地址是可以外网访问的。正好自己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/firewall.webp">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/network.webp">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/ifconfig.webp">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/postman.webp">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_script.webp">
-<meta property="og:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_cron.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/firewall.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/network.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/ifconfig.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/postman.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_script.webp">
+<meta property="og:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_cron.webp">
 <meta property="article:published_time" content="2020-05-06T09:14:14.000Z">
 <meta property="article:modified_time" content="2020-05-06T09:14:14.000Z">
-<meta property="article:author" content="小张矿长">
 <meta property="article:tag" content="domain">
 <meta property="article:tag" content="CloudFlare">
 <meta property="article:tag" content="router">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/firewall.webp">
+<meta name="twitter:image" content="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/firewall.webp">
 <meta name="twitter:creator" content="@hnliuzesen">
   
   
@@ -52,7 +51,7 @@ ga('send', 'pageview');
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -82,7 +81,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
@@ -115,7 +114,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只<br>有 IPv4 的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 地址是可以外网访问的。正好自<br>己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="设置路由器"><a href="#设置路由器" class="headerlink" title="设置路由器"></a>设置路由器</h2><p>这里路由器使用的固件是 <a target="_blank" rel="noopener" href="https://opt.cn2qq.com/padavan/">Padavan</a> ，进入路由器的管理页面，一般是 <a target="_blank" rel="noopener" href="http://192.168.123.1/">192.168.123.1</a> ，<br>左侧 <code>高级设置</code> <code>防火墙</code> ，在右侧 <code>通用设置</code> 中 <code>从外网访问路由器服务</code> 下面 <code>允许从互联网设置 router</code> 打开、<code>互联网设置通信端口</code><br>设置 80，如果想要远程访问 SSH，下面的开关也要打开。</p>
 <img src="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/firewall.webp" class="" title="防火墙配置">
@@ -172,7 +171,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="ckiwusoez000kp4kn508u7twd" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="ckqny8hhm000k94kndt5n0060" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CloudFlare/" rel="tag">CloudFlare</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/domain/" rel="tag">domain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/router/" rel="tag">router</a></li></ul>
@@ -233,7 +232,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 小张矿长<br>
+      &copy; 2021 Hello Underground<br>
       提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
