@@ -110,17 +110,17 @@ ga('send', 'pageview');
 <span id="more"></span>
 
 <p>主要参考 <a target="_blank" rel="noopener" href="https://v2ex.com/t/461403">V2EX</a> 。</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看 job</span></span><br><span class="line">❯ adb shell dumpsys jobscheduler com.android.providers.downloads</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看 job</span></span><br><span class="line">adb shell dumpsys jobscheduler com.android.providers.downloads</span><br></pre></td></tr></table></figure>
 
 <p>关键字是 <code>UNMETERED</code> ，意思是不按使用量计费。</p>
-<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 强制启动 job</span></span><br><span class="line">❯ adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 强制启动 job</span></span><br><span class="line">adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID</span><br></pre></td></tr></table></figure>
 
 <p>Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考<br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/app/job/JobScheduler">JobScheduler</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqpdbxv6000p8govgb85at5h" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqpdqc2q000p96or5sma8l31" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li></ul>

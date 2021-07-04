@@ -114,7 +114,7 @@ ga('send', 'pageview');
 <p>用户按数字键，程序输出所有的可能组合。</p>
 <span id="more"></span>
 
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:Digit string &quot;23&quot;</span><br><span class="line">Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</span><br></pre></td></tr></table></figure>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:Digit string &quot;23&quot;</span><br><span class="line">Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</span><br></pre></td></tr></table></figure>
 
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>如果只有两个按键<code>1</code>、<code>2</code>，对应<code>[A, B, C]</code>、<code>[D, E, F]</code>，那么它有 3×3=9 种组合，为了一个不漏首先从最后一个来变换，也就是先写<code>A</code>，然后轮流写<br><code>D</code>、<code>E</code>、<code>F</code>，生成<code>AD</code>、<code>AE</code>、<code>AF</code>后将第一位换为B，这样有顺序的排列组合可以保证不遗漏所有情况。</p>
 <p>接下来就是使用代码实现这种排列组合了，相当于是循环第一位可能对应的字母，每个字母后面再循环第二位可能对应的字母，可以使用递归来实现，但是一般语言递<br>归都有深度限制，题目中未限制用户输入长度，所以需要将递归转换为循环。</p>
@@ -130,7 +130,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" data-id="ckqpdbxuj00028gov96stc0rz" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" data-id="ckqpdqc25000296or530d5dc9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/" rel="tag">String</a></li></ul>

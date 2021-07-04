@@ -108,7 +108,7 @@ ga('send', 'pageview');
 <span id="more"></span>
 
 <h2 id="JOIN-导致结果顺序随机"><a href="#JOIN-导致结果顺序随机" class="headerlink" title="JOIN 导致结果顺序随机"></a>JOIN 导致结果顺序随机</h2><p>第一个遇见的每次查询结果顺序都不一致的 SQL 大致如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id, b.id, c.id</span><br><span class="line"><span class="keyword">FROM</span> table_a a</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_b b <span class="keyword">on</span> a.b_id <span class="operator">=</span> b.id</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_c c <span class="keyword">on</span> a.c_id <span class="operator">=</span> c.id</span><br><span class="line">LIMIT <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight postgresql"><figcaption><span>& PL/pgSQL</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id, b.id, c.id</span><br><span class="line"><span class="keyword">FROM</span> table_a a</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_b b <span class="keyword">on</span> a.b_id = b.id</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_c c <span class="keyword">on</span> a.c_id = c.id</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
 
 <p>开始以为是 LIMIT 导致的，因为最早发现排序差异的时候是 LIMIT 10 和 LIMIT 1000 的前几条顺序不一样，后来换了 pgAdmin 4 后发现，不改变 LIMIT<br>的大小，每次点执行，顺序也都会有变化。通过 pgAdmin 4 里面的查询分析，发现先是使用了索引，后进行了 join。</p>
 <p>图1</p>
@@ -118,7 +118,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqpdbxw4003d8govazjt2hlj" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqpdqc2w001296orbedr0mzd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
