@@ -98,7 +98,7 @@ deploy:
   type: git
   repo: 'https://github.com/hnliuzesen/hnliuzesen.github.com'
   branch: master
-  token: '$GIT_TOKEN'
+  token: '${{ secrets.GIT_TOKEN }}'
   message: 'Site updated: {{ now("YYYY-MM-DD HH:mm:ss") }}'
   name: hnliuzesen
   email: 'hnliuzesen@gmail.com'
