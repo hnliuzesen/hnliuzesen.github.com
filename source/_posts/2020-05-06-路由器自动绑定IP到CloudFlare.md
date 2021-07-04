@@ -1,9 +1,9 @@
 ---
-title: 路由器自动绑定IP到CloudFlare
+title: 路由器自动绑定 IP 到 CloudFlare
 date: 2020-05-06 17:14:14
 comments: true
 categories:
-- Note
+- Tip
 - WEB
 tags:
 - domain

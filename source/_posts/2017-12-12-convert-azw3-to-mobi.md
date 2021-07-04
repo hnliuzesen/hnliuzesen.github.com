@@ -2,7 +2,7 @@
 title: convert azw3 to mobi
 date: 2017-12-12 18:45:05
 categories:
-- Note
+- Tip
 - Kindle
 tags:
 - Kindle
@@ -15,7 +15,8 @@ tags:
 <!--more-->
 
 ## 下载完整版图书
-首先进入[管理我的内容和设备](https://www.amazon.cn/gp/digital/fiona/manage)，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle 设备进行下载。
+首先进入[管理我的内容和设备](https://www.amazon.cn/gp/digital/fiona/manage)，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle 设
+备进行下载。
 
 {% asset_img download.webp download %}
 
@@ -33,7 +34,8 @@ tags:
 设置好之后直接将下载的 azw3 文件拖入到 calibre 就可以了。可是双击试试能否打开，不能打开说明 DeDRM 失败了。
 
 ## 解压 azw3 为 epub
-使用 [KindleUnpack](https://github.com/kevinhendricks/KindleUnpack) 来将去除了 DRM 的 azw3 文件转换为 epub，这里还是使用 calibre 插件来实现。
+使用 [KindleUnpack](https://github.com/kevinhendricks/KindleUnpack) 来将去除了 DRM 的 azw3 文件转换为 epub，这里还是使
+用 calibre 插件来实现。
 
 {% asset_img unpack.webp unpack %}
 

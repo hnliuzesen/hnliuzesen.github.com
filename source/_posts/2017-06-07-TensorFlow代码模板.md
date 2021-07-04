@@ -1,9 +1,9 @@
 ---
-title: TensorFlow代码模板
+title: TensorFlow 代码模板
 date: 2017-06-07 19:33:25
 categories:
-- Develop
-- Machine learning
+- Computers & Technology
+- Machine Learning
 tags:
 - TensorFlow
 - Python
@@ -75,7 +75,8 @@ with tf.Session() as sess:
     sess.close()
 ```
 
-这段代码中最重要的应该有两部分，一个是最开始的计算代码，对于数据应该如何进行计算来得到期望的值，也许不确定各种参数，但是思路一定要对，剩下的交给引擎来调整参数。另一个就是得到损失之后如何去调整参数的算法，这个一般有很多内置模型可以用。
+这段代码中最重要的应该有两部分，一个是最开始的计算代码，对于数据应该如何进行计算来得到期望的值，也许不确定各种参数，但是思路一定要对，剩下的交给引
+擎来调整参数。另一个就是得到损失之后如何去调整参数的算法，这个一般有很多内置模型可以用。
 
 ## 书写风格
 ```python

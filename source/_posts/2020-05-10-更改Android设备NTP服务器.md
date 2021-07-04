@@ -1,8 +1,8 @@
 ---
-title: 更改Android设备NTP服务器
+title: 更改 Android 设备 NTP 服务器
 date: 2020-05-10 18:35:44
 categories:
-- Note
+- Tip
 - Android
 tags:
 - Android

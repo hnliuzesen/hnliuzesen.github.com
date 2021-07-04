@@ -1,11 +1,11 @@
 ---
-title: Spring获取带参数bean
+title: Spring 获取带参数 bean
 date: 2017-09-19 10:35:32
 categories:
-- Develop
-- JAVA
+- Computers & Technology
+- Program
 tags:
-- JAVA
+- Java
 - Spring
 ---
 

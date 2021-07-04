@@ -1,8 +1,8 @@
 ---
-title: Google Play下载一直等待WLAN
+title: Google Play 下载一直等待 WLAN
 date: 2020-05-11 14:24:38
 categories:
-- Note
+- Tip
 - Android
 tags:
 - Android
