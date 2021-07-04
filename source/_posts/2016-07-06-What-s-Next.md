@@ -57,14 +57,14 @@ For each test case, print the following  lines:
 It is guaranteed that a solution exists.
 
 #### Sample Input
-```shell script
+```Plaintext
 1
 5
 4 1 3 2 4
 ```
 
 #### Sample Output
-```shell script
+```Plaintext
 7
 4 1 3 1 1 1 3
 ```
@@ -95,7 +95,7 @@ Having found *C*, we print its length (`7`) as our first line of output, followe
 ## 代码
 
 ### Python
-```python
+```Python
 class Solution(object):
     def one(self, nums):
         if nums[0] - 1 == 0:

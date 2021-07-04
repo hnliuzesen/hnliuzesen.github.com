@@ -21,14 +21,14 @@ Find the median of the two sorted arrays. The overall run time complexity should
 <!--more-->
 
 #### 例子
-```shell script
+```Plaintext
 nums1 = [1, 3]
 nums2 = [2]
 
 The median is 2.0
 ```
 
-```shell script
+```Plaintext
 nums1 = [1, 2]
 nums2 = [3, 4]
 
@@ -46,7 +46,7 @@ The median is (2 + 3)/2 = 2.5
 ## 代码
 
 ### Python
-```python
+```Python
 class Solution(object):
     def findMedianSortedArrays(self, nums1, nums2):
         """

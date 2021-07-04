@@ -19,16 +19,16 @@ Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 
 
 主要参考 [V2EX](https://v2ex.com/t/461403) 。
 
-```shell script
+```Shell
 # 查看 job
-❯ adb shell dumpsys jobscheduler com.android.providers.downloads
+adb shell dumpsys jobscheduler com.android.providers.downloads
 ```
 
 关键字是 `UNMETERED` ，意思是不按使用量计费。
 
-```shell script
+```Shell
 # 强制启动 job
-❯ adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID
+adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID
 ```
 
 Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考 

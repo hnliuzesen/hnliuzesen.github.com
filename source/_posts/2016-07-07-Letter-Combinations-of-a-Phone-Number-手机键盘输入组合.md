@@ -22,7 +22,7 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
 <!--more-->
 
 #### 例子
-```shell script
+```Plaintext
 Input:Digit string "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 ```
@@ -41,7 +41,7 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 ## 代码
 
 ### Python
-```python
+```Python
 class Solution(object):
     keyMapping = [[], [], ['a', 'b', 'c'], ['d', 'e', 'f'],
                   ['g', 'h', 'i'], ['j', 'k', 'l'], ['m', 'n', 'o'],

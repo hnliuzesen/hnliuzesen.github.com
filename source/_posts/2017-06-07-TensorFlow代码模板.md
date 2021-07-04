@@ -14,7 +14,7 @@ tags:
 <!--more-->
 
 ## 训练模型框架
-```python
+```Python
 import tensorflow as tf
 
 # 这里写模型的主要算法
@@ -79,7 +79,7 @@ with tf.Session() as sess:
 擎来调整参数。另一个就是得到损失之后如何去调整参数的算法，这个一般有很多内置模型可以用。
 
 ## 书写风格
-```python
+```Python
 import tensorflow as tf
 
 # 不创建图会使用默认的 Graph，获取方式是 tf.get_default_graph()

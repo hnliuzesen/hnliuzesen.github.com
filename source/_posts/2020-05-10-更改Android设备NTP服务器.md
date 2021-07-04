@@ -20,16 +20,16 @@ settings put global ntp_server ntp.aliyun.com
 使用 ADB 命令进行修改，修改后可以验证一下，如果修改成功，去设置里面关闭时间同步再开启时间就会自动同步了，同理，也可以设置其他的时间
 同步服务器，服务器列表在最后。
 
-```shell script
-❯ adb shell settings put global ntp_server ntp.aliyun.com
-❯ adb shell settings get global ntp_server
+```Shell
+adb shell settings put global ntp_server ntp.aliyun.com
+adb shell settings get global ntp_server
 ntp.aliyun.com
 ```
 
 ## 使用手机修改
 使用手机直接修改可能需要 root，这里使用的是 [Termux](https://termux.com/) 。
 
-```shell script
+```Shell
 $ su
 :/data/data/com.termux/files/home # settings put global ntp_server ntp.aliyun.com
 :/data/data/com.termux/files/home # settings get global ntp_server

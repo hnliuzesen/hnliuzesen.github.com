@@ -14,7 +14,7 @@ tags:
 
 ## JOIN 导致结果顺序随机
 第一个遇见的每次查询结果顺序都不一致的 SQL 大致如下：
-```SQL
+```PostgreSQL & PL/pgSQL
 SELECT a.id, b.id, c.id
 FROM table_a a
          INNER JOIN table_b b on a.b_id = b.id

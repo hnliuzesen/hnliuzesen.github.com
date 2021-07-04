@@ -42,7 +42,7 @@ tags:
 
 通过管道命令 `grep -A 2 ppp0` 获取 ppp0 行和后面两行
 
-```shell script
+```Shell
 [A3004NS /home/root]# ifconfig | grep -A 2 ppp0
 ppp0      Link encap:Point-to-Point Protocol
           inet addr:10.16.102.62  P-t-P:10.16.0.1  Mask:255.255.255.255
@@ -51,28 +51,28 @@ ppp0      Link encap:Point-to-Point Protocol
 
 再过滤一下 inet6
 
-```shell script
+```Shell
 [A3004NS /home/root]# ifconfig | grep -A 2 ppp0 | grep inet6
           inet6 addr: 240e:33c:2601:a451:815c:89d1:1fda:a1bf/64 Scope:Global
 ```
 
 这一行被空格分为了4份，使用 `awk` 命令获取第三段内容
 
-```shell script
+```Shell
 [A3004NS /home/root]# ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}'
 240e:33c:2601:a451:815c:89d1:1fda:a1bf/64
 ```
 
 最后用 `cut` 命令将结果以 / 分割取前面的地址
 
-```shell script
+```Shell
 [A3004NS /home/root]# ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' -f 0
 240e:33c:2601:a451:815c:89d1:1fda:a1bf
 ```
 
 成功取到地址后将其赋值给变量 `ipv6add`
 
-```shell script
+```Shell
 ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' -f 1`
 ```
 
@@ -92,7 +92,7 @@ Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管�
 要使用 [List DNS Records](https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records) 来查询。查询方式和下面请求
 类似，或者直接使用页面上给出的命令进行查询。这个只需要查一次，不会变，查询命令也不需要写入路由器脚本中。
 
-```json
+```JSON
     {
         "type": "AAAA",
         "name": ":your_domain",
@@ -111,7 +111,7 @@ Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管�
 命令也先在路由上用 SSH 测试一下比较保险，这里需要注意的是，请求体里需要用到前面保存的 shell 变量，不能直接写 `"${ipv6add}"` ，会
 被当成字符串处理，需要写 `"'"${ipv6add}"'"`
 
-```shell script
+```Shell
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier" \
     -H "X-Auth-Email: :your_cloudflare_email" \
     -H "X-Auth-Key: :global_api_key" \
@@ -122,7 +122,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_rec
 可以正常返回，并且 CloudFlare 控制台中记录也被更新，通过域名也能访问路由，就可以将命令写入路由器脚本中了。最后完整的命令如下，不要
 直接复制，用上面测试成功的命令拼接成自己的命令。
 
-```shell script
+```Shell
 ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' -f 1`
 logger -t "[CloudFlare]" "IPv6 address: ${ipv6add}"
 api_result=`curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier" \
@@ -141,7 +141,7 @@ api_result=`curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identi
 
 如果两个地方都不能够获取到 IP 地址，则可以添加一个定时任务，每小时取执行一次脚本，这样就需要将命令存为 shell script 。如下：
 
-```shell script
+```Shell
 #!/bin/bash
 ### [CloudFlare]
 ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' -f 1`
