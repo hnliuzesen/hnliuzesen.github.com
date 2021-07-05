@@ -44,3 +44,24 @@
     });
 </script>
 <% } %>
+
+<% if(theme.gitalk.enable && theme.gitalk.clientID && theme.valine.clientSecret){ %>
+    <%- js(theme.cdn.gitalk.js) %>
+    <script>
+    var ADMIN_INFO = "<%= theme.gitalk.admin %>";
+    var admin_info = "<%= theme.gitalk.admin %>".split(',').filter(function(item){
+      return ADMIN_INFO.indexOf(item) > -1
+    });
+    const gitalk = new Gitalk({
+      clientID: "<%= theme.gitalk.clientID %>",
+      clientSecret: "<%= theme.gitalk.clientSecret %>",
+      repo: "<%= theme.gitalk.repo %>",
+      owner: "<%= theme.gitalk.owner %>",
+      admin: "<%= theme.gitalk.admin %>".split(','),
+      pagerDirection: "<%= theme.gitalk.pagerDirection %>",
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk-container')
+    </script>
+<% } %>

@@ -33,6 +33,10 @@
           <%= __('comment') %>
         </a>
       <% } %>
+      <% if (post.comments && theme.gitalk.enable && theme.gitalk.clientID && theme.valine.clientSecret ){ %>
+        <div id="gitalk-container"></div>
+        <%= __('comment') %>
+      <% } %>
       <%- partial('post/tag') %>
     </footer>
   </div>

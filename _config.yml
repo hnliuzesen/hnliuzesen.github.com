@@ -91,6 +91,19 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: landscape
+theme_config:
+  cdn:
+    gitalk:
+      css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
+      js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css
+  gitalk:
+    enable: true
+    clientID: b6df7cac6bd14222537c
+    clientSecret: 8ac65aa69a0230023632dc095585e73cd72476dd
+    repo: hnliuzesen.github.com
+    owner: hnliuzesen
+    admin: '["hnliuzesen"]'
+    pagerDirection: first
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
