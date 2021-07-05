@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-ga('create', 'UA-80426918-1', 'auto');
-ga('send', 'pageview');
-
+  gtag('config', 'UA-80426918-1');
 </script>
 <!-- End Google Analytics -->
 
-
   
   <title>Hello Underground</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="A tiny blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hello Underground">
@@ -31,14 +28,21 @@ ga('send', 'pageview');
 <meta name="twitter:creator" content="@hnliuzesen">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
-    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
@@ -69,18 +73,19 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
 </header>
+
       <div class="outer">
         <section id="main">
   
-    <article id="post-TensorFlow代码模板" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-TensorFlow代码模板" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" class="article-date">
-  <time datetime="2017-06-07T11:33:25.000Z" itemprop="datePublished">2017-06-07</time>
+  <time class="dt-published" datetime="2017-06-07T11:33:25.000Z" itemprop="datePublished">2017-06-07</time>
 </a>
     
   <div class="article-category">
@@ -95,13 +100,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">TensorFlow 代码模板</a>
+      <a class="p-name article-title" href="/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">TensorFlow 代码模板</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>通过看《面向机器智能的TensorFlow实践》总结的使用 TensorFlow 的推荐编程方式和注意事项</p>
         
@@ -112,7 +117,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckqq6dbh6000a9forfnba5lxw" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckqq7j20z000a7mow7w7wc0wi" data-title="TensorFlow 代码模板" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li></ul>
@@ -123,11 +129,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-ubuntu一键替换软件源" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ubuntu一键替换软件源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" class="article-date">
-  <time datetime="2017-05-27T01:31:49.000Z" itemprop="datePublished">2017-05-27</time>
+  <time class="dt-published" datetime="2017-05-27T01:31:49.000Z" itemprop="datePublished">2017-05-27</time>
 </a>
     
   <div class="article-category">
@@ -142,13 +149,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/">ubuntu 一键更换软件源</a>
+      <a class="p-name article-title" href="/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/">ubuntu 一键更换软件源</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>使用 Ubuntu 可以直接在设置中测试最快的软件源并更换，但是有时候没有图形化界面，比如在 Server 版，或者 Docker File 中想要批量替换软件源，这时<br>候可以使用 <code>sed</code> 命令，因为 <code>sed</code> 命令在大多数环境中不用安装都可运行，而在最简 Ubuntu Docker 镜像中是没有 vim 的。</p>
         
@@ -159,7 +166,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="ckqq6dbh200079forg217asbp" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/05/27/ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="ckqq7j20v00077mow2ihrcypn" data-title="ubuntu 一键更换软件源" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
@@ -170,11 +178,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Lombok笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Lombok笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2017-01-07T10:01:34.000Z" itemprop="datePublished">2017-01-07</time>
+  <time class="dt-published" datetime="2017-01-07T10:01:34.000Z" itemprop="datePublished">2017-01-07</time>
 </a>
     
   <div class="article-category">
@@ -189,13 +198,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/">Lombok 笔记</a>
+      <a class="p-name article-title" href="/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/">Lombok 笔记</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="Lombok使用"><a href="#Lombok使用" class="headerlink" title="Lombok使用"></a>Lombok使用</h2><p><a target="_blank" rel="noopener" href="https://projectlombok.org/index.html">Lombok</a> 可以通过注解的形式，来帮助我们在开发的时候省略掉一些重复的工作。比如设置 get、set 方法，<br>设置无参构造函数或者全参构造函数。</p>
 <p>如果使用的是 IntelliJ IDEA，可以先安装 <a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/idea/plugin/6317-lombok-plugin">Lombok Plugin</a> 插件。</p>
@@ -208,7 +217,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/" data-id="ckqq6dbh000069forb33m3l30" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/" data-id="ckqq7j20u00067mow5hol89mm" data-title="Lombok 笔记" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li></ul>
@@ -219,11 +229,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Median-of-Two-Sorted-Arrays-双数组中位数" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Median-of-Two-Sorted-Arrays-双数组中位数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="article-date">
-  <time datetime="2016-07-08T08:37:43.000Z" itemprop="datePublished">2016-07-08</time>
+  <time class="dt-published" datetime="2016-07-08T08:37:43.000Z" itemprop="datePublished">2016-07-08</time>
 </a>
     
   <div class="article-category">
@@ -238,13 +249,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">Median of Two Sorted Arrays 双数组中位数</a>
+      <a class="p-name article-title" href="/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">Median of Two Sorted Arrays 双数组中位数</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4. Median of Two Sorted Arrays"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/median-of-two-sorted-arrays/">4. Median of Two Sorted Arrays</a></h3><p>There are two sorted arrays nums1 and nums2 of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
 <p>求两个有序数组合并后的中位数。</p>
@@ -256,7 +267,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="ckqq6dbgy00059for55lz3b4g" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="ckqq7j20s00057mowfjpu3q9k" data-title="Median of Two Sorted Arrays 双数组中位数" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/" rel="tag">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
@@ -267,11 +279,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Letter-Combinations-of-a-Phone-Number-手机键盘输入组合" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Letter-Combinations-of-a-Phone-Number-手机键盘输入组合" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" class="article-date">
-  <time datetime="2016-07-07T04:50:29.000Z" itemprop="datePublished">2016-07-07</time>
+  <time class="dt-published" datetime="2016-07-07T04:50:29.000Z" itemprop="datePublished">2016-07-07</time>
 </a>
     
   <div class="article-category">
@@ -286,13 +299,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/">Letter Combinations of a Phone Number 手机键盘输入组合</a>
+      <a class="p-name article-title" href="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/">Letter Combinations of a Phone Number 手机键盘输入组合</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="17-Letter-Combinations-of-a-Phone-Number"><a href="#17-Letter-Combinations-of-a-Phone-Number" class="headerlink" title="17. Letter Combinations of a Phone Number"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/">17. Letter Combinations of a Phone Number</a></h3><p>Given a digit string, return all possible letter combinations that the number could represent.<br>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
 <img src="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/1.webp" class="">
@@ -306,7 +319,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" data-id="ckqq6dbgt00029forblro2k3s" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" data-id="ckqq7j20n00027mow1kpp7pg9" data-title="Letter Combinations of a Phone Number 手机键盘输入组合" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/" rel="tag">String</a></li></ul>
@@ -317,11 +331,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-What-s-Next" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-What-s-Next" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2016/07/06/What-s-Next/" class="article-date">
-  <time datetime="2016-07-06T15:34:03.000Z" itemprop="datePublished">2016-07-06</time>
+  <time class="dt-published" datetime="2016-07-06T15:34:03.000Z" itemprop="datePublished">2016-07-06</time>
 </a>
     
   <div class="article-category">
@@ -336,13 +351,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/06/What-s-Next/">What&#39;s Next?</a>
+      <a class="p-name article-title" href="/2016/07/06/What-s-Next/">What&#39;s Next?</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="What’s-Next"><a href="#What’s-Next" class="headerlink" title="What’s Next?"></a><a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/whats-next">What’s Next?</a></h3><p>Johnny is playing with a large binary number, <em>B</em>. The number is so large that it needs to be compressed into an array<br>of integers, <em>A</em>, where the values in even indices <code>(0, 2, 4,...)</code> represent some number of consecutive <code>1</code> bits and<br>the values in odd indices <code>(1, 3, 5,...)</code> represent some number of consecutive <code>0</code> bits in alternating substrings of <em>B</em>.</p>
 <p>For example, suppose we have array <em>A</em> = <code>&#123;4, 1, 3, 2, 4&#125;</code>. <em>A<sub>0</sub></em> represents <code>&quot;1111&quot;</code>, <em>A<sub>1</sub></em><br>represents <code>&quot;0&quot;</code>, <em>A<sub>2</sub></em> represents <code>&quot;111&quot;</code>, <em>A<sub>3</sub></em> represents <code>&quot;00&quot;</code>, and <em>A<sub>4</sub></em> represents<br><code>&quot;1111&quot;</code>. The number of consecutive binary characters in <em>i<sup>th</sup></em> the substring of <em>B</em> corresponds to integer<br><em>A<sub>i</sub></em>, as shown in this diagram:</p>
@@ -359,7 +374,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/06/What-s-Next/" data-id="ckqq6dbgq00019for8fv2cas0" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/06/What-s-Next/" data-id="ckqq7j20k00017mowe70145wi" data-title="What&#39;s Next?" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/" rel="tag">String</a></li></ul>
@@ -370,12 +386,13 @@ ga('send', 'pageview');
 </article>
 
 
+
   
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">« 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 </section>
@@ -408,11 +425,13 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
+      
       &copy; 2021 Hello Underground<br>
-      提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
@@ -425,19 +444,19 @@ ga('send', 'pageview');
 </nav>
     
 
-<script src="//ajax.loli.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
+
 
 
 

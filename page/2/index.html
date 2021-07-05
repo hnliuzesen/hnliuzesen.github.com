@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-ga('create', 'UA-80426918-1', 'auto');
-ga('send', 'pageview');
-
+  gtag('config', 'UA-80426918-1');
 </script>
 <!-- End Google Analytics -->
 
-
   
   <title>Hello Underground</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="A tiny blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hello Underground">
@@ -31,14 +28,21 @@ ga('send', 'pageview');
 <meta name="twitter:creator" content="@hnliuzesen">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
-    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
@@ -69,18 +73,19 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
 </header>
+
       <div class="outer">
         <section id="main">
   
-    <article id="post-路由器自动绑定IP到CloudFlare" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-路由器自动绑定IP到CloudFlare" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" class="article-date">
-  <time datetime="2020-05-06T09:14:14.000Z" itemprop="datePublished">2020-05-06</time>
+  <time class="dt-published" datetime="2020-05-06T09:14:14.000Z" itemprop="datePublished">2020-05-06</time>
 </a>
     
   <div class="article-category">
@@ -95,13 +100,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/">路由器自动绑定 IP 到 CloudFlare</a>
+      <a class="p-name article-title" href="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/">路由器自动绑定 IP 到 CloudFlare</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只<br>有 IPv4 的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 地址是可以外网访问的。正好自<br>己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。</p>
         
@@ -112,7 +117,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="ckqq6dbhf000k9forabmw4v5t" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="ckqq7j217000k7mow6i481yb1" data-title="路由器自动绑定 IP 到 CloudFlare" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CloudFlare/" rel="tag">CloudFlare</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/domain/" rel="tag">domain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/router/" rel="tag">router</a></li></ul>
@@ -123,11 +129,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Python数据挖掘" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Python数据挖掘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" class="article-date">
-  <time datetime="2017-12-23T09:19:18.000Z" itemprop="datePublished">2017-12-23</time>
+  <time class="dt-published" datetime="2017-12-23T09:19:18.000Z" itemprop="datePublished">2017-12-23</time>
 </a>
     
   <div class="article-category">
@@ -142,13 +149,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">Python 数据挖掘</a>
+      <a class="p-name article-title" href="/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">Python 数据挖掘</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p><em><a target="_blank" rel="noopener" href="http://uml.org.cn/">AI 培训</a>练习的笔记</em></p>
         
@@ -159,7 +166,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" data-id="ckqq6dbiy003p9for24q2ada6" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" data-id="ckqq7j224002s7mow5efk0mj3" data-title="Python 数据挖掘" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
@@ -170,11 +178,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-convert-azw3-to-mobi" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-convert-azw3-to-mobi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/12/12/convert-azw3-to-mobi/" class="article-date">
-  <time datetime="2017-12-12T10:45:05.000Z" itemprop="datePublished">2017-12-12</time>
+  <time class="dt-published" datetime="2017-12-12T10:45:05.000Z" itemprop="datePublished">2017-12-12</time>
 </a>
     
   <div class="article-category">
@@ -189,13 +198,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/12/convert-azw3-to-mobi/">convert azw3 to mobi</a>
+      <a class="p-name article-title" href="/2017/12/12/convert-azw3-to-mobi/">convert azw3 to mobi</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>亚马逊购买的图书一般下载下来是 azw3 格式，将 azw3 格式转换为 mobi 可以方便发送到邮箱来同步到 kindle。</p>
         
@@ -206,7 +215,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/12/12/convert-azw3-to-mobi/" data-id="ckqq6dbhd000g9for53wr45qh" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/12/12/convert-azw3-to-mobi/" data-id="ckqq7j214000g7mow7jtdfpr5" data-title="convert azw3 to mobi" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kindle/" rel="tag">Kindle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azw3/" rel="tag">azw3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobi/" rel="tag">mobi</a></li></ul>
@@ -217,11 +227,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-JAVA-HTTP请求工具类" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JAVA-HTTP请求工具类" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/09/19/JAVA-HTTP%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="article-date">
-  <time datetime="2017-09-19T02:39:52.000Z" itemprop="datePublished">2017-09-19</time>
+  <time class="dt-published" datetime="2017-09-19T02:39:52.000Z" itemprop="datePublished">2017-09-19</time>
 </a>
     
   <div class="article-category">
@@ -236,13 +247,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/19/JAVA-HTTP%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7%E7%B1%BB/">JAVA-HTTP 请求工具类</a>
+      <a class="p-name article-title" href="/2017/09/19/JAVA-HTTP%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7%E7%B1%BB/">JAVA-HTTP 请求工具类</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>从别人那里拿来的对 HTTP 请求进行了封装的类，供参考和学习</p>
         
@@ -253,7 +264,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/09/19/JAVA-HTTP%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckqq6dbix003o9for1x4iemh5" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/09/19/JAVA-HTTP%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckqq7j223002o7mowetolc27z" data-title="JAVA-HTTP 请求工具类" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
@@ -264,11 +276,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Spring获取带参数bean" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Spring获取带参数bean" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/09/19/Spring%E8%8E%B7%E5%8F%96%E5%B8%A6%E5%8F%82%E6%95%B0bean/" class="article-date">
-  <time datetime="2017-09-19T02:35:32.000Z" itemprop="datePublished">2017-09-19</time>
+  <time class="dt-published" datetime="2017-09-19T02:35:32.000Z" itemprop="datePublished">2017-09-19</time>
 </a>
     
   <div class="article-category">
@@ -283,13 +296,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/19/Spring%E8%8E%B7%E5%8F%96%E5%B8%A6%E5%8F%82%E6%95%B0bean/">Spring 获取带参数 bean</a>
+      <a class="p-name article-title" href="/2017/09/19/Spring%E8%8E%B7%E5%8F%96%E5%B8%A6%E5%8F%82%E6%95%B0bean/">Spring 获取带参数 bean</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>一个方便在不能够自动注入的时候，或者需要动态给构造函数传入参数时获取 Bean 的工具类。</p>
         
@@ -300,7 +313,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/09/19/Spring%E8%8E%B7%E5%8F%96%E5%B8%A6%E5%8F%82%E6%95%B0bean/" data-id="ckqq6dbhb000e9forbg7oh5cm" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/09/19/Spring%E8%8E%B7%E5%8F%96%E5%B8%A6%E5%8F%82%E6%95%B0bean/" data-id="ckqq7j213000e7mowb8cx3hcv" data-title="Spring 获取带参数 bean" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
@@ -311,11 +325,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-机器学习分类模型对比" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-机器学习分类模型对比" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2017/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" class="article-date">
-  <time datetime="2017-06-07T12:02:09.000Z" itemprop="datePublished">2017-06-07</time>
+  <time class="dt-published" datetime="2017-06-07T12:02:09.000Z" itemprop="datePublished">2017-06-07</time>
 </a>
     
   <div class="article-category">
@@ -330,13 +345,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/">机器学习分类模型对比</a>
+      <a class="p-name article-title" href="/2017/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/">机器学习分类模型对比</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>代码都在 <a target="_blank" rel="noopener" href="https://github.com/backstopmedia/tensorflowbook">TensorFlow for Machine Intelligence</a></p>
         
@@ -347,7 +362,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" data-id="ckqq6dbh8000b9for6zhj0k8c" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" data-id="ckqq7j210000b7mow9e322m8q" data-title="机器学习分类模型对比" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
@@ -358,12 +374,13 @@ ga('send', 'pageview');
 </article>
 
 
+
   
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">« 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 »</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -396,11 +413,13 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
+      
       &copy; 2021 Hello Underground<br>
-      提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
@@ -413,19 +432,19 @@ ga('send', 'pageview');
 </nav>
     
 
-<script src="//ajax.loli.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
+
 
 
 

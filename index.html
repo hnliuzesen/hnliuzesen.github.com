@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-ga('create', 'UA-80426918-1', 'auto');
-ga('send', 'pageview');
-
+  gtag('config', 'UA-80426918-1');
 </script>
 <!-- End Google Analytics -->
 
-
   
   <title>Hello Underground</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="A tiny blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hello Underground">
@@ -31,14 +28,21 @@ ga('send', 'pageview');
 <meta name="twitter:creator" content="@hnliuzesen">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
-    <link href="//fonts.loli.net/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
   
 <link rel="stylesheet" href="/css/style.css">
 
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
@@ -69,18 +73,19 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
       </div>
     </div>
   </div>
 </header>
+
       <div class="outer">
         <section id="main">
   
-    <article id="post-PostgreSQL默认排序" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PostgreSQL默认排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" class="article-date">
-  <time datetime="2021-07-04T13:04:28.000Z" itemprop="datePublished">2021-07-04</time>
+  <time class="dt-published" datetime="2021-07-04T13:04:28.000Z" itemprop="datePublished">2021-07-04</time>
 </a>
     
   <div class="article-category">
@@ -95,13 +100,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/">PostgreSQL 默认排序</a>
+      <a class="p-name article-title" href="/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/">PostgreSQL 默认排序</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>刚刚接触到号称功能最强大的开源数据库 PostgreSQL，发现在不加 ORDER BY 的情况下每次查询返回的结果顺序都不一致，推测以下两种情况可能会导致。</p>
         
@@ -112,7 +117,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqq6dbhr00129forhv2z2fi7" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqq7j221002n7mow3t0h12u0" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
@@ -123,11 +129,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-浮点运算" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-浮点运算" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" class="article-date">
-  <time datetime="2020-12-17T06:23:39.000Z" itemprop="datePublished">2020-12-17</time>
+  <time class="dt-published" datetime="2020-12-17T06:23:39.000Z" itemprop="datePublished">2020-12-17</time>
 </a>
     
   <div class="article-category">
@@ -142,13 +149,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/">浮点运算</a>
+      <a class="p-name article-title" href="/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/">浮点运算</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="浮点数格式"><a href="#浮点数格式" class="headerlink" title="浮点数格式"></a>浮点数格式</h2><table>
 <thead>
@@ -217,7 +224,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckqq6dbhp000x9for9kitce7a" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckqq7j220002l7mow0l7ab8lx" data-title="浮点运算" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
@@ -228,11 +236,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-GDB设置反汇编代码风格" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-GDB设置反汇编代码风格" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" class="article-date">
-  <time datetime="2020-12-08T16:03:43.000Z" itemprop="datePublished">2020-12-09</time>
+  <time class="dt-published" datetime="2020-12-08T16:03:43.000Z" itemprop="datePublished">2020-12-09</time>
 </a>
     
   <div class="article-category">
@@ -247,13 +256,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/">GDB 设置反汇编代码风格</a>
+      <a class="p-name article-title" href="/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/">GDB 设置反汇编代码风格</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set disassembly-flavor att</span><br><span class="line">set disassembly-flavor intel</span><br><span class="line">show disassembly-flavor</span><br></pre></td></tr></table></figure>
         
@@ -264,7 +273,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckqq6dbhn000u9forb4dt8ei4" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckqq7j21y002j7mow85sg47bn" data-title="GDB 设置反汇编代码风格" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
@@ -275,11 +285,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-汇编基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-汇编基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="article-date">
-  <time datetime="2020-11-23T16:28:06.000Z" itemprop="datePublished">2020-11-24</time>
+  <time class="dt-published" datetime="2020-11-23T16:28:06.000Z" itemprop="datePublished">2020-11-24</time>
 </a>
     
   <div class="article-category">
@@ -294,13 +305,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">汇编基础知识</a>
+      <a class="p-name article-title" href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">汇编基础知识</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="通用目的寄存器"><a href="#通用目的寄存器" class="headerlink" title="通用目的寄存器"></a>通用目的寄存器</h3><table>
 <thead>
@@ -364,7 +375,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqq6dbhk000q9fora9gygn6b" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqq7j22f003j7mow8hwg0ddz" data-title="汇编基础知识" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
@@ -375,11 +387,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-Google-Play下载一直等待WLAN" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Google-Play下载一直等待WLAN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" class="article-date">
-  <time datetime="2020-05-11T06:24:38.000Z" itemprop="datePublished">2020-05-11</time>
+  <time class="dt-published" datetime="2020-05-11T06:24:38.000Z" itemprop="datePublished">2020-05-11</time>
 </a>
     
   <div class="article-category">
@@ -394,13 +407,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/">Google Play 下载一直等待 WLAN</a>
+      <a class="p-name article-title" href="/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/">Google Play 下载一直等待 WLAN</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google<br>Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置<br>多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多方法，虽然最后发现<br>可能是刷的系统的问题，但还是记录一下有用的命令。</p>
         
@@ -411,7 +424,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqq6dbhj000p9for5fgp8s5w" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqq7j22g003k7mow3qm50315" data-title="Google Play 下载一直等待 WLAN" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li></ul>
@@ -422,11 +436,12 @@ ga('send', 'pageview');
 </article>
 
 
+
   
-    <article id="post-更改Android设备NTP服务器" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-更改Android设备NTP服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
-  <time datetime="2020-05-10T10:35:44.000Z" itemprop="datePublished">2020-05-10</time>
+  <time class="dt-published" datetime="2020-05-10T10:35:44.000Z" itemprop="datePublished">2020-05-10</time>
 </a>
     
   <div class="article-category">
@@ -441,13 +456,13 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">更改 Android 设备 NTP 服务器</a>
+      <a class="p-name article-title" href="/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">更改 Android 设备 NTP 服务器</a>
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <p>有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms ，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是<br>就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。</p>
 <p>settings put global ntp_server ntp.aliyun.com</p>
@@ -459,7 +474,8 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqq6dbhh000m9for5n70h9nl" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqq7j21y002i7mowg1t4dab9" data-title="更改 Android 设备 NTP 服务器" class="article-share-link">分享</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NTP/" rel="tag">NTP</a></li></ul>
@@ -470,12 +486,13 @@ ga('send', 'pageview');
 </article>
 
 
+
   
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 »</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -508,11 +525,13 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
+      
       &copy; 2021 Hello Underground<br>
-      提供方： <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
@@ -525,19 +544,19 @@ ga('send', 'pageview');
 </nav>
     
 
-<script src="//ajax.loli.net/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
+
 
 
 
