@@ -25,7 +25,7 @@ LIMIT 20
 开始以为是 LIMIT 导致的，因为最早发现排序差异的时候是 LIMIT 10 和 LIMIT 1000 的前几条顺序不一样，后来换了 pgAdmin 4 后发现，不改变 LIMIT 
 的大小，每次点执行，顺序也都会有变化。通过 pgAdmin 4 里面的查询分析，发现先是使用了索引，后进行了 join。
 
-图1
+{% asset_img "explain-of-join.webp" %}
 
 记得之前在网上看到 MySQL 在 join 的时候，如果是用了 Block Nested Loop Join，则会生成一个 join buffer 作为缓冲区，然后批量匹配进行 join。
 既然是批量执行，那顺序自然得不到保证，不过不能确定 PostgreSQL 是不是和 MySQL 的原理一致，最后在官方文档中找到了相关答案。
@@ -41,3 +41,7 @@ nodeHashjoin 是否就是上面 SQL 使用的 join。
 The query optimizer takes LIMIT into account when generating a query plan，意思是 pg 的查询优化器会通过 limit 的值来生成查询计
 划，看到这句话就有方向了，直接对两条语句进行 EXPLAIN 分析查询计划得知，在数据量少的时候是使用的索引，在数据量大的时候，使用的 bitmap，导致排序
 表现不一致。
+
+{% asset_img explain-limit-13.webp "LIMIT 13" %}
+
+{% asset_img explain-limit-14.webp "LIMIT 14" %}
