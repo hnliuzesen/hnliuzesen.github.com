@@ -102,7 +102,7 @@ theme_config:
     clientSecret: 8ac65aa69a0230023632dc095585e73cd72476dd
     repo: hnliuzesen.github.com
     owner: hnliuzesen
-    admin: '["hnliuzesen"]'
+    admin: ['hnliuzesen']
     pagerDirection: first
 
 # Deployment
