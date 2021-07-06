@@ -8,7 +8,7 @@ var gitalk = new Gitalk({
   repo: '<%= theme.gitalk.repo %>',
   owner: '<%= theme.gitalk.owner %>',
   admin: '<%= theme.gitalk.admin %>',
-  id: window.location.pathname,
+  id: decodeURI(window.location.pathname).split("/")[4],
   distractionFreeMode: '<%= theme.gitalk.enable %>'
 })
 gitalk.render('gitalk-container')
