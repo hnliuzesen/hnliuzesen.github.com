@@ -126,7 +126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="ckqs6l25l00056zowbo3kfqbm" data-title="Median of Two Sorted Arrays 双数组中位数" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="ckqs7f42u000591okgntxav9c" data-title="Median of Two Sorted Arrays 双数组中位数" class="article-share-link">分享</a>
       
       
       
@@ -141,7 +141,7 @@ var gitalk = new Gitalk({
   repo: 'hnliuzesen.github.com',
   owner: 'hnliuzesen',
   admin: 'hnliuzesen',
-  id: window.location.pathname,
+  id: decodeURI(window.location.pathname).split("/")[4],
   distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')

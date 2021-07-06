@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqs6l26p002d6zowe3it7hal" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqs7f43v002d91ok75xc8q56" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
       
       
       
@@ -145,7 +145,7 @@ var gitalk = new Gitalk({
   repo: 'hnliuzesen.github.com',
   owner: 'hnliuzesen',
   admin: 'hnliuzesen',
-  id: window.location.pathname,
+  id: decodeURI(window.location.pathname).split("/")[4],
   distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')

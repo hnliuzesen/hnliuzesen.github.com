@@ -161,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2016/07/06/What-s-Next/" data-id="ckqs6l25c00016zow57rmfzqh" data-title="What&#39;s Next?" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2016/07/06/What-s-Next/" data-id="ckqs7f42n000191okhfaiflui" data-title="What&#39;s Next?" class="article-share-link">分享</a>
       
       
       
@@ -176,7 +176,7 @@ var gitalk = new Gitalk({
   repo: 'hnliuzesen.github.com',
   owner: 'hnliuzesen',
   admin: 'hnliuzesen',
-  id: window.location.pathname,
+  id: decodeURI(window.location.pathname).split("/")[4],
   distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')

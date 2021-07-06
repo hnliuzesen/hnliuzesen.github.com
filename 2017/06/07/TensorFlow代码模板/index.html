@@ -121,7 +121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckqs6l25r000a6zowe5pb5tow" data-title="TensorFlow 代码模板" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/06/07/TensorFlow%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" data-id="ckqs7f42z000a91okdmmq20qq" data-title="TensorFlow 代码模板" class="article-share-link">分享</a>
       
       
       
@@ -136,7 +136,7 @@ var gitalk = new Gitalk({
   repo: 'hnliuzesen.github.com',
   owner: 'hnliuzesen',
   admin: 'hnliuzesen',
-  id: window.location.pathname,
+  id: decodeURI(window.location.pathname).split("/")[4],
   distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container')
