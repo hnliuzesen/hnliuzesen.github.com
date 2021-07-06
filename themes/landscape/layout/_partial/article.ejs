@@ -57,3 +57,6 @@
 
   </section>
 <% } %>
+<% if (!index && post.comments && theme.gitalk.enable && theme.gitalk.clientID && theme.gitalk.clientSecret){ %>
+  <%- partial('post/gitalk') %>
+<% } %>%>
