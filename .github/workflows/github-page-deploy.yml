@@ -13,17 +13,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
-#      - name: 3. Cache NPM dependencies...
-#        uses: actions/cache@v2
-#        with:
-#          path: node_modules
-#          key: ${{ runner.OS }}-npm-cache
-#          restore-keys: ${{ runner.OS }}-npm-cache
-      - name: 4. Install dependencies...
+      - name: 3. Install dependencies...
         run: npm install
-      - name: 5. Build
+      - name: 4. Build
         run: npm run build
-      - name: 6. Deploy
+      - name: 5. Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
