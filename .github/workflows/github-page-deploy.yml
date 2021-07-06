@@ -10,15 +10,15 @@ jobs:
       - name: 1. Git checkout...
         uses: actions/checkout@v2
       - name: 2. Setup Node.js...
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
-      - name: 3. Cache NPM dependencies...
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: ${{ runner.OS }}-npm-cache
+          node-version: 'lts/*'
+#      - name: 3. Cache NPM dependencies...
+#        uses: actions/cache@v2
+#        with:
+#          path: node_modules
+#          key: ${{ runner.OS }}-npm-cache
+#          restore-keys: ${{ runner.OS }}-npm-cache
       - name: 4. Install dependencies...
         run: npm install
       - name: 5. Build
