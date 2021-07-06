@@ -99,7 +99,7 @@ theme_config:
   gitalk:
     enable: true
     clientID: b6df7cac6bd14222537c
-    clientSecret: $CLIENT_SECRET
+    clientSecret: 8ac65aa69a0230023632dc095585e73cd72476dd
     repo: hnliuzesen.github.com
     owner: hnliuzesen
     admin: ['hnliuzesen']
