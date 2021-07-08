@@ -109,7 +109,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><em><a target="_blank" rel="noopener" href="http://uml.org.cn/">AI 培训</a>练习的笔记</em></p>
+        <p><em><a href="http://uml.org.cn/" target="_blank" rel="noopener">AI 培训</a>练习的笔记</em></p>
 <span id="more"></span>
 
 <h2 id="下载数据"><a href="#下载数据" class="headerlink" title="下载数据"></a>下载数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://archive.ics.uci.edu/ml/datasets/Iris</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&#x27;iris.csv&#x27;</span>):</span><br><span class="line">    urlString = <span class="string">&#x27;http://aima.cs.berkeley.edu/data/iris.csv&#x27;</span></span><br><span class="line">    irisFile = urllib.request.urlopen(urlString)</span><br><span class="line">    localIrisFile = <span class="built_in">open</span>(<span class="string">&#x27;iris.csv&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    localIrisFile.write(irisFile.read())</span><br><span class="line">    localIrisFile.close()</span><br></pre></td></tr></table></figure>
@@ -198,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" data-id="ckqv32545002j8tn26y8jevem" data-title="Python 数据挖掘" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/12/23/Python%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" data-id="ckqv3fmo200308tn26yeublxy" data-title="Python 数据挖掘" class="article-share-link">分享</a>
       
       
       

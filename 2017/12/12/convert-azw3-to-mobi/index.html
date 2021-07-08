@@ -120,22 +120,22 @@
         <p>亚马逊购买的图书一般下载下来是 azw3 格式，将 azw3 格式转换为 mobi 可以方便发送到邮箱来同步到 kindle。</p>
 <span id="more"></span>
 
-<h2 id="下载完整版图书"><a href="#下载完整版图书" class="headerlink" title="下载完整版图书"></a>下载完整版图书</h2><p>首先进入<a target="_blank" rel="noopener" href="https://www.amazon.cn/gp/digital/fiona/manage">管理我的内容和设备</a>，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle<br>设备进行下载。</p>
+<h2 id="下载完整版图书"><a href="#下载完整版图书" class="headerlink" title="下载完整版图书"></a>下载完整版图书</h2><p>首先进入<a href="https://www.amazon.cn/gp/digital/fiona/manage" target="_blank" rel="noopener">管理我的内容和设备</a>，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle<br>设备进行下载。</p>
 <img src="/2017/12/12/convert-azw3-to-mobi/download.webp" class="" title="download">
 
 <p>因为有的 azw3 书籍文字和图片是分离的，从亚马逊网页下载的文件是包含图片的。</p>
-<h2 id="去除-DRM"><a href="#去除-DRM" class="headerlink" title="去除 DRM"></a>去除 DRM</h2><p>使用 <a target="_blank" rel="noopener" href="https://github.com/apprenticeharper/DeDRM_tools">DeDRM_tools</a> 去除 DRM，这里用 calibre 的插件来实现，这个工具也有命令行版本。</p>
+<h2 id="去除-DRM"><a href="#去除-DRM" class="headerlink" title="去除 DRM"></a>去除 DRM</h2><p>使用 <a href="https://github.com/apprenticeharper/DeDRM_tools" target="_blank" rel="noopener">DeDRM_tools</a> 去除 DRM，这里用 calibre 的插件来实现，这个工具也有命令行版本。</p>
 <img src="/2017/12/12/convert-azw3-to-mobi/deDrm.webp" class="" title="deDrm">
 
 <p>使用该工具之前需要设置刚才下载图书选择的设备的序列号，可以通过刚才页面里面我的设备查看，也可以直接在 Kindle 中查看。</p>
 <img src="/2017/12/12/convert-azw3-to-mobi/id.webp" class="" title="id">
 
 <p>设置好之后直接将下载的 azw3 文件拖入到 calibre 就可以了。可是双击试试能否打开，不能打开说明 DeDRM 失败了。</p>
-<h2 id="解压-azw3-为-epub"><a href="#解压-azw3-为-epub" class="headerlink" title="解压 azw3 为 epub"></a>解压 azw3 为 epub</h2><p>使用 <a target="_blank" rel="noopener" href="https://github.com/kevinhendricks/KindleUnpack">KindleUnpack</a> 来将去除了 DRM 的 azw3 文件转换为 epub，这里还是使<br>用 calibre 插件来实现。</p>
+<h2 id="解压-azw3-为-epub"><a href="#解压-azw3-为-epub" class="headerlink" title="解压 azw3 为 epub"></a>解压 azw3 为 epub</h2><p>使用 <a href="https://github.com/kevinhendricks/KindleUnpack" target="_blank" rel="noopener">KindleUnpack</a> 来将去除了 DRM 的 azw3 文件转换为 epub，这里还是使<br>用 calibre 插件来实现。</p>
 <img src="/2017/12/12/convert-azw3-to-mobi/unpack.webp" class="" title="unpack">
 
 <p>解压后的 epub 文件和 azw3 文件在同一目录，在 calibre 里面点击书籍下方的路径：点击打开，就可以找到。</p>
-<h2 id="将-epub-转为-mobi"><a href="#将-epub-转为-mobi" class="headerlink" title="将 epub 转为 mobi"></a>将 epub 转为 mobi</h2><p>使用亚马逊官方的 <a target="_blank" rel="noopener" href="https://www.amazon.com/gp/feature.html?docId=1000765261">Kindle Previewer</a> 来将 epub 制作成 mobi。</p>
+<h2 id="将-epub-转为-mobi"><a href="#将-epub-转为-mobi" class="headerlink" title="将 epub 转为 mobi"></a>将 epub 转为 mobi</h2><p>使用亚马逊官方的 <a href="https://www.amazon.com/gp/feature.html?docId=1000765261" target="_blank" rel="noopener">Kindle Previewer</a> 来将 epub 制作成 mobi。</p>
 <img src="/2017/12/12/convert-azw3-to-mobi/makeMobi.webp" class="" title="makeMobi">
 
 <p>直接将上一步做好的 epub 拖入 Kindle Previewer 即可生成 mobi 文件，会在同级目录下生成一个文件夹。<br>文件夹里的 mobi 就是完全保留原书格式的 mobi 版本文件。</p>
@@ -143,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/12/12/convert-azw3-to-mobi/" data-id="ckqv32538000g8tn2b6gzcyvy" data-title="convert azw3 to mobi" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2017/12/12/convert-azw3-to-mobi/" data-id="ckqv3fmn9000g8tn21yclc53j" data-title="convert azw3 to mobi" class="article-share-link">分享</a>
       
       
       

@@ -114,18 +114,18 @@
         <p>手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google<br>Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多方法，虽然最后发现可能是刷的系统的问题，但还是记录一下有用的命令。</p>
 <span id="more"></span>
 
-<p>主要参考 <a target="_blank" rel="noopener" href="https://v2ex.com/t/461403">V2EX</a> 。</p>
+<p>主要参考 <a href="https://v2ex.com/t/461403" target="_blank" rel="noopener">V2EX</a> 。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看 job</span></span><br><span class="line">adb shell dumpsys jobscheduler com.android.providers.downloads</span><br></pre></td></tr></table></figure>
 
 <p>关键字是 <code>UNMETERED</code> ，意思是不按使用量计费。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 强制启动 job</span></span><br><span class="line">adb shell jobscheduler run -f com.android.providers.downloads :JOB_ID</span><br></pre></td></tr></table></figure>
 
-<p>Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考<br><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/app/job/JobScheduler">JobScheduler</a></p>
+<p>Job ID 应该不是从 1 开始顺序数的，不过可能对于下载器任务，他的下载任务 ID 是从 1 开始，具体可以参考<br><a href="https://developer.android.com/reference/android/app/job/JobScheduler" target="_blank" rel="noopener">JobScheduler</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqv3254e003f8tn2h7bbg3te" data-title="Google Play 下载一直等待 WLAN" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqv3fmo300328tn219ig18ep" data-title="Google Play 下载一直等待 WLAN" class="article-share-link">分享</a>
       
       
       
