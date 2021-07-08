@@ -226,13 +226,17 @@
 </tr>
 </tbody></table>
 <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><em>rax/eax</em>: 默认累加寄存器，乘法等操作会将其中一部分结果自动存放到 <em>rax/eax</em> 中，调用函数的时候也需要把返回值保存在 <em>rax/eax</em><br>中。执行这些操作时不要用 <em>rax/eax</em> 保存一般数据。</li>
+<li><em>rax/eax</em>: 默认累加寄存器，乘法等操作会将其中一部分结果自动存放到 <em>rax/eax</em> 中，调用函数的时候也需要把返回值保存在 <em>rax/eax</em> 
+中。执行这些操作时不要用 <em>rax/eax</em> 保存一般数据。</li>
 <li><em>rcx/ecx</em>: 在执行循环的过程中记录循环计数器的值。在循环内部不要用 <em>rcx/ecx</em> 保存一般数据。</li>
 <li><em>rbp/ebp</em>: 用作栈帧中的帧指针。用来指向栈中的数据，应只当作专门寄存器使用。</li>
 <li><em>rsp/esp</em>: 栈指针寄存器。指向活动栈帧的顶部，应只当作专门寄存器使用。</li>
-<li><em>rsi/esi</em> &amp; <em>rdi/edi</em>: 索引寄存器（变址寄存器）。与 STOSB、MOVSB、SCASB 这些字符串操作结合使用，以保存、加载、或扫描大量数据。这些操作会把<br>CPU 置于一种自动循环模式中，比开发者手工编写循环更有效率。</li>
+<li><em>rsi/esi</em> &amp; <em>rdi/edi</em>: 索引寄存器（变址寄存器）。与 STOSB、MOVSB、SCASB 这些字符串操作结合使用，以保存、加载、或扫描大量数据。这些操作会把
+CPU 置于一种自动循环模式中，比开发者手工编写循环更有效率。</li>
 <li><em>rip/eip</em>: 扩展版指令指针寄存器。指向内存中的地址，以表示接下来应该获取、解码并执行的指令。在程序运行过程中自动调整，不应该通过编程修改。</li>
-<li><em>rflags/eflags</em>: 状态与控制寄存器。LAHF、SAHF 等特殊指令会把 CPU 的一些状态标志载入 <em>ah</em> 寄存器，或是将 <em>ah</em><br>寄存器的值保存到状态寄存器中。除此之外，不应该用其他手段直接修改 <em>rflags/eflags</em>。该寄存器中的二进制位是在执行完算术运算之后根据一套布尔规则自动设置的。尽管<br><em>rflags</em> 是 64 位，但其中能够用到的只有低 32 位，因此 x86 与 x86_64 处理器用的是同一套状态标志。</li>
+<li><em>rflags/eflags</em>: 状态与控制寄存器。LAHF、SAHF 等特殊指令会把 CPU 的一些状态标志载入 <em>ah</em> 寄存器，或是将 <em>ah</em> 
+寄存器的值保存到状态寄存器中。除此之外，不应该用其他手段直接修改 <em>rflags/eflags</em>。该寄存器中的二进制位是在执行完算术运算之后根据一套布尔规则自动设置的。尽管 
+<em>rflags</em> 是 64 位，但其中能够用到的只有低 32 位，因此 x86 与 x86_64 处理器用的是同一套状态标志。</li>
 </ul>
 <h2 id="标志位"><a href="#标志位" class="headerlink" title="标志位"></a>标志位</h2><table>
 <thead>
@@ -523,7 +527,10 @@
 <td>保留 80 位</td>
 </tr>
 </tbody></table>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>汇编：<code>nasm -f &#123;elf32|elf64&#125; -o out.o source.asm</code><br>链接：<code>ld -e _main -melf_i386 -o out source.o</code><br><code>clang -o out -m32 source.o</code><br><code>gcc -o out -m32 source.o</code></p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>汇编：<code>nasm -f &#123;elf32|elf64&#125; -o out.o source.asm</code>
+链接：<code>ld -e _main -melf_i386 -o out source.o</code>
+<code>clang -o out -m32 source.o</code>
+<code>gcc -o out -m32 source.o</code></p>
 <h2 id="内联汇编代码-x86-约束修饰符"><a href="#内联汇编代码-x86-约束修饰符" class="headerlink" title="内联汇编代码 x86 约束修饰符"></a>内联汇编代码 x86 约束修饰符</h2><ul>
 <li><em>r、R</em>：通用寄存器</li>
 <li><em>q</em>：寄存器中的低 8 位</li>
@@ -552,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqv3fmo600378tn221ugg77n" data-title="汇编基础知识" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqv3m6ii0028aaor8as66gp7" data-title="汇编基础知识" class="article-share-link">分享</a>
       
       
       
