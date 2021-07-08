@@ -132,7 +132,7 @@ meta_generator: true
 marked:
   gfm: true
   pedantic: false
-  breaks: true
+  breaks: false
   smartLists: true
   smartypants: true
   quotes: '“”‘’'
