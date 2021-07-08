@@ -109,6 +109,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>刚刚接触到号称功能最强大的开源数据库 PostgreSQL，发现在不加 ORDER BY 的情况下每次查询返回的结果顺序都不一致，推测以下两种情况可能会导致。</p>
+<h2 id="JOIN-导致结果顺序随机"><a href="#JOIN-导致结果顺序随机" class="headerlink" title="JOIN 导致结果顺序随机"></a>JOIN 导致结果顺序随机</h2><p>第一个遇见的每次查询结果顺序都不一致的 SQL 大致如下：</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.id, b.id, c.id</span><br><span class="line"><span class="keyword">FROM</span> table_a a</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_b b <span class="keyword">on</span> a.b_id = b.id</span><br><span class="line">         <span class="keyword">INNER</span> <span class="keyword">JOIN</span> table_c c <span class="keyword">on</span> a.c_id = c.id</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
             <a href="/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/#more">Read More</a>
@@ -117,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqs94fba002d7uowcgpk7qvc" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckqv32542002d8tn2acqoh7lo" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
       
       
       
@@ -226,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckqs94fb8002c7uowhmpp3axr" data-title="浮点运算" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckqv32541002c8tn2gmki8nz0" data-title="浮点运算" class="article-share-link">分享</a>
       
       
       
@@ -277,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckqs94fb7002a7uoweu5l5o8v" data-title="GDB 设置反汇编代码风格" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckqv32540002a8tn270e58wyo" data-title="GDB 设置反汇编代码风格" class="article-share-link">分享</a>
       
       
       
@@ -381,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqs94fb600287uowdtw279hs" data-title="汇编基础知识" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckqv3253z00288tn2cnkf80hr" data-title="汇编基础知识" class="article-share-link">分享</a>
       
       
       
@@ -423,7 +425,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google<br>Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置<br>多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多方法，虽然最后发现<br>可能是刷的系统的问题，但还是记录一下有用的命令。</p>
+        <p>手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google<br>Play 还是会一直在等待 WLAN，而且要在下载管理器里调成显示 100M 或其他数值，才会在每一次下载的时候提示是否要用流量下载，而且不管设置多少，哪怕下载的应用很小，都会无差别提示，不过不能设置不限制，因为这样连提示都不提示了，根本无法更新。尝试了很多方法，虽然最后发现可能是刷的系统的问题，但还是记录一下有用的命令。</p>
         
           <p class="article-more-link">
             <a href="/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/#more">Read More</a>
@@ -432,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqs94fbe002m7uow6lgj4pi9" data-title="Google Play 下载一直等待 WLAN" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/11/Google-Play%E4%B8%8B%E8%BD%BD%E4%B8%80%E7%9B%B4%E7%AD%89%E5%BE%85WLAN/" data-id="ckqv3254e003f8tn2h7bbg3te" data-title="Google Play 下载一直等待 WLAN" class="article-share-link">分享</a>
       
       
       
@@ -474,7 +476,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms ，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是<br>就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。</p>
+        <p>有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。</p>
 <p>settings put global ntp_server ntp.aliyun.com</p>
         
           <p class="article-more-link">
@@ -484,7 +486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqs94fbg002p7uow776c7rom" data-title="更改 Android 设备 NTP 服务器" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqv3254f003g8tn2fyww90s8" data-title="更改 Android 设备 NTP 服务器" class="article-share-link">分享</a>
       
       
       

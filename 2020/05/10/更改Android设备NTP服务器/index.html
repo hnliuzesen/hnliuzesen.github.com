@@ -17,12 +17,12 @@
   
   <title>更改 Android 设备 NTP 服务器 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms ，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。 settings put global ntp_server ntp.aliyun.com">
+  <meta name="description" content="有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。 settings put global ntp_server ntp.aliyun.com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="更改 Android 设备 NTP 服务器">
 <meta property="og:url" content="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms ，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。 settings put global ntp_server ntp.aliyun.com">
+<meta property="og:description" content="有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。 settings put global ntp_server ntp.aliyun.com">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-10T10:35:44.000Z">
 <meta property="article:modified_time" content="2020-05-10T10:35:44.000Z">
@@ -110,11 +110,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms ，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是<br>就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。</p>
+        <p>有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。</p>
 <p>settings put global ntp_server ntp.aliyun.com</p>
 <span id="more"></span>
 
-<h2 id="使用电脑修改"><a href="#使用电脑修改" class="headerlink" title="使用电脑修改"></a>使用电脑修改</h2><p>使用 ADB 命令进行修改，修改后可以验证一下，如果修改成功，去设置里面关闭时间同步再开启时间就会自动同步了，同理，也可以设置其他的时间<br>同步服务器，服务器列表在最后。</p>
+<h2 id="使用电脑修改"><a href="#使用电脑修改" class="headerlink" title="使用电脑修改"></a>使用电脑修改</h2><p>使用 ADB 命令进行修改，修改后可以验证一下，如果修改成功，去设置里面关闭时间同步再开启时间就会自动同步了，同理，也可以设置其他的时间同步服务器，服务器列表在最后。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell settings put global ntp_server ntp.aliyun.com</span><br><span class="line">adb shell settings get global ntp_server</span><br><span class="line">ntp.aliyun.com</span><br></pre></td></tr></table></figure>
 
 <h2 id="使用手机修改"><a href="#使用手机修改" class="headerlink" title="使用手机修改"></a>使用手机修改</h2><p>使用手机直接修改可能需要 root，这里使用的是 <a target="_blank" rel="noopener" href="https://termux.com/">Termux</a> 。</p>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqs94fbg002p7uow776c7rom" data-title="更改 Android 设备 NTP 服务器" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/10/%E6%9B%B4%E6%94%B9Android%E8%AE%BE%E5%A4%87NTP%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqv3254f003g8tn2fyww90s8" data-title="更改 Android 设备 NTP 服务器" class="article-share-link">分享</a>
       
       
       
