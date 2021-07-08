@@ -11,22 +11,22 @@ tags:
 - router
 ---
 
-想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只
-有 IPv4 的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 地址是可以外网访问的。正好自
-己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。
+想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只有 IPv4 
+的配置，而且不支持自己申请的独立域名。现在基本上拿不到公网的 IPv4 地址，不过运营商给的 IPv6 
+地址是可以外网访问的。正好自己有域名，只要能够动态的在 DNS 中加一条 AAAA 记录就可以实现远程访问了。
 
 <!--more-->
 
 ## 设置路由器
-这里路由器使用的固件是 [Padavan](https://opt.cn2qq.com/padavan/) ，进入路由器的管理页面，一般是 [192.168.123.1](http://192.168.123.1) ，
-左侧 `高级设置` `防火墙` ，在右侧 `通用设置` 中 `从外网访问路由器服务` 下面 `允许从互联网设置 router` 打开、`互联网设置通信端口` 
-设置 80，如果想要远程访问 SSH，下面的开关也要打开。
+这里路由器使用的固件是 [Padavan](https://opt.cn2qq.com/padavan/) ，进入路由器的管理页面，一般是
+[192.168.123.1](http://192.168.123.1) ，左侧 `高级设置` `防火墙` ，在右侧 `通用设置` 中 `从外网访问路由器服务` 下面 `允许从互联网设置 router` 打开、`互联网设置通信端口` 设置 
+80，如果想要远程访问 SSH，下面的开关也要打开。
 
 {% asset_img firewall.webp 防火墙配置 %}
 
-然后将 `网络地图` `外部网络状态` 中的 `IPv6 地址: WAN` 拷贝到浏览器，或者发送到手机使用流量访问试试，这里需要注意的是，如果有公网
- IPv4 地址，可以直接使用地址加端口访问，如 192.168.123.1:8080 ，如果是 IPv6 地址，需要使用中括号将 IPv6 地址括住后再加端口号才
-能直接访问，如 [240e:33c:2601:7be0:940e:e6cf:c212:80bf]:8080 。
+然后将 `网络地图` `外部网络状态` 中的 `IPv6 地址: WAN` 拷贝到浏览器，或者发送到手机使用流量访问试试，这里需要注意的是，如果有公网 
+IPv4 地址，可以直接使用地址加端口访问，如 192.168.123.1:8080 ，如果是 IPv6 地址，需要使用中括号将 IPv6 
+地址括住后再加端口号才能直接访问，如 [240e:33c:2601:7be0:940e:e6cf:c212:80bf]:8080 。
 
 {% asset_img network.webp IP 地址 %}
 
@@ -80,17 +80,16 @@ ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' 
 
 ## 命令绑定 IP 与域名
 
-要使用的命令是 [Update DNS Record](https://api.cloudflare.com/#dns-records-for-a-zone-update-dns-record) ，首先需要获取自己
-的 API Key，在 https://dash.cloudflare.com/:profile_identifier/profile/api-tokens 页面，点击 Global API Key 获取，然后可以
-用 PostMan 试一下，这里有可以方便直接导入的所有 
-[CloudFlare API](https://documenter.getpostman.com/view/10394726/SzYbxHEm?version=latest) 。
+要使用的命令是 [Update DNS Record](https://api.cloudflare.com/#dns-records-for-a-zone-update-dns-record) ，首先需要获取自己的 
+API Key，在 https://dash.cloudflare.com/:profile_identifier/profile/api-tokens 页面，点击 Global API Key 获取，然后可以用 
+PostMan 试一下，这里有可以方便直接导入的所有 [CloudFlare API](https://documenter.getpostman.com/view/10394726/SzYbxHEm?version=latest) 。
 
 
 如果自己添加请求，请求类型 `PUT`，地址是 https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier
 需要在 Header 中添加 `X-Auth-Key` 就是刚才获取的 Global API Key ，和 `X-Auth-Email` 就是 CloudFlare 账户邮箱地址。在请求的 
-Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管理的域名，在概述页面右下角，区域 ID 就是 Zone ID ，DNS ID 则需
-要使用 [List DNS Records](https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records) 来查询。查询方式和下面请求
-类似，或者直接使用页面上给出的命令进行查询。这个只需要查一次，不会变，查询命令也不需要写入路由器脚本中。
+Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管理的域名，在概述页面右下角，区域 ID 就是 Zone ID ，DNS ID 
+则需要使用 [List DNS Records](https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records) 
+来查询。查询方式和下面请求类似，或者直接使用页面上给出的命令进行查询。这个只需要查一次，不会变，查询命令也不需要写入路由器脚本中。
 
 ```JSON
     {
@@ -108,8 +107,8 @@ Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管�
 
 {% asset_img postman.webp PostMan %}
 
-命令也先在路由上用 SSH 测试一下比较保险，这里需要注意的是，请求体里需要用到前面保存的 shell 变量，不能直接写 `"${ipv6add}"` ，会
-被当成字符串处理，需要写 `"'"${ipv6add}"'"`
+命令也先在路由上用 SSH 测试一下比较保险，这里需要注意的是，请求体里需要用到前面保存的 shell 
+变量，不能直接写 `"${ipv6add}"` ，会被当成字符串处理，需要写 `"'"${ipv6add}"'"`
 
 ```Shell
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier" \
@@ -119,8 +118,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_rec
     --data '{"type":"AAAA","name":":your_domain","content":"'"${ipv6add}"'","ttl":120,"proxied":false}'
 ```
 
-可以正常返回，并且 CloudFlare 控制台中记录也被更新，通过域名也能访问路由，就可以将命令写入路由器脚本中了。最后完整的命令如下，不要
-直接复制，用上面测试成功的命令拼接成自己的命令。
+可以正常返回，并且 CloudFlare 控制台中记录也被更新，通过域名也能访问路由，就可以将命令写入路由器脚本中了。最后完整的命令如下，不要直接复制，用上面测试成功的命令拼接成自己的命令。
 
 ```Shell
 ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk '{print $3}' | cut -d '/' -f 1`
@@ -133,9 +131,9 @@ api_result=`curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_identi
 ```
 
 ## 为路由器添加脚本
-将上面的命令添加到路由器设置页面的 `高级设置` `自定义设置` 下面的 `脚本` 选项卡中的 `在路由器启动后执行:` 或者 `在 WAN 上行/下行
-启动后执行:` 。具体取决于能不能获取到正确的 IP 地址，上面命令中的 logger 会在日志中打印出 IP 地址，如果是可以访问的 IP 地址，则
-设置应该成功。
+将上面的命令添加到路由器设置页面的 `高级设置` `自定义设置` 下面的 `脚本` 选项卡中的 `在路由器启动后执行:` 或者 `在 WAN 
+上行/下行启动后执行:` 。具体取决于能不能获取到正确的 IP 地址，上面命令中的 logger 会在日志中打印出 IP 地址，如果是可以访问的 IP 
+地址，则设置应该成功。
 
 {% asset_img set_script.webp Script %}
 

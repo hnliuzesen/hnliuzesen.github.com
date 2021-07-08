@@ -15,8 +15,8 @@ tags:
 <!--more-->
 
 ## 下载完整版图书
-首先进入[管理我的内容和设备](https://www.amazon.cn/gp/digital/fiona/manage)，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle 设
-备进行下载。
+首先进入[管理我的内容和设备](https://www.amazon.cn/gp/digital/fiona/manage)，点击操作，通过电脑下载 USB 传输，然后选择一个 Kindle 
+设备进行下载。
 
 {% asset_img download.webp download %}
 
