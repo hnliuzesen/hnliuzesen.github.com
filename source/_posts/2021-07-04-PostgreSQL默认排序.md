@@ -22,7 +22,8 @@ LIMIT 20
 
 <!--more-->
 
-开始以为是 LIMIT 导致的，因为最早发现排序差异的时候是 LIMIT 10 和 LIMIT 1000 的前几条顺序不一样，后来换了 pgAdmin 4 后发现，不改变 LIMIT 
+开始以为是 LIMIT 导致的，因为最早发现排序
+差异的时候是 LIMIT 10 和 LIMIT 1000 的前几条顺序不一样，后来换了 pgAdmin 4 后发现，不改变 LIMIT 
 的大小，每次点执行，顺序也都会有变化。通过 pgAdmin 4 里面的查询分析，发现先是使用了索引，后进行了 join。
 
 {% asset_img "explain-of-join.webp" %}
