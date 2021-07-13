@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Git设置克隆深度后看不到远端分支 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近克隆一个项目，为了加快速度和节省空间，在克隆的时候设置了 depth&#x3D;1 也就是只记录最近一次提交，在 SourceTree 里操作如下   克隆之后文件历史如下，只会有一行记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git设置克隆深度后看不到远端分支">
+<meta property="og:url" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="最近克隆一个项目，为了加快速度和节省空间，在克隆的时候设置了 depth&#x3D;1 也就是只记录最近一次提交，在 SourceTree 里操作如下   克隆之后文件历史如下，只会有一行记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/depth.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/orphan-history.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-sourcetree.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-bash.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/fetch.webp">
+<meta property="article:published_time" content="2021-07-13T15:25:21.000Z">
+<meta property="article:modified_time" content="2021-07-13T15:25:21.000Z">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="SourceTree">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/depth.webp">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Git设置克隆深度后看不到远端分支" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" class="article-date">
+  <time class="dt-published" datetime="2021-07-13T15:25:21.000Z" itemprop="datePublished">2021-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Git/">Git</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Git设置克隆深度后看不到远端分支
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近克隆一个项目，为了加快速度和节省空间，在克隆的时候设置了 depth=1 也就是只记录最近一次提交，在 SourceTree 里操作如下</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/depth.webp" class="">
+
+<p>克隆之后文件历史如下，只会有一行记录</p>
+<span id="more"></span>
+
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/orphan-history.webp" class="">
+
+<p>此时想要切换分支发现远端分支显示不全，只有浅克隆的分支。</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-sourcetree.webp" class="">
+
+<p>执行 <code>git branch -a</code> 显示也是如此</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-bash.webp" class="">
+
+<p>经过查询文档 <a href="https://git-scm.com/docs/git-remote#Documentation/git-remote.txt-emset-branchesem" target="_blank" rel="noopener">git-remote - Manage set of tracked repositories</a> 
+找到了 git remote 命令，用来管理追踪的远程分支，其中 set-branches 命令用来更改追踪的分支，可以在仓库设置完成后来追踪新的远程分支。这里直接使用
+<code>git remote set-branches origin &#39;*&#39;</code>，如果只想追踪某个分支，也可以使用 <code>--add</code> 命令。然后再做一次 <code>git fetch -v</code>，在 SourceTree 
+中就是 Fetch，就可以看到添加的远程分支了。</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/fetch.webp" class="">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="ckr29alh60015a3p39yt0etmn" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link">分享</a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SourceTree/" rel="tag">SourceTree</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">PostgreSQL 默认排序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
