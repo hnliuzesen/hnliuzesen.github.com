@@ -28,7 +28,9 @@
 <meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/orphan-history.webp">
 <meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-sourcetree.webp">
 <meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-bash.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/ls-remote.webp">
 <meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/fetch.webp">
+<meta property="og:image" content="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/add-dev-branch.webp">
 <meta property="article:published_time" content="2021-07-13T15:25:21.000Z">
 <meta property="article:modified_time" content="2021-07-13T15:25:21.000Z">
 <meta property="article:tag" content="Git">
@@ -130,15 +132,27 @@
 <p>执行 <code>git branch -a</code> 显示也是如此</p>
 <img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/branch-bash.webp" class="">
 
-<p>经过查询文档 <a href="https://git-scm.com/docs/git-remote#Documentation/git-remote.txt-emset-branchesem" target="_blank" rel="noopener">git-remote - Manage set of tracked repositories</a> 
+<p>经过查询文档 <a href="https://git-scm.com/docs/git-remote#Documentation/git-remote.txt-emset-branchesem" target="_blank" rel="noopener">git-remote - set-branches</a> 
 找到了 git remote 命令，用来管理追踪的远程分支，其中 set-branches 命令用来更改追踪的分支，可以在仓库设置完成后来追踪新的远程分支。这里直接使用
-<code>git remote set-branches origin &#39;*&#39;</code>，如果只想追踪某个分支，也可以使用 <code>--add</code> 命令。然后再做一次 <code>git fetch -v</code>，在 SourceTree 
-中就是 Fetch，就可以看到添加的远程分支了。</p>
+<code>git remote set-branches origin &#39;*&#39;</code>，如果只想追踪某个分支，也可以使用 <code>git remote set-branches origin &#39;branch-name&#39;&#39;</code> 
+命令。不确定分支名字可以使用 <code>git ls-remote origin</code> 命令查看，origin 后面只需要跟红框中的名字就行。</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/ls-remote.webp" class="">
+
+<p>最后要做一次 <code>git fetch -v</code>，在 SourceTree 中就是 Fetch。</p>
 <img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/fetch.webp" class="">
+
+<p>然后就可以看到添加的远程分支了。</p>
+<img src="/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/add-dev-branch.webp" class="">
+
+<p>最后，根据文档 <a href="https://git-scm.com/docs/git-clone#Documentation/git-clone.txt---depthltdepthgt" target="_blank" rel="noopener">git-clone - depth</a> 
+中的说明，造成看不见其他分支的原因，还是因为在 clone 的时候使用了 <code>--depth</code> 参数相当于使用了 <code>--single-branch</code> 
+参数，此时只需要加上 <code>--no-single-branch</code> 即可。如果希望其他分支也是 shallow clone，则需要使用 <code>--shallow-submodules</code> 
+命令。粗略翻了一下，没有在 SourceTree 克隆界面发现相关设置，可能还是需要用命令来实现以上需求。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="ckr29alh60015a3p39yt0etmn" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="ckr3n3gr4002d9cov5ygg0ltp" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link">分享</a>
       
       
       
