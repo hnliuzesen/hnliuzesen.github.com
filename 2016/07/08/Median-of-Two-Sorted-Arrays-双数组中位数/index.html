@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Median of Two Sorted Arrays 双数组中位数 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="题目4. Median of Two Sorted ArraysThere are two sorted arrays nums1 and nums2 of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Median of Two Sorted Arrays 双数组中位数">
+<meta property="og:url" content="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="题目4. Median of Two Sorted ArraysThere are two sorted arrays nums1 and nums2 of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-08T08:37:43.000Z">
+<meta property="article:modified_time" content="2016-07-08T08:37:43.000Z">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Binary Search">
+<meta property="article:tag" content="Array">
+<meta property="article:tag" content="Divide and Conquer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Median-of-Two-Sorted-Arrays-双数组中位数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2016-07-08T08:37:43.000Z" itemprop="datePublished">2016-07-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Median of Two Sorted Arrays 双数组中位数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="4-Median-of-Two-Sorted-Arrays"><a href="#4-Median-of-Two-Sorted-Arrays" class="headerlink" title="4. Median of Two Sorted Arrays"></a><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank" rel="noopener">4. Median of Two Sorted Arrays</a></h3><p>There are two sorted arrays nums1 and nums2 of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+<p>求两个有序数组合并后的中位数。</p>
+<span id="more"></span>
+
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 3]</span><br><span class="line">nums2 = [2]</span><br><span class="line"></span><br><span class="line">The median is 2.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 2]</span><br><span class="line">nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">The median is (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先需要一个前提条件，那就是两个有序数组，他们的中位数位置都很容易知道，当合并时，如果第二个数组中位数比第一个数组大，那么合并后的中位数一定不在第一个数组中位数的左边。把数字对应到天平上，每个数字重量一样的话，中位数就是保持平衡的支撑点，另一个数组合并进去因为第一个数组中位数在第二个数组中位数左边，所以到第一个数组中位数右边的数要多于左边的数，如果支撑点不移动右侧肯定比左侧沉，自然支撑点要右移。</p>
+<p>有了这个前提，就不需要合并之后对所有的数进行排序了，只要计算出最后这个重心向右偏移了多少步，就可以算出合并后的中位数了。如果偏移了两位，那就从这两个数组里面往大的方向数两位。这里需要求出第一个数组中位数在第二个数组中的位置，使用二分法就可以做到题目中要求的<code>O(log (m+n))</code>的复杂度了。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 获取中位数所在索引，长度+1后折半算出位数，-1转换为数组下标</span></span><br><span class="line">        medianIndex1 = ((<span class="built_in">len</span>(nums1) + <span class="number">1</span>) / <span class="number">2.0</span>) - <span class="number">1</span></span><br><span class="line">        medianIndex2 = ((<span class="built_in">len</span>(nums2) + <span class="number">1</span>) / <span class="number">2.0</span>) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 找出中位数</span></span><br><span class="line">        <span class="keyword">if</span> medianIndex1 &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> medianIndex1 % <span class="number">1</span> == <span class="number">0</span>:</span><br><span class="line">                median1 = nums1[<span class="built_in">int</span>(medianIndex1)]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                median1 = (nums1[<span class="built_in">int</span>(medianIndex1 // <span class="number">1</span>)] + nums1[<span class="built_in">int</span>(medianIndex1 // <span class="number">1</span>) + <span class="number">1</span>]) / <span class="number">2.0</span></span><br><span class="line">        <span class="keyword">if</span> medianIndex2 &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> medianIndex2 % <span class="number">1</span> == <span class="number">0</span>:</span><br><span class="line">                median2 = nums2[<span class="built_in">int</span>(medianIndex2)]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                median2 = (nums2[<span class="built_in">int</span>(medianIndex2 // <span class="number">1</span>)] + nums2[<span class="built_in">int</span>(medianIndex2 // <span class="number">1</span>) + <span class="number">1</span>]) / <span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> medianIndex1 &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> median2</span><br><span class="line">        <span class="keyword">if</span> medianIndex2 &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> median1</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 让第一列中位数在前，第二列中位数在后，中位数相等直接返回</span></span><br><span class="line">        <span class="keyword">if</span> median1 == median2:</span><br><span class="line">            <span class="keyword">return</span> median1</span><br><span class="line">        <span class="keyword">if</span> median1 &lt; median2:</span><br><span class="line">            numsList1, numsList2 = nums1, nums2</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            numsList1, numsList2 = nums2, nums1</span><br><span class="line">            median1, median2 = median2, median1</span><br><span class="line">            medianIndex1, medianIndex2 = medianIndex2, medianIndex1</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 偏移量记录结果中位数相对于第一列的偏移量</span></span><br><span class="line">        offset = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算偏移量</span></span><br><span class="line">        median1InNumsList2 = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> median1 &lt; numsList2[<span class="number">0</span>]:</span><br><span class="line">            offset = <span class="built_in">len</span>(numsList2) / <span class="number">2.0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start = <span class="number">0</span></span><br><span class="line">            end = <span class="built_in">int</span>(medianIndex2 + <span class="number">0.5</span>)</span><br><span class="line">            <span class="keyword">while</span> start &lt; end:</span><br><span class="line">                mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> numsList2[<span class="built_in">int</span>(mid)] &lt; median1:</span><br><span class="line">                    start = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> numsList2[<span class="built_in">int</span>(mid)] &gt; median1:</span><br><span class="line">                    end = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    median1InNumsList2 = mid</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> numsList2[start] &gt; median1:</span><br><span class="line">                median1InNumsList2 = start - <span class="number">0.5</span></span><br><span class="line">            <span class="keyword">if</span> numsList2[start] &lt; median1:</span><br><span class="line">                median1InNumsList2 = start + <span class="number">0.5</span></span><br><span class="line">            <span class="keyword">if</span> numsList2[start] == median1:</span><br><span class="line">                median1InNumsList2 = start</span><br><span class="line">            offset = medianIndex2 - median1InNumsList2</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> offset == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> median1</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 按偏移查找中位数，保证指针都在中位数后面</span></span><br><span class="line">        <span class="keyword">if</span> median1InNumsList2 % <span class="number">1</span> == <span class="number">0.5</span>:</span><br><span class="line">            ptr2 = <span class="built_in">int</span>(median1InNumsList2 + <span class="number">0.5</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ptr2 = <span class="built_in">int</span>(median1InNumsList2 + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        result = median1</span><br><span class="line">        <span class="comment"># 处理第一个中位数为0.5的情况</span></span><br><span class="line">        <span class="keyword">if</span> medianIndex1 % <span class="number">1</span> == <span class="number">0.5</span>:</span><br><span class="line">            <span class="comment"># 如果第一个中位数和第二个数组中有数字重合，相当于把这个数字放入了第一组数种，那么偏移不需要补偿</span></span><br><span class="line">            <span class="keyword">if</span> median1InNumsList2 % <span class="number">1</span> == <span class="number">0.5</span> <span class="keyword">or</span> median1InNumsList2 == -<span class="number">1</span>:</span><br><span class="line">                offset += <span class="number">0.5</span></span><br><span class="line">            ptr1 = <span class="built_in">int</span>(medianIndex1 + <span class="number">0.5</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ptr1 = <span class="built_in">int</span>(medianIndex1 + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 进行偏移</span></span><br><span class="line">        <span class="keyword">while</span> offset &gt; <span class="number">0.5</span>:</span><br><span class="line">            <span class="keyword">if</span> ptr1 &gt;= <span class="built_in">len</span>(numsList1):</span><br><span class="line">                result = numsList2[ptr2]</span><br><span class="line">                ptr2 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> ptr2 &gt;= <span class="built_in">len</span>(numsList2):</span><br><span class="line">                result = numsList1[ptr1]</span><br><span class="line">                ptr1 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> numsList1[ptr1] &gt; numsList2[ptr2]:</span><br><span class="line">                result = numsList2[ptr2]</span><br><span class="line">                ptr2 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result = numsList1[ptr1]</span><br><span class="line">                ptr1 += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            offset -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 还剩半个偏移时取中间值</span></span><br><span class="line">        <span class="keyword">if</span> offset == <span class="number">0.5</span>:</span><br><span class="line">            <span class="keyword">if</span> ptr1 &gt;= <span class="built_in">len</span>(numsList1):</span><br><span class="line">                <span class="keyword">return</span> (result + numsList2[ptr2]) / <span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> ptr2 &gt;= <span class="built_in">len</span>(numsList2):</span><br><span class="line">                <span class="keyword">return</span> (result + numsList1[ptr1]) / <span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> numsList1[ptr1] &gt; numsList2[ptr2]:</span><br><span class="line">                <span class="keyword">return</span> (result + numsList2[ptr2]) / <span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> (result + numsList1[ptr1]) / <span class="number">2.0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2016/07/08/Median-of-Two-Sorted-Arrays-%E5%8F%8C%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="ckr53ag290005d1oxgjh83a12" data-title="Median of Two Sorted Arrays 双数组中位数" class="article-share-link">分享</a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/" rel="tag">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/07/Lombok%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Lombok 笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/07/Letter-Combinations-of-a-Phone-Number-%E6%89%8B%E6%9C%BA%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5%E7%BB%84%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Letter Combinations of a Phone Number 手机键盘输入组合</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
