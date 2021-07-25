@@ -1,11 +1,12 @@
 ---
-title: 用设计模式写 Hello World date: 2021-07-26 00:21:37 categories:
-
+title: 用设计模式写 Hello World
+date: 2021-07-26 00:21:37
+categories:
 - Computers & Technology
-- Software Engineering tags:
+- Software Engineering 
+tags:
 - Design Patterns
 - Java
-
 ---
 
 看了许多遍设计模式，还是不能完全理解，不知道什么时候才能写出下面这种 Hello World，或者是看懂就行。
