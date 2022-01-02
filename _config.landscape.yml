@@ -48,7 +48,7 @@ recent_posts_limits: 5
 # Miscellaneous
 google_analytics: UA-80426918-1
 gauges_analytics:
-cloudflare_analytics: true
+cloudflare_analytics: 0256d46589084276b1a235490b30549c
 favicon: /favicon.png
 twitter: hnliuzesen
 fb_admins:
