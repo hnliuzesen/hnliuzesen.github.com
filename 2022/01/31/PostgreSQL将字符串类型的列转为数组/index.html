@@ -160,12 +160,12 @@ PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这
 
 <h4 id="查询数组中与查询条件有交集的-SQL"><a href="#查询数组中与查询条件有交集的-SQL" class="headerlink" title="查询数组中与查询条件有交集的 SQL"></a>查询数组中与查询条件有交集的 SQL</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改之前是下面对查询条件用 &lt;foreach separator=“ OR ”&gt; 来循环拼接</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt;::<span class="type">jsonb</span> @&gt; <span class="string">&#x27;&#123;1|2|3&#125;&#x27;</span>::<span class="type">jsonb</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改之后只需要下面一句</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt; &amp;&amp; <span class="keyword">ARRAY</span> [<span class="number">1</span>::<span class="type">bigint</span>, <span class="number">2</span>::<span class="type">bigint</span>, <span class="number">3</span>::<span class="type">bigint</span>];</span><br></pre></td></tr></table></figure>
 
-<p>是不是 SQL 写起来变爽了？机器的 CPU 时间可比开发人员的薪资便宜太多了。</p>
+<p>是不是 SQL 写起来变爽了？机器的 CPU 时间可比开发人员的工时便宜太多了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz47xfr4001dfuoq7uqucrcz" data-title="PostgreSQL将字符串类型的列转为数组" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz481r3c001kfrot6okd3ych" data-title="PostgreSQL将字符串类型的列转为数组" class="article-share-link">分享</a>
       
       
       
