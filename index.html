@@ -50,7 +50,7 @@
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.1"></head>
 
 <body>
   <div id="container">
@@ -89,6 +89,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PostgreSQL将字符串类型的列转为数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-01-31T16:58:29.000Z" itemprop="datePublished">2022-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Develop/">Develop</a>►<a class="article-category-link" href="/categories/Develop/Database/">Database</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/">PostgreSQL将字符串类型的列转为数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL
+语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。</p>
+<h2 id="仅修改字段类型的语句"><a href="#仅修改字段类型的语句" class="headerlink" title="仅修改字段类型的语句"></a>仅修改字段类型的语句</h2><p>如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 <a href="https://www.postgresql.org/docs/current/sql-altertable.html" target="_blank" rel="noopener">ALTER TABLE</a></p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">TYPE</span> <span class="type">bigint</span>[];</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz47xfr4001dfuoq7uqucrcz" data-title="PostgreSQL将字符串类型的列转为数组" class="article-share-link">分享</a>
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-用设计模式写Hello-World" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/07/25/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" class="article-date">
@@ -124,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/25/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" data-id="ckxx5u08c001eg3ne0x7tag3e" data-title="用设计模式写 Hello World" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/25/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" data-id="ckz47xfr1001bfuoqav7kb8qt" data-title="用设计模式写 Hello World" class="article-share-link">分享</a>
       
       
       
@@ -178,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="ckxx5u089001cg3ne6ghfgmit" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="ckz47xfqz0017fuoq0agkhhap" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link">分享</a>
       
       
       
@@ -231,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckxx5u0870018g3ne92d676c5" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="ckz47xfqy0015fuoq712w47b1" data-title="PostgreSQL 默认排序" class="article-share-link">分享</a>
       
       
       
@@ -340,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckxx5u0850016g3ne9y698xld" data-title="浮点运算" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="ckz47xfqx0013fuoq4f9wabpd" data-title="浮点运算" class="article-share-link">分享</a>
       
       
       
@@ -391,111 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckxx5u0840013g3nef7q0hotz" data-title="GDB 设置反汇编代码风格" class="article-share-link">分享</a>
-      
-      
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-汇编基础知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="article-date">
-  <time class="dt-published" datetime="2020-11-23T16:28:06.000Z" itemprop="datePublished">2020-11-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Program/">Program</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">汇编基础知识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="通用目的寄存器"><a href="#通用目的寄存器" class="headerlink" title="通用目的寄存器"></a>通用目的寄存器</h3><table>
-<thead>
-<tr>
-<th align="center">64 位</th>
-<th align="center">32 位</th>
-<th align="center">16 位</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">RAX</td>
-<td align="center">EAX</td>
-<td align="center">AX</td>
-</tr>
-<tr>
-<td align="center">RBX</td>
-<td align="center">EBX</td>
-<td align="center">BX</td>
-</tr>
-<tr>
-<td align="center">RCX</td>
-<td align="center">ECX</td>
-<td align="center">CX</td>
-</tr>
-<tr>
-<td align="center">RDX</td>
-<td align="center">EDX</td>
-<td align="center">DX</td>
-</tr>
-<tr>
-<td align="center">RSI</td>
-<td align="center">ESI</td>
-<td align="center">SI</td>
-</tr>
-<tr>
-<td align="center">RDI</td>
-<td align="center">EDI</td>
-<td align="center">DI</td>
-</tr>
-<tr>
-<td align="center">RBP</td>
-<td align="center">EBP</td>
-<td align="center">BP</td>
-</tr>
-<tr>
-<td align="center">RSP</td>
-<td align="center">ESP</td>
-<td align="center">SP</td>
-</tr>
-<tr>
-<td align="center">R8-R15</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-        
-          <p class="article-more-link">
-            <a href="/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/11/23/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckxx5u083000yg3neae61fq7l" data-title="汇编基础知识" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/12/08/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="ckz47xfqv000yfuoq6m8hcfat" data-title="GDB 设置反汇编代码风格" class="article-share-link">分享</a>
       
       
       
@@ -536,7 +486,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 15px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 12.5px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+      <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 15px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 12.5px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 12.5px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
     </div>
   </div>
 

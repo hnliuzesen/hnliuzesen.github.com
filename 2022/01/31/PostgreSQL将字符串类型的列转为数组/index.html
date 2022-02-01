@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0256d46589084276b1a235490b30549c"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+
+  
+  <title>PostgreSQL将字符串类型的列转为数组 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL 语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。 仅修改字段类型的语句如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 ALTER">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQL将字符串类型的列转为数组">
+<meta property="og:url" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL 语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。 仅修改字段类型的语句如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 ALTER">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
+<meta property="og:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp">
+<meta property="article:published_time" content="2022-01-31T16:58:29.000Z">
+<meta property="article:modified_time" content="2022-01-31T16:58:29.000Z">
+<meta property="article:tag" content="PostgreSQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PostgreSQL将字符串类型的列转为数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-01-31T16:58:29.000Z" itemprop="datePublished">2022-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Develop/">Develop</a>►<a class="article-category-link" href="/categories/Develop/Database/">Database</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PostgreSQL将字符串类型的列转为数组
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL
+语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。</p>
+<h2 id="仅修改字段类型的语句"><a href="#仅修改字段类型的语句" class="headerlink" title="仅修改字段类型的语句"></a>仅修改字段类型的语句</h2><p>如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 <a href="https://www.postgresql.org/docs/current/sql-altertable.html" target="_blank" rel="noopener">ALTER TABLE</a></p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">TYPE</span> <span class="type">bigint</span>[];</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="修改字段类型同时处理可以强转的数据"><a href="#修改字段类型同时处理可以强转的数据" class="headerlink" title="修改字段类型同时处理可以强转的数据"></a>修改字段类型同时处理可以强转的数据</h2><p>但是之前的数据是 <code>[1,2,3]</code> 的形式，在转换的时候会提示</p>
+<p><code>ERROR: column &quot;&lt;column&gt;&quot; cannot be cast automatically to type bigint[]</code> <code>Hint: You might need to specify &quot;USING &lt;column&gt;::bigint[]&quot;</code></p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">TYPE</span> <span class="type">bigint</span>[] <span class="keyword">USING</span> &lt;<span class="keyword">column</span>&gt;::<span class="type">bigint</span>[];</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改字段类型同时处理不能强转的数据"><a href="#修改字段类型同时处理不能强转的数据" class="headerlink" title="修改字段类型同时处理不能强转的数据"></a>修改字段类型同时处理不能强转的数据</h2><p>按提示修改后执行会再次报错</p>
+<p><code>ERROR: malformed array literal: &quot;[1,2,3]&quot;</code> <code>Detail: Missing &quot;]&quot; after array dimensions.</code></p>
+<p>因为 <code>[1,2,3]</code> 形式的数据无法自动转换为 bigint[] 类型，如果当初使用了 <code>&#123;1,2,3&#125;</code> 就可以顺利转换了。此时能想到的只有 2 种处理方案，先把所有的
+<code>[]</code> 都用字符串函数替换成 <code>&#123;&#125;</code>，然后再执行修改语句。或者在执行修改语句的时候使用 <code>USING</code> 处理。第一种方法要对所有的数据处理两遍，同时如果处理的不是
+bigint 类型的数据，而是字符串，本身就包含有 <code>[]&#123;&#125;</code> 的字符串数组，就会有问题。</p>
+<p>这里思路是先能把查询结果展示为数组，然后放到 <code>USING</code> 语句中。经过尝试使用
+<code>SELECT array_agg(x)::bigint[] || ARRAY []::bigint[] FROM &lt;table&gt;, jsonb_array_elements_text(&lt;table&gt;.&lt;column&gt;::jsonb) t(x);</code>
+可以正确返回数组类型的查询结果 <code>&#123;1,2,3&#125;</code>，放入 <code>USING</code> 字句中</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">TYPE</span> <span class="type">bigint</span>[] <span class="keyword">USING</span> (<span class="keyword">SELECT</span> array_agg(x)::<span class="type">bigint</span>[] || <span class="keyword">ARRAY</span> []::<span class="type">bigint</span>[]</span><br><span class="line">                                               <span class="keyword">FROM</span> jsonb_array_elements_text(&lt;<span class="keyword">column</span>&gt;::<span class="type">jsonb</span>) t(x));</span><br></pre></td></tr></table></figure>
+
+<p>此时报错 <code>ERROR: cannot use subquery in transform expression</code>，提示在类型转换中不能使用子查询，因为这里是先把 <code>varchar</code> 强转 <code>jsonb</code>
+后通过 <code>jsonb_array_elements_text()</code> 展开成一组文本，然后再通过 <code>array_agg()</code> 聚集函数收集到数组中，如果出错就直接返回空数组。这里因为对
+PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这一列字段转换为数组类型，也没有深入研究，直接选择了把查询创建成函数来解决这个报错。</p>
+<figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建转换 varchar 数组为 bigint 数组的函数</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR REPLACE</span> <span class="keyword">FUNCTION</span> varchar_arr2bigint_arr(arg <span class="type">varchar</span>)</span><br><span class="line">    <span class="keyword">RETURNS</span> <span class="type">bigint</span>[]</span><br><span class="line">    <span class="keyword">IMMUTABLE</span> <span class="keyword">PARALLEL SAFE</span> <span class="keyword">AS</span> $$<span class="pgsql"></span></span><br><span class="line"><span class="pgsql">        <span class="keyword">BEGIN</span></span></span><br><span class="line"><span class="pgsql">            <span class="keyword">RETURN</span> (<span class="keyword">SELECT</span> <span class="keyword">ARRAY</span>(<span class="keyword">SELECT</span> jsonb_array_elements_text(arg::<span class="type">jsonb</span>)::<span class="type">bigint</span>));</span></span><br><span class="line"><span class="pgsql">        <span class="keyword">EXCEPTION</span> <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span></span></span><br><span class="line"><span class="pgsql">            <span class="keyword">RETURN</span> (<span class="keyword">SELECT</span> <span class="keyword">ARRAY</span>[]::<span class="type">bigint</span>[]);</span></span><br><span class="line"><span class="pgsql">        <span class="keyword">END</span>;</span></span><br><span class="line"><span class="pgsql">    $$</span> <span class="keyword">LANGUAGE</span> plpgsql;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 在 ALTER TABLE 中使用函数来进行类型转换</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">    <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">TYPE</span> <span class="type">bigint</span>[] <span class="keyword">USING</span> varchar_arr2bigint_arr(&lt;<span class="keyword">column</span>&gt;::<span class="type">jsonb</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这个函数主要内容就是 <code>SELECT ARRAY(SELECT jsonb_array_elements_text(arg::jsonb)::bigint)</code>，因为之前存储类型是 varchar
+，所以有可能一些数据不是 <code>[1,2,3]</code> 这种类型的，这种情况下这条语句会抛异常，对于不合法的数据，直接返回一个空数组。</p>
+<p>因为学艺不精，需要多一步创建函数的操作，我觉得肯定有不创建函数直接在 <code>USING</code> 中解决的方法，后面学习到了再补充。</p>
+<h2 id="转换为原生数组类型的好处"><a href="#转换为原生数组类型的好处" class="headerlink" title="转换为原生数组类型的好处"></a>转换为原生数组类型的好处</h2><p><code>varchar</code> 类型存储一个数组的字符串形式，可以正常使用，转换成原生数组类型有什么收益呢？</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>首先第一反应就是原生类型会不会更快。通过 <code>EXPLAIN ANALYZE</code> 来分析前后查询包含指定值的 SQL，Planning Time 变化不大，Execution Time
+基本都有 50% 左右的性能提升。</p>
+<h4 id="修改前"><a href="#修改前" class="headerlink" title="修改前"></a>修改前</h4><img src="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp" class="" title="BEFORE">
+
+<h4 id="修改后"><a href="#修改后" class="headerlink" title="修改后"></a>修改后</h4><img src="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp" class="" title="AFTER">
+
+<h3 id="查询便利"><a href="#查询便利" class="headerlink" title="查询便利"></a>查询便利</h3><p>性能上 50% 的提升，其实只是从 0.238 ms 降到了 0.090 ms 之类的，实际一条语句快了不到 1 毫秒。但是查询语句前后的变化，就很有价值了。</p>
+<h4 id="查询数组中含有指定值的-SQL"><a href="#查询数组中含有指定值的-SQL" class="headerlink" title="查询数组中含有指定值的 SQL"></a>查询数组中含有指定值的 SQL</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改之前</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> <span class="string">&#x27;1&#x27;</span> = <span class="keyword">ANY</span> (string_to_array(replace(btrim(&lt;<span class="keyword">column</span>&gt;, <span class="string">&#x27;[&#x27;&#x27;[&#x27;&#x27;, &#x27;&#x27;]&#x27;&#x27;]&#x27;</span>), <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>), <span class="string">&#x27;,&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改之后</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt; @&gt; <span class="keyword">ARRAY</span> [<span class="number">1</span>::<span class="type">bigint</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询数组中与查询条件有交集的-SQL"><a href="#查询数组中与查询条件有交集的-SQL" class="headerlink" title="查询数组中与查询条件有交集的 SQL"></a>查询数组中与查询条件有交集的 SQL</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改之前是下面对查询条件用 &lt;foreach separator=“ OR ”&gt; 来循环拼接</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt;::<span class="type">jsonb</span> @&gt; <span class="string">&#x27;&#123;1|2|3&#125;&#x27;</span>::<span class="type">jsonb</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改之后只需要下面一句</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt; &amp;&amp; <span class="keyword">ARRAY</span> [<span class="number">1</span>::<span class="type">bigint</span>, <span class="number">2</span>::<span class="type">bigint</span>, <span class="number">3</span>::<span class="type">bigint</span>];</span><br></pre></td></tr></table></figure>
+
+<p>是不是 SQL 写起来变爽了？机器的 CPU 时间可比开发人员的薪资便宜太多了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz47xfr4001dfuoq7uqucrcz" data-title="PostgreSQL将字符串类型的列转为数组" class="article-share-link">分享</a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/25/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">用设计模式写 Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Software-Engineering/">Software Engineering</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 15px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 12.5px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 12.5px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
