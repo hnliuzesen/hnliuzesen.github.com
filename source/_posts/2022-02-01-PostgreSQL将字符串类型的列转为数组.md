@@ -1,5 +1,5 @@
 ---
-title: PostgreSQL将字符串类型的列转为数组
+title: PostgreSQL 将字符串类型的列转为数组
 date: 2022-02-01 00:58:29
 categories:
 - Develop
