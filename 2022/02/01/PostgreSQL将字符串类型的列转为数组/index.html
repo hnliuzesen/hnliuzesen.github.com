@@ -27,17 +27,17 @@
   <meta name="description" content="在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL 语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。 仅修改字段类型的语句如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 ALTER">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostgreSQL 将字符串类型的列转为数组">
-<meta property="og:url" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/">
+<meta property="og:url" content="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/">
 <meta property="og:site_name" content="Hello Underground">
 <meta property="og:description" content="在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL 语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。 仅修改字段类型的语句如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 ALTER">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
-<meta property="og:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp">
-<meta property="article:published_time" content="2022-01-31T16:58:29.000Z">
-<meta property="article:modified_time" content="2022-01-31T16:58:29.000Z">
+<meta property="og:image" content="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
+<meta property="og:image" content="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp">
+<meta property="article:published_time" content="2022-02-01T00:58:29.000Z">
+<meta property="article:modified_time" content="2022-02-01T00:58:29.000Z">
 <meta property="article:tag" content="PostgreSQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
+<meta name="twitter:image" content="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp">
 <meta name="twitter:creator" content="@hnliuzesen">
   
   
@@ -95,8 +95,8 @@
       <div class="outer">
         <section id="main"><article id="post-PostgreSQL将字符串类型的列转为数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" class="article-date">
-  <time class="dt-published" datetime="2022-01-31T16:58:29.000Z" itemprop="datePublished">2022-02-01</time>
+    <a href="/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-02-01T00:58:29.000Z" itemprop="datePublished">2022-02-01</time>
 </a>
     
   <div class="article-category">
@@ -151,9 +151,9 @@ PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这
 <h2 id="转换为原生数组类型的好处"><a href="#转换为原生数组类型的好处" class="headerlink" title="转换为原生数组类型的好处"></a>转换为原生数组类型的好处</h2><p><code>varchar</code> 类型存储一个数组的字符串形式，可以正常使用，转换成原生数组类型有什么收益呢？</p>
 <h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>首先第一反应就是原生类型会不会更快。通过 <code>EXPLAIN ANALYZE</code> 来分析前后查询包含指定值的 SQL，Planning Time 变化不大，Execution Time
 基本都有 50% 左右的性能提升。</p>
-<h4 id="修改前"><a href="#修改前" class="headerlink" title="修改前"></a>修改前</h4><img src="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp" class="" title="BEFORE">
+<h4 id="修改前"><a href="#修改前" class="headerlink" title="修改前"></a>修改前</h4><img src="/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/before.webp" class="" title="BEFORE">
 
-<h4 id="修改后"><a href="#修改后" class="headerlink" title="修改后"></a>修改后</h4><img src="/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp" class="" title="AFTER">
+<h4 id="修改后"><a href="#修改后" class="headerlink" title="修改后"></a>修改后</h4><img src="/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/after.webp" class="" title="AFTER">
 
 <h3 id="查询便利"><a href="#查询便利" class="headerlink" title="查询便利"></a>查询便利</h3><p>性能上 50% 的提升，其实只是从 0.238 ms 降到了 0.090 ms 之类的，实际一条语句快了不到 1 毫秒。但是查询语句前后的变化，就很有价值了。</p>
 <h4 id="查询数组中含有指定值的-SQL"><a href="#查询数组中含有指定值的-SQL" class="headerlink" title="查询数组中含有指定值的 SQL"></a>查询数组中含有指定值的 SQL</h4><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 修改之前</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> <span class="string">&#x27;1&#x27;</span> = <span class="keyword">ANY</span> (string_to_array(replace(btrim(&lt;<span class="keyword">column</span>&gt;, <span class="string">&#x27;[&#x27;&#x27;[&#x27;&#x27;, &#x27;&#x27;]&#x27;&#x27;]&#x27;</span>), <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>), <span class="string">&#x27;,&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改之后</span></span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt; @&gt; <span class="keyword">ARRAY</span> [<span class="number">1</span>::<span class="type">bigint</span>];</span><br></pre></td></tr></table></figure>
@@ -165,7 +165,7 @@ PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2022/01/31/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz79ysjh001igdoe7t0gaml1" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="ckz7a8i7w0030i4p4bymb8z97" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link">分享</a>
       
       
       
@@ -195,7 +195,7 @@ gitalk.render('gitalk-container')
     
 <nav id="article-nav">
   
-    <a href="/2022/02/03/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前一篇</strong>
       <div class="article-nav-title">
         
@@ -205,7 +205,7 @@ gitalk.render('gitalk-container')
     </a>
   
   
-    <a href="/2021/07/25/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/07/26/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
       <div class="article-nav-title">用设计模式写 Hello World</div>
     </a>
