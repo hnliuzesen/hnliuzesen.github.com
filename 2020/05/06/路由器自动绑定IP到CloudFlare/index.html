@@ -62,7 +62,7 @@
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 5.4.1"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body>
   <div id="container">
@@ -155,7 +155,7 @@ IPv4 地址，可以直接使用地址加端口访问，如 192.168.123.1:8080 �
 <p>这一行被空格分为了4份，使用 <code>awk</code> 命令获取第三段内容</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[A3004NS /home/root]# ifconfig | grep -A 2 ppp0 | grep inet6 | awk &#x27;&#123;print $3&#125;&#x27;</span><br><span class="line">240e:33c:2601:a451:815c:89d1:1fda:a1bf/64</span><br></pre></td></tr></table></figure>
 
-<p>最后用 <code>cut</code> 命令将结果以 / 分割取前面的地址</p>
+<p>最后用 <code>cut</code> 命令将结果以 &#x2F; 分割取前面的地址</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[A3004NS /home/root]# ifconfig | grep -A 2 ppp0 | grep inet6 | awk &#x27;&#123;print $3&#125;&#x27; | cut -d &#x27;/&#x27; -f 0</span><br><span class="line">240e:33c:2601:a451:815c:89d1:1fda:a1bf</span><br></pre></td></tr></table></figure>
 
 <p>成功取到地址后将其赋值给变量 <code>ipv6add</code></p>
@@ -163,14 +163,14 @@ IPv4 地址，可以直接使用地址加端口访问，如 192.168.123.1:8080 �
 
 <p>然后就可以通过 CloudFlare API 发送请求进行绑定了，这里需要注意的是 CF API 不支持免费域名，如 .cf .ga .gq .ml .tk</p>
 <h2 id="命令绑定-IP-与域名"><a href="#命令绑定-IP-与域名" class="headerlink" title="命令绑定 IP 与域名"></a>命令绑定 IP 与域名</h2><p>要使用的命令是 <a href="https://api.cloudflare.com/#dns-records-for-a-zone-update-dns-record" target="_blank" rel="noopener">Update DNS Record</a> ，首先需要获取自己的 
-API Key，在 https://dash.cloudflare.com/:profile_identifier/profile/api-tokens 页面，点击 Global API Key 获取，然后可以用 
+API Key，在 https://dash.cloudflare.com/:profile_identifier&#x2F;profile&#x2F;api-tokens 页面，点击 Global API Key 获取，然后可以用 
 PostMan 试一下，这里有可以方便直接导入的所有 <a href="https://documenter.getpostman.com/view/10394726/SzYbxHEm?version=latest" target="_blank" rel="noopener">CloudFlare API</a> 。</p>
-<p>如果自己添加请求，请求类型 <code>PUT</code>，地址是 https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier
+<p>如果自己添加请求，请求类型 <code>PUT</code>，地址是 https://api.cloudflare.com/client/v4/zones/:zone_identifier&#x2F;dns_records&#x2F;:identifier
 需要在 Header 中添加 <code>X-Auth-Key</code> 就是刚才获取的 Global API Key ，和 <code>X-Auth-Email</code> 就是 CloudFlare 账户邮箱地址。在请求的 
 Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管理的域名，在概述页面右下角，区域 ID 就是 Zone ID ，DNS ID 
 则需要使用 <a href="https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records" target="_blank" rel="noopener">List DNS Records</a> 
 来查询。查询方式和下面请求类似，或者直接使用页面上给出的命令进行查询。这个只需要查一次，不会变，查询命令也不需要写入路由器脚本中。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;AAAA&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;:your_domain&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;content&quot;</span>: <span class="string">&quot;:IPv6_address&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span>: <span class="number">120</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;AAAA&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;:your_domain&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;:IPv6_address&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ttl&quot;</span><span class="punctuation">:</span> <span class="number">120</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果是 IPv4 地址，<code>type</code> 使用 <code>&quot;A&quot;</code> ，<code>name</code> 使用要绑定的域名，<code>content</code> 内容填 IP 地址，不过如果是 IPv4 可以直接使用 Padavan 
 的 DDNS，这里是 IPv4 不是公网 IP ，需要绑定 IPv6 地址，才需要这么麻烦的。</p>
@@ -189,7 +189,7 @@ Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管�
 <img src="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_script.webp" class="" title="Script">
 
 <p>如果两个地方都不能够获取到 IP 地址，则可以添加一个定时任务，每小时取执行一次脚本，这样就需要将命令存为 shell script 。如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## [CloudFlare]</span></span></span><br><span class="line">ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk &#x27;&#123;print $3&#125;&#x27; | cut -d &#x27;/&#x27; -f 1`</span><br><span class="line">logger -t &quot;[CloudFlare]&quot; &quot;IPv6 address: $&#123;ipv6add&#125;&quot;</span><br><span class="line">api_result=`curl -X PUT &quot;https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier&quot; \</span><br><span class="line">    -H &quot;X-Auth-Email: :your_cloudflare_email&quot; \</span><br><span class="line">    -H &quot;X-Auth-Key: :global_api_key&quot; \</span><br><span class="line">    -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">    --data &#x27;&#123;&quot;type&quot;:&quot;AAAA&quot;,&quot;name&quot;:&quot;:your_domain&quot;,&quot;content&quot;:&quot;&#x27;&quot;$&#123;ipv6add&#125;&quot;&#x27;&quot;,&quot;ttl&quot;:120,&quot;proxied&quot;:false&#125;&#x27;`</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## [CloudFlare]</span></span></span><br><span class="line">ipv6add=`ifconfig | grep -A 2 ppp0 | grep inet6 | awk &#x27;&#123;print $3&#125;&#x27; | cut -d &#x27;/&#x27; -f 1`</span><br><span class="line">logger -t &quot;[CloudFlare]&quot; &quot;IPv6 address: $&#123;ipv6add&#125;&quot;</span><br><span class="line">api_result=`curl -X PUT &quot;https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier&quot; \</span><br><span class="line">    -H &quot;X-Auth-Email: :your_cloudflare_email&quot; \</span><br><span class="line">    -H &quot;X-Auth-Key: :global_api_key&quot; \</span><br><span class="line">    -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">    --data &#x27;&#123;&quot;type&quot;:&quot;AAAA&quot;,&quot;name&quot;:&quot;:your_domain&quot;,&quot;content&quot;:&quot;&#x27;&quot;$&#123;ipv6add&#125;&quot;&#x27;&quot;,&quot;ttl&quot;:120,&quot;proxied&quot;:false&#125;&#x27;`</span><br></pre></td></tr></table></figure>
 
 <p>然后在路由器的 <code>高级设置</code> <code>系统管理</code> 下面的 <code>服务</code> 选项卡中，有一项 <code>计划任务 (Crontab)</code> ，在里面添加一个 Cron 定时任务即可。</p>
 <img src="/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/set_cron.webp" class="" title="Cron">
@@ -199,7 +199,7 @@ Body 中填上。请求 URL 中的 Zone ID 是在 CloudFlare 中点击具体管�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="ckz7a8i7z0036i4p40z7c2hlu" data-title="路由器自动绑定 IP 到 CloudFlare" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/05/06/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%87%AA%E5%8A%A8%E7%BB%91%E5%AE%9AIP%E5%88%B0CloudFlare/" data-id="cl4s1xz1a000pf0oq7iax017d" data-title="路由器自动绑定 IP 到 CloudFlare" class="article-share-link">分享</a>
       
       
       

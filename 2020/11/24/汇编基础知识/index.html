@@ -53,7 +53,7 @@
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 5.4.1"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 <body>
   <div id="container">
@@ -233,16 +233,16 @@
 </tr>
 </tbody></table>
 <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><ul>
-<li><em>rax/eax</em>: 默认累加寄存器，乘法等操作会将其中一部分结果自动存放到 <em>rax/eax</em> 中，调用函数的时候也需要把返回值保存在 <em>rax/eax</em> 
-中。执行这些操作时不要用 <em>rax/eax</em> 保存一般数据。</li>
-<li><em>rcx/ecx</em>: 在执行循环的过程中记录循环计数器的值。在循环内部不要用 <em>rcx/ecx</em> 保存一般数据。</li>
-<li><em>rbp/ebp</em>: 用作栈帧中的帧指针。用来指向栈中的数据，应只当作专门寄存器使用。</li>
-<li><em>rsp/esp</em>: 栈指针寄存器。指向活动栈帧的顶部，应只当作专门寄存器使用。</li>
-<li><em>rsi/esi</em> &amp; <em>rdi/edi</em>: 索引寄存器（变址寄存器）。与 STOSB、MOVSB、SCASB 这些字符串操作结合使用，以保存、加载、或扫描大量数据。这些操作会把
-CPU 置于一种自动循环模式中，比开发者手工编写循环更有效率。</li>
-<li><em>rip/eip</em>: 扩展版指令指针寄存器。指向内存中的地址，以表示接下来应该获取、解码并执行的指令。在程序运行过程中自动调整，不应该通过编程修改。</li>
-<li><em>rflags/eflags</em>: 状态与控制寄存器。LAHF、SAHF 等特殊指令会把 CPU 的一些状态标志载入 <em>ah</em> 寄存器，或是将 <em>ah</em> 
-寄存器的值保存到状态寄存器中。除此之外，不应该用其他手段直接修改 <em>rflags/eflags</em>。该寄存器中的二进制位是在执行完算术运算之后根据一套布尔规则自动设置的。尽管 
+<li><em>rax&#x2F;eax</em>: 默认累加寄存器，乘法等操作会将其中一部分结果自动存放到 <em>rax&#x2F;eax</em> 中，调用函数的时候也需要把返回值保存在 <em>rax&#x2F;eax</em> 
+中。执行这些操作时不要用 <em>rax&#x2F;eax</em> 保存一般数据。</li>
+<li><em>rcx&#x2F;ecx</em>: 在执行循环的过程中记录循环计数器的值。在循环内部不要用 <em>rcx&#x2F;ecx</em> 保存一般数据。</li>
+<li><em>rbp&#x2F;ebp</em>: 用作栈帧中的帧指针。用来指向栈中的数据，应只当作专门寄存器使用。</li>
+<li><em>rsp&#x2F;esp</em>: 栈指针寄存器。指向活动栈帧的顶部，应只当作专门寄存器使用。</li>
+<li><em>rsi&#x2F;esi</em> &amp; <em>rdi&#x2F;edi</em>: 索引寄存器（变址寄存器）。与 STOSB、MOVSB、SCASB 这些字符串操作结合使用，以保存、加载、或扫描大量数据。这些操作会把
+ CPU 置于一种自动循环模式中，比开发者手工编写循环更有效率。</li>
+<li><em>rip&#x2F;eip</em>: 扩展版指令指针寄存器。指向内存中的地址，以表示接下来应该获取、解码并执行的指令。在程序运行过程中自动调整，不应该通过编程修改。</li>
+<li><em>rflags&#x2F;eflags</em>: 状态与控制寄存器。LAHF、SAHF 等特殊指令会把 CPU 的一些状态标志载入 <em>ah</em> 寄存器，或是将 <em>ah</em> 
+寄存器的值保存到状态寄存器中。除此之外，不应该用其他手段直接修改 <em>rflags&#x2F;eflags</em>。该寄存器中的二进制位是在执行完算术运算之后根据一套布尔规则自动设置的。尽管 
 <em>rflags</em> 是 64 位，但其中能够用到的只有低 32 位，因此 x86 与 x86_64 处理器用的是同一套状态标志。</li>
 </ul>
 <h2 id="标志位"><a href="#标志位" class="headerlink" title="标志位"></a>标志位</h2><table>
@@ -294,7 +294,7 @@ CPU 置于一种自动循环模式中，比开发者手工编写循环更有效�
 <td>Direction（方向）</td>
 <td align="center">DF</td>
 <td align="center">0100 0000 0000(10)</td>
-<td>clear，字符串按从左到右的顺序处理，体现为 rsi/esi 及 rdi/edi 这两个字符串索引寄存器会在每次字符串操作后递增。set，按照从右到左的顺序处理</td>
+<td>clear，字符串按从左到右的顺序处理，体现为 rsi&#x2F;esi 及 rdi&#x2F;edi 这两个字符串索引寄存器会在每次字符串操作后递增。set，按照从右到左的顺序处理</td>
 </tr>
 <tr>
 <td>Overflow（溢出）</td>
@@ -303,7 +303,7 @@ CPU 置于一种自动循环模式中，比开发者手工编写循环更有效�
 <td>set，运算结果以补码形式表示时所需二进制位超过该运算所采取的个数。此标志针对带符号整数</td>
 </tr>
 </tbody></table>
-<h3 id="通过-LAHF-SAHF-指令可以编辑的标志位及序号"><a href="#通过-LAHF-SAHF-指令可以编辑的标志位及序号" class="headerlink" title="通过 LAHF/SAHF 指令可以编辑的标志位及序号"></a>通过 LAHF/SAHF 指令可以编辑的标志位及序号</h3><table>
+<h3 id="通过-LAHF-x2F-SAHF-指令可以编辑的标志位及序号"><a href="#通过-LAHF-x2F-SAHF-指令可以编辑的标志位及序号" class="headerlink" title="通过 LAHF&#x2F;SAHF 指令可以编辑的标志位及序号"></a>通过 LAHF&#x2F;SAHF 指令可以编辑的标志位及序号</h3><table>
 <thead>
 <tr>
 <th>7</th>
@@ -542,10 +542,10 @@ CPU 置于一种自动循环模式中，比开发者手工编写循环更有效�
 <li><em>r、R</em>：通用寄存器</li>
 <li><em>q</em>：寄存器中的低 8 位</li>
 <li><em>Q</em>：寄存器中的高 8 位</li>
-<li><em>a、b、c、d</em>：ax/eax/rax、bx/ebx/rbx、cx/ecx/rcx、dx/edx/rdx</li>
-<li><em>S</em>：si/esi/rsi</li>
-<li><em>D</em>：di/edi/rdi</li>
-<li><em>A</em>：ax/eax/rax 和 dx/edx/rdx，存放双字结果</li>
+<li><em>a、b、c、d</em>：ax&#x2F;eax&#x2F;rax、bx&#x2F;ebx&#x2F;rbx、cx&#x2F;ecx&#x2F;rcx、dx&#x2F;edx&#x2F;rdx</li>
+<li><em>S</em>：si&#x2F;esi&#x2F;rsi</li>
+<li><em>D</em>：di&#x2F;edi&#x2F;rdi</li>
+<li><em>A</em>：ax&#x2F;eax&#x2F;rax 和 dx&#x2F;edx&#x2F;rdx，存放双字结果</li>
 <li><em>f</em>：任何一个 x87 栈寄存器</li>
 <li><em>t</em>：x87 栈顶 st0</li>
 <li><em>u</em>：x87 第二个寄存器 st1</li>
@@ -560,13 +560,13 @@ CPU 置于一种自动循环模式中，比开发者手工编写循环更有效�
 <li><em>i</em>：可以当成立即常量来使用的整数操作数</li>
 <li><em>F</em>：可以当成立即常量来使用的浮点操作数</li>
 </ul>
-<h2 id="内联汇编方言设置"><a href="#内联汇编方言设置" class="headerlink" title="内联汇编方言设置"></a>内联汇编方言设置</h2><h3 id="代码声明"><a href="#代码声明" class="headerlink" title="代码声明"></a>代码声明</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">asm</span></span>(<span class="string">&quot;.att_syntax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $1, %%eax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $0, %%ebx \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add %%ebx, %%eax \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;%eax&quot;</span>, <span class="string">&quot;%ebx&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in"><span class="keyword">asm</span></span>(<span class="string">&quot;.intel_syntax noprefix \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov eax, 1 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov ebx, 0 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add eax, ebx \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ebx&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="内联汇编方言设置"><a href="#内联汇编方言设置" class="headerlink" title="内联汇编方言设置"></a>内联汇编方言设置</h2><h3 id="代码声明"><a href="#代码声明" class="headerlink" title="代码声明"></a>代码声明</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">asm</span>(<span class="string">&quot;.att_syntax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $1, %%eax \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov $0, %%ebx \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add %%ebx, %%eax \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;%eax&quot;</span>, <span class="string">&quot;%ebx&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">asm</span>(<span class="string">&quot;.intel_syntax noprefix \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov eax, 1 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;mov ebx, 0 \n\t&quot;</span></span><br><span class="line">    <span class="string">&quot;add eax, ebx \n\t&quot;</span></span><br><span class="line">    :</span><br><span class="line">    :</span><br><span class="line">    : <span class="string">&quot;eax&quot;</span>, <span class="string">&quot;ebx&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
 <h3 id="命令指定"><a href="#命令指定" class="headerlink" title="命令指定"></a>命令指定</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-masm=att</span><br><span class="line">-masm=intel</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="ckz7a8i7m002gi4p4htzr38pt" data-title="汇编基础知识" class="article-share-link">分享</a>
+      <a data-url="https://liuzesen.com/2020/11/24/%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-id="cl4s1xz1f000yf0oq8pwu07lj" data-title="汇编基础知识" class="article-share-link">分享</a>
       
       
       
