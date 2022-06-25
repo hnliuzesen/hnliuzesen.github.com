@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0256d46589084276b1a235490b30549c"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+
+  
+  <title>什么情况下应该使用 Java 的内部类 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="内部类实际是嵌套类的一种，指非静态嵌套类，另一种是静态嵌套类。最近想用一用，但是在使用了内部类之后 IDEA 总是提示可以改成静态嵌套类，非常好奇这两种类到底应该分别在什么场景下使用。参考了官方文档、 Nested Classes in Java 和一些问答，总结了一套暂时能说服自己判断。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么情况下应该使用 Java 的内部类">
+<meta property="og:url" content="https://liuzesen.com/2022/06/24/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8Java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="内部类实际是嵌套类的一种，指非静态嵌套类，另一种是静态嵌套类。最近想用一用，但是在使用了内部类之后 IDEA 总是提示可以改成静态嵌套类，非常好奇这两种类到底应该分别在什么场景下使用。参考了官方文档、 Nested Classes in Java 和一些问答，总结了一套暂时能说服自己判断。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-24T13:59:28.000Z">
+<meta property="article:modified_time" content="2022-06-24T13:59:28.000Z">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-什么情况下应该使用Java的内部类" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/24/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8Java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB/" class="article-date">
+  <time class="dt-published" datetime="2022-06-24T13:59:28.000Z" itemprop="datePublished">2022-06-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Program/">Program</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      什么情况下应该使用 Java 的内部类
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>内部类实际是嵌套类的一种，指非静态嵌套类，另一种是静态嵌套类。最近想用一用，但是在使用了内部类之后
+IDEA 总是提示可以改成静态嵌套类，非常好奇这两种类到底应该分别在什么场景下使用。参考了<a href="https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html" target="_blank" rel="noopener">官方文档</a>、
+<a href="https://www.baeldung.com/java-nested-classes" target="_blank" rel="noopener">Nested Classes in Java</a> 和一些<a href="https://stackoverflow.com/questions/70324/java-inner-class-and-static-nested-class" target="_blank" rel="noopener">问</a><a href="https://www.zhihu.com/question/28197253" target="_blank" rel="noopener">答</a>，总结了一套暂时能说服自己判断。</p>
+<span id="more"></span>
+
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OuterClass</span> &#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">InnerClass</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">OuterClass</span> <span class="variable">outerClass</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OuterClass</span>();</span><br><span class="line">        OuterClass.<span class="type">InnerClass</span> <span class="variable">innerClass</span> <span class="operator">=</span> outerClass.<span class="keyword">new</span> <span class="title class_">InnerClass</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>内部类依赖于外层类的实例而存在，可以访问外层类的所有成员，包括 private 声明的成员。因为内部类跟具体实例关联，所以内部类只能声明非静态成员。</p>
+<h3 id="静态嵌套类"><a href="#静态嵌套类" class="headerlink" title="静态嵌套类"></a>静态嵌套类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OuterClass</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">StaticNestedClass</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        OuterClass.<span class="type">StaticNestedClass</span> <span class="variable">nestedClass</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OuterClass</span>.StaticNestedClass();</span><br><span class="line">        nestedClass.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态嵌套类只能访问外层类的 static 成员。自身可以声明静态或非静态成员。</p>
+<h3 id="共性"><a href="#共性" class="headerlink" title="共性"></a>共性</h3><p>嵌套类可以声明为 private、public、protected 或包内友好，而外层类只能声明为 public 或包内友好。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h3><p>官方给了以下三种使用嵌套类的场景：</p>
+<ul>
+<li>内部的类只被外部所使用</li>
+<li>外部的类的成员需要保持 private，但又想让内部的类能够访问</li>
+<li>使相关的代码集中在一起，更容易阅读和维护</li>
+</ul>
+<h3 id="内部类-1"><a href="#内部类-1" class="headerlink" title="内部类"></a>内部类</h3><p>内层类应该只被外层类所使用，且单独存在没意义，必须有外层类的实例才有意义的情况下，使用非静态嵌套类（内部类）。比如外层是人，内层是三维。不过单独存在是否有意义不好定义，具体看代码里面会不会单独使用。如果会单独使用内层类的实例做一些处理，且不需要外层类的实例存在，就需要用静态嵌套类。</p>
+<h3 id="静态嵌套类-1"><a href="#静态嵌套类-1" class="headerlink" title="静态嵌套类"></a>静态嵌套类</h3><p>内层类被外层类所使用，但可以被单独使用，或者只是为了降低包的深度，更好的组织代码，可以放在外层类中。比如外层是 DateUtil，内层是 TimeZoneUtil，不想把这些类都放在一个包里，因为根据字母顺序排序，这两个相关的类可能离很远，或者包下面有一堆类，想要归类又要多一层包的深度。</p>
+<h2 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h2><h3 id="局部类（Local-class）"><a href="#局部类（Local-class）" class="headerlink" title="局部类（Local class）"></a>局部类（Local class）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OuterClass</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">class</span> <span class="title class_">LocalClass</span> &#123;</span><br><span class="line">            <span class="keyword">void</span> <span class="title function_">bar</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">LocalClass</span> <span class="variable">localClass</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LocalClass</span>();</span><br><span class="line">        localClass.bar();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">OuterClass</span> <span class="variable">outerClass</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OuterClass</span>();</span><br><span class="line">        outerClass.foo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>局部类可以定义在方法或者代码快中。局部类不能有修饰符，可以访问外层静态或非静态成员，但同内部类一样不能定义静态成员，也不能实现接口，因为接口实际是静态的。</p>
+<p>上面说如果你的类只被某一个类使用，就应该用内部类，那么，如果类只被某一个方法，或某一段代码块使用，就应该用局部类，粒度比内部类更细一些，就像
+Hashtable 与 ConcurrentHashMap 的同步粒度一样。</p>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><figure class="highlight java"><figcaption><span>AbstractClass.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractClass</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">foo</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">bar</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><figcaption><span>AnonymousClass.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AnonymousClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">AbstractClass</span> <span class="variable">abstractClass</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AbstractClass</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">void</span> <span class="title function_">bar</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>匿名内部类可以在创建实例的时候直接 Override 方法，适合每个实例都要有不同的实现，或者创建实例临时使用的情况。常见的场景有 Thread、Runnable
+等，其中 Runnable 是接口类型的。</p>
+<h2 id="剩下的问题"><a href="#剩下的问题" class="headerlink" title="剩下的问题"></a>剩下的问题</h2><p>还看到了一些说法，暂时还没有弄清楚。</p>
+<ul>
+<li>使用内部类是因为 Java 不能多继承，所以可以使用内部类来实现，通过在内部声明多个继承了的内部类，在外层就可以直接创建这些内部类的实例来实现类似于多继承的效果。</li>
+<li>如果内部类没有持有外层类的成员信息，就应该使用静态嵌套类，这样可以节约内存。这个可能就是 IDEA 一直建议我使用静态嵌套类的原因？具体答案要去看《Effective Java》。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2022/06/24/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8Java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="cl4u1zntx001pelnd2gfj7qr4" data-title="什么情况下应该使用 Java 的内部类" class="article-share-link">分享</a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MyBatis 处理 PostgreSQL 数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Software-Engineering/">Software Engineering</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 16.67px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
