@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="ci(qodana): update qodana version" />
+    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="ci(qodana): update qodana version">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/code-quality.yml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
