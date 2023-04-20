@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0256d46589084276b1a235490b30549c"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+
+  
+  <title>chmod命令4位权限数字的含义 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="平时授予文件权限都是使用 chmod 777 这样的命令来实现，最近看到了一种 chmod 0777 的写法，效果和 chmod 777  没什么差别，但是这一位又是合法的，很好奇多出来的第一位是什么作用，经过查询 new Bing  和文档，发现原来权限的标志位并不仅仅是只有 rwx 那么简单。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chmod命令4位权限数字的含义">
+<meta property="og:url" content="https://liuzesen.com/2023/04/20/chmod%E5%91%BD%E4%BB%A44%E4%BD%8D%E6%9D%83%E9%99%90%E6%95%B0%E5%AD%97%E7%9A%84%E5%90%AB%E4%B9%89/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="平时授予文件权限都是使用 chmod 777 这样的命令来实现，最近看到了一种 chmod 0777 的写法，效果和 chmod 777  没什么差别，但是这一位又是合法的，很好奇多出来的第一位是什么作用，经过查询 new Bing  和文档，发现原来权限的标志位并不仅仅是只有 rwx 那么简单。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-20T17:11:44.000Z">
+<meta property="article:modified_time" content="2023-04-20T17:11:44.000Z">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Command">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-chmod命令4位权限数字的含义" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/20/chmod%E5%91%BD%E4%BB%A44%E4%BD%8D%E6%9D%83%E9%99%90%E6%95%B0%E5%AD%97%E7%9A%84%E5%90%AB%E4%B9%89/" class="article-date">
+  <time class="dt-published" datetime="2023-04-20T17:11:44.000Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      chmod命令4位权限数字的含义
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>平时授予文件权限都是使用 <code>chmod 777</code> 这样的命令来实现，最近看到了一种 <code>chmod 0777</code> 的写法，效果和 <code>chmod 777</code> 
+没什么差别，但是这一位又是合法的，很好奇多出来的第一位是什么作用，经过查询 new Bing 
+和<a href="https://wiki.archlinux.org/title/File_permissions_and_attributes" target="_blank" rel="noopener">文档</a>，发现原来权限的标志位并不仅仅是只有 rwx 那么简单。</p>
+<span id="more"></span>
+
+<p>类似于后面的 <code>777</code>，每个 <code>7</code> 都代表了转换为二进制 <code>111</code> 后对应 <code>rwx</code> 位的开关状态，上面第一位 <code>0</code> 也是代表了 3 个标志位的开关状态，分别是 
+set user ID (4)、set group ID (2)、sticky (1)，0 说明都没有设置，<code>7</code> 说明全部开启。之所以后面表示用户、用户组和其他人权限用了 
+3 个数字，而这里只用 1 个数字是因为读、写、执行是需要针对用户、用户组、其他用户分别设置，而第一位是针对所有人设置的。</p>
+<h2 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h2><p><a href="https://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">setuid</a> 作用是当用户执行的时候，进程以所有者的 UID 
+运行，这样可以避免用户有当前文件的执行权限，但是没有执行过程中相关文件的权限，导致执行失败。比如修改密码的 <code>passwd</code> 
+命令，执行时需要修改系统文件，但是这个命令是所有人都可以执行的，那么没有修改系统文件权限的人也要能修改密码，所以 <code>passwd</code> 文件设置了 setuid 
+标志位，虽然修改密码的用户没有权限，但是 <code>passwd</code> 执行时是以文件所有者 root 权限执行的。</p>
+<p>setuid 权限是体现在用户的执行权限位上的，平时显示 <code>x</code> 的标志位显示为 <code>s</code>，如果文件的所属用户没有执行权限，则显示为大写的 <code>S</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4 对应下面的 s，755 对应 rwxr-xr-x</span></span><br><span class="line">root: stat -c &quot;%a %U:%G %n&quot; /usr/bin/passwd</span><br><span class="line">4755 root:root /usr/bin/passwd</span><br><span class="line"></span><br><span class="line">root: ls -l /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 59976 Nov 24 12:05 /usr/bin/passwd</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除所属用户的执行权限，s 变为 S</span></span><br><span class="line">root: chmod u-x /usr/bin/passwd</span><br><span class="line"></span><br><span class="line">root: ls -l /usr/bin/passwd</span><br><span class="line">-rwSr-xr-x 1 root root 59976 Nov 24 12:05 /usr/bin/passwd</span><br></pre></td></tr></table></figure>
+
+<h2 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h2><p>setgid 的作用是，如果是作用于文件夹，则用户在该文件夹下创建的文件或目录的所属用户组继承该文件夹的所属用户组。如果是作用于文件，类似 
+setuid，文件执行时所属用户组不是执行用户的用户组，而是文件的所属用户组。使用场景是多个用户各自有各自的用户组，同时有属于一个组织的用户组，组织的工作空间可以通过设置
+setgid 标志位来让用户共享工作空间中的内容，否则用户在工作空间下创建的内容都会默认为用户所属的用户组。</p>
+<p>setgid 权限是体现在用户组的执行权限位上的，平时显示 <code>x</code> 的标志位显示为 <code>s</code>，如果文件的所属用户组没有执行权限，则显示为大写的 <code>S</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">user1 属于 user1 和 organization 两个用户组</span></span><br><span class="line">user1: groups user1</span><br><span class="line">user1 : user1 organization</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">organization 目录设置了 setgid 标志位</span></span><br><span class="line">user1: stat -c &quot;%a %U:%G %n&quot; ./organization/</span><br><span class="line">2770 root:organization ./organization/</span><br><span class="line"></span><br><span class="line">user1: ls -l</span><br><span class="line">drwxrws--- 2 root     organization     4096 Apr 20 08:23 organization/</span><br><span class="line"></span><br><span class="line">user1: mkdir ./organization/doc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在 organization 文件夹下创建的内容所属用户组为 organization</span></span><br><span class="line">user1: stat -c &quot;%U:%G %n&quot; ./organization/doc</span><br><span class="line">user1:organization ./organization/doc</span><br><span class="line"></span><br><span class="line">user1: touch ./organization/text.txt</span><br><span class="line"></span><br><span class="line">user1: stat -c &quot;%U:%G %n&quot; ./organization/text.txt</span><br><span class="line">user1:organization ./organization/text.txt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在未设置 setgid 标志位的文件夹下创建的内容用户组为 user1</span></span><br><span class="line">user1: touch ~/text.txt</span><br><span class="line"></span><br><span class="line">user1: stat -c &quot;%U:%G %n&quot; ~/text.txt</span><br><span class="line">user1:user1 ~/text.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sticky-bit"><a href="#Sticky-bit" class="headerlink" title="Sticky bit"></a>Sticky bit</h2><p><a href="https://zh.wikipedia.org/wiki/%E9%BB%8F%E6%BB%9E%E4%BD%8D" target="_blank" rel="noopener">sticky</a> 标志位一般设置在目录上，设置了该标志位，目录中的内容只有 root 
+和所有者可以删除或移动，比如 &#x2F;tmp 目录是所有用户放置临时文件的目录，所有人对目录都有写和执行权限，但是不能删除或移动其他用户的文件。</p>
+<p>sticky 权限是体现在其他用户的执行权限位上的，平时显示 <code>x</code> 的标志位显示为 <code>t</code>，如果文件的其他用户没有执行权限，则显示为大写的 <code>T</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/tmp 目录设置有 sticky 标志位</span></span><br><span class="line">user1: stat -c &quot;%a %U:%G %n&quot; /tmp</span><br><span class="line">1777 root:root /tmp</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">其他用户的执行标志位显示为 t</span></span><br><span class="line">user1: ll / | grep tmp</span><br><span class="line">drwxrwxrwt  11 root root  4096 Apr 20 08:59 tmp/</span><br><span class="line"></span><br><span class="line">user1: ll /tmp</span><br><span class="line">-rw-rw-rw-  1 root root    4 Apr 20 08:59 test</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以编辑、执行 /tmp 目录下其他用户的文件，但是不能移动、删除</span></span><br><span class="line">user1: mv /tmp/test /tmp/test1</span><br><span class="line">mv: cannot move &#x27;/tmp/test&#x27; to &#x27;/tmp/test1&#x27;: Operation not permitted</span><br></pre></td></tr></table></figure>
+
+<p>以上，就是 <code>chmod</code> 命令中多出来的第一位的含义了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2023/04/20/chmod%E5%91%BD%E4%BB%A44%E4%BD%8D%E6%9D%83%E9%99%90%E6%95%B0%E5%AD%97%E7%9A%84%E5%90%AB%E4%B9%89/" data-id="clgoxedkl001qh6q28r8ud5mr" data-title="chmod命令4位权限数字的含义" class="article-share-link">分享</a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Command/" rel="tag">Command</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/24/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8Java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">什么情况下应该使用 Java 的内部类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Software-Engineering/">Software Engineering</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Command/" style="font-size: 10px;">Command</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 16.67px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  </div>
+</body>
+</html>
