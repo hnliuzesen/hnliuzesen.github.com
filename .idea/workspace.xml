@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="ci(qodana): update qodana version">
-      <change afterPath="$PROJECT_DIR$/source/_drafts/chmod命令4位权限数字的含义.md" afterDir="false" />
+    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(draft): add a draft about Linux command chmod">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2017-05-27-ubuntu一键替换软件源.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2017-05-27-Ubuntu一键替换软件源.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_drafts/chmod命令4位权限数字的含义.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +145,8 @@
       <workItem from="1656412226572" duration="2992000" />
       <workItem from="1656473167769" duration="852000" />
       <workItem from="1681453159114" duration="2946000" />
-      <workItem from="1681893588702" duration="3205000" />
+      <workItem from="1681893588702" duration="3357000" />
+      <workItem from="1681972236096" duration="8718000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(package): update hexo renderer marked and ejs">
       <created>1638166262535</created>
@@ -185,7 +183,21 @@
       <option name="project" value="LOCAL" />
       <updated>1656415086792</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="build(hexo): update hexo to 6.3.0">
+      <created>1681903461517</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681903461517</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(draft): add a draft about Linux command chmod">
+      <created>1681903535876</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681903535876</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,14 +247,17 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="refactor(package): update hexo renderer marked and ejs" />
     <MESSAGE value="fix(post): delete a redundant symbol." />
     <MESSAGE value="ci(qodana): add qodana github action config." />
     <MESSAGE value="ci(qodana): config qodana." />
     <MESSAGE value="ci(qodana): update qodana version" />
-    <option name="LAST_COMMIT_MESSAGE" value="ci(qodana): update qodana version" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="build(hexo): update hexo to 6.3.0" />
+    <MESSAGE value="feat(draft): add a draft about Linux command chmod" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(draft): add a draft about Linux command chmod" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
