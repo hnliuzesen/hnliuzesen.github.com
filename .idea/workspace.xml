@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(draft): add a draft about Linux command chmod">
+      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/grub.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/manjaro.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/ubuntu.webp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_drafts/chmod命令4位权限数字的含义.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,13 +69,13 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;source&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Code/WebStormProjects/hnliuzesen.github.com&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Code/Web/hnliuzesen.github.com.git&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -147,6 +150,8 @@
       <workItem from="1681453159114" duration="2946000" />
       <workItem from="1681893588702" duration="3357000" />
       <workItem from="1681972236096" duration="8718000" />
+      <workItem from="1683091518676" duration="1697000" />
+      <workItem from="1683104425857" duration="6970000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(package): update hexo renderer marked and ejs">
       <created>1638166262535</created>
