@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(draft): add a draft about Linux command chmod">
-      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/grub.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/manjaro.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/2023-05-03-使用Live-CD安装其他发行版/ubuntu.webp" afterDir="false" />
+    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(post): add a post. Install Linux from iso with Grub2">
+      <change afterPath="$PROJECT_DIR$/source/_posts/2023-11-19-让威联通DDNS检测IP不走代理.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +51,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="1ushcWHkZJpbTy1n3b8n179DiPr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,7 +76,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -151,7 +152,8 @@
       <workItem from="1681893588702" duration="3357000" />
       <workItem from="1681972236096" duration="8718000" />
       <workItem from="1683091518676" duration="1697000" />
-      <workItem from="1683104425857" duration="6970000" />
+      <workItem from="1683104425857" duration="7228000" />
+      <workItem from="1700324312437" duration="644000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(package): update hexo renderer marked and ejs">
       <created>1638166262535</created>
@@ -202,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681903535876</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(post): add a post. Install Linux from iso with Grub2">
+      <created>1683117489459</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1683117489459</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +271,8 @@
     <MESSAGE value="ci(qodana): update qodana version" />
     <MESSAGE value="build(hexo): update hexo to 6.3.0" />
     <MESSAGE value="feat(draft): add a draft about Linux command chmod" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(draft): add a draft about Linux command chmod" />
+    <MESSAGE value="feat(post): add a post. Install Linux from iso with Grub2" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(post): add a post. Install Linux from iso with Grub2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
