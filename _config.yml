@@ -45,10 +45,11 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
+syntax_highlighter: highlight.js
 highlight:
-  enable: true
   auto_detect: false
   line_number: true
+  line_threshold: 0
   tab_replace: '  '
   wrap: true
   hljs: false
