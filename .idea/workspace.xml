@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(post): add a post. Install Linux from iso with Grub2">
-      <change afterPath="$PROJECT_DIR$/source/_posts/2023-11-19-让威联通DDNS检测IP不走代理.md" afterDir="false" />
+    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(post): add a post about Linux file permission and attributes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/landscape" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/landscape/layout/_partial/after-footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape/layout/_partial/after-footer.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +55,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="1ushcWHkZJpbTy1n3b8n179DiPr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -63,23 +67,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;source&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Code/Web/hnliuzesen.github.com.git&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "source",
+    "last_opened_file_path": "C:/Code/WebStormProjects/hnliuzesen.github.com",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "settings.editor.selected.configurable": "http.proxy",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Code\hnliuzesen.github.com\source\imgaes\about" />
@@ -126,6 +130,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -150,10 +161,10 @@
       <workItem from="1656473167769" duration="852000" />
       <workItem from="1681453159114" duration="2946000" />
       <workItem from="1681893588702" duration="3357000" />
-      <workItem from="1681972236096" duration="8718000" />
-      <workItem from="1683091518676" duration="1697000" />
-      <workItem from="1683104425857" duration="7228000" />
-      <workItem from="1700324312437" duration="644000" />
+      <workItem from="1681972236096" duration="9381000" />
+      <workItem from="1710929240591" duration="64000" />
+      <workItem from="1731495117716" duration="2108000" />
+      <workItem from="1731550617540" duration="8587000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(package): update hexo renderer marked and ejs">
       <created>1638166262535</created>
@@ -204,12 +215,12 @@
       <option name="project" value="LOCAL" />
       <updated>1681903535876</updated>
     </task>
-    <task id="LOCAL-00008" summary="feat(post): add a post. Install Linux from iso with Grub2">
-      <created>1683117489459</created>
+    <task id="LOCAL-00008" summary="feat(post): add a post about Linux file permission and attributes">
+      <created>1681983076823</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1683117489459</updated>
+      <updated>1681983076823</updated>
     </task>
     <option name="localTasksCounter" value="9" />
     <servers />
@@ -242,19 +253,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="source" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -271,8 +270,8 @@
     <MESSAGE value="ci(qodana): update qodana version" />
     <MESSAGE value="build(hexo): update hexo to 6.3.0" />
     <MESSAGE value="feat(draft): add a draft about Linux command chmod" />
-    <MESSAGE value="feat(post): add a post. Install Linux from iso with Grub2" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(post): add a post. Install Linux from iso with Grub2" />
+    <MESSAGE value="feat(post): add a post about Linux file permission and attributes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(post): add a post about Linux file permission and attributes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

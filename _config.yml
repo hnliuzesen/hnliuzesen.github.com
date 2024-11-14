@@ -94,8 +94,8 @@ theme: landscape
 theme_config:
   cdn:
     gitalk:
-      css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
-      js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css
+      css: //unpkg.com/gitalk@1.8.0/dist/gitalk.min.js
+      js: //unpkg.com/gitalk@1.8.0/dist/gitalk.css
   gitalk:
     enable: true
     clientID: b6df7cac6bd14222537c
@@ -104,6 +104,15 @@ theme_config:
     owner: hnliuzesen
     admin: ['hnliuzesen']
     pagerDirection: first
+
+  # mermaid chart
+  ## mermaid url https://github.com/mermaid-js/mermaid
+  mermaid:
+    enable: true
+    version: '11.4.0'
+    options:  # find more api options from https://mermaid.js.org/config/setup/interfaces/mermaid.MermaidConfig.html
+      theme: 'default'
+    #startOnload: true  // default true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
