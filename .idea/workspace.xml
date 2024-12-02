@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(post): add a post about Linux file permission and attributes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/landscape" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/landscape/layout/_partial/after-footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape/layout/_partial/after-footer.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="ba9c20e2-2b9e-49dc-badb-26d054340415" name="Default Changelist" comment="feat(theme): change the highlight theme to solarized light" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +35,7 @@
       <option value="directory" />
       <option value="repository" />
     </branch-grouping>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/landscape" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -73,7 +66,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "source",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Code/WebStormProjects/hnliuzesen.github.com",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -165,6 +158,7 @@
       <workItem from="1710929240591" duration="64000" />
       <workItem from="1731495117716" duration="2108000" />
       <workItem from="1731550617540" duration="8587000" />
+      <workItem from="1731567181996" duration="4578000" />
     </task>
     <task id="LOCAL-00001" summary="refactor(package): update hexo renderer marked and ejs">
       <created>1638166262535</created>
@@ -222,7 +216,39 @@
       <option name="project" value="LOCAL" />
       <updated>1681983076823</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat(theme): add mermaid diagramming support">
+      <option name="closed" value="true" />
+      <created>1731567392321</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731567392321</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat(theme): update the landscape theme">
+      <option name="closed" value="true" />
+      <created>1731567594035</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731567594035</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat(theme): change the highlight theme to light">
+      <option name="closed" value="true" />
+      <created>1731569511547</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731569511547</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(theme): change the highlight theme to solarized light">
+      <option name="closed" value="true" />
+      <created>1731571225615</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731571225615</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +260,12 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                  <option value="upstream/master" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="source" />
@@ -253,7 +285,20 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                        <option value="upstream/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -271,7 +316,11 @@
     <MESSAGE value="build(hexo): update hexo to 6.3.0" />
     <MESSAGE value="feat(draft): add a draft about Linux command chmod" />
     <MESSAGE value="feat(post): add a post about Linux file permission and attributes" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(post): add a post about Linux file permission and attributes" />
+    <MESSAGE value="feat(theme): add mermaid diagramming support" />
+    <MESSAGE value="feat(theme): update the landscape theme" />
+    <MESSAGE value="feat(theme): change the highlight theme to light" />
+    <MESSAGE value="feat(theme): change the highlight theme to solarized light" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(theme): change the highlight theme to solarized light" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
