@@ -93,6 +93,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MyBatis处理PostgreSQL数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-02-04T00:53:35.000Z" itemprop="datePublished">2022-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Develop/">Develop</a>►<a class="article-category-link" href="/categories/Develop/Database/">Database</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/">MyBatis 处理 PostgreSQL 数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a href="/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84">上回书</a>说到，我们把数据库存储数组的字符串转为了原生数组 <code>bigint[]</code> 类型，SQL
+写起来是方便了，在 Java 代码里查询插入都会报错，要怎么使用呢？这里使用的是 <a href="https://mybatis.org/" target="_blank" rel="noopener">MyBatis</a>，所以就要扩展 MyBatis 的
+<a href="https://mybatis.org/mybatis-3/configuration.html#typeHandlers" target="_blank" rel="noopener">typeHandler</a> 了，具体内容如下，原理我也不清楚，因为都是
+<a href="https://copilot.github.com/" target="_blank" rel="noopener">Copilot</a> 帮我写的😁</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2022/02/04/MyBatis%E5%A4%84%E7%90%86PostgreSQL%E6%95%B0%E7%BB%84/" data-id="cm5e012bf001lkhpz6k163knp" data-title="MyBatis 处理 PostgreSQL 数组" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-PostgreSQL将字符串类型的列转为数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" class="article-date">
@@ -131,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="cm46qmhgk001jlxq22htyfir4" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="cm5e012be001jkhpz10g70l0w" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -182,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/26/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" data-id="cm46qmhgj001flxq2dx505ds8" data-title="用设计模式写 Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2021/07/26/%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%86%99Hello-World/" data-id="cm5e012bd001fkhpzdn6e0gpm" data-title="用设计模式写 Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -236,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="cm46qmhgi001dlxq2d67g4e0b" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2021/07/13/Git%E8%AE%BE%E7%BD%AE%E5%85%8B%E9%9A%86%E6%B7%B1%E5%BA%A6%E5%90%8E%E7%9C%8B%E4%B8%8D%E5%88%B0%E8%BF%9C%E7%AB%AF%E5%88%86%E6%94%AF/" data-id="cm5e012bc001dkhpz7anbb4ch" data-title="Git设置克隆深度后看不到远端分支" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -289,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="cm46qmhgh0019lxq29bi9efpy" data-title="PostgreSQL 默认排序" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2021/07/04/PostgreSQL%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" data-id="cm5e012bb0019khpzedlk8vp4" data-title="PostgreSQL 默认排序" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -398,58 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="cm46qmhgg0017lxq203jy7m9k" data-title="浮点运算" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-GDB设置反汇编代码风格" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" class="article-date">
-  <time class="dt-published" datetime="2020-12-09T00:03:43.000Z" itemprop="datePublished">2020-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Computers-Technology/">Computers & Technology</a>►<a class="article-category-link" href="/categories/Computers-Technology/Program/">Program</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/">GDB 设置反汇编代码风格</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set disassembly-flavor att</span><br><span class="line">set disassembly-flavor intel</span><br><span class="line">show disassembly-flavor</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2020/12/09/GDB%E8%AE%BE%E7%BD%AE%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/" data-id="cm46qmhgf0014lxq23sqzhu5k" data-title="GDB 设置反汇编代码风格" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2020/12/17/%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97/" data-id="cm5e012bb0017khpze35whcpj" data-title="浮点运算" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -480,7 +483,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Software-Engineering/">Software Engineering</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/">Computers & Technology</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Machine-Learning/">Machine Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computers-Technology/Software-Engineering/">Software Engineering</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/">Develop</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Database/">Database</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Develop/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/">Tip</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Kindle/">Kindle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/Userscript/">Userscript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tip/WEB/">WEB</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -490,7 +493,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CloudFlare/" rel="tag">CloudFlare</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Command/" rel="tag">Command</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kindle/" rel="tag">Kindle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Manjaro/" rel="tag">Manjaro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTP/" rel="tag">NTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QNAP/" rel="tag">QNAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QTS/" rel="tag">QTS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SourceTree/" rel="tag">SourceTree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/" rel="tag">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Valkey/" rel="tag">Valkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azw3/" rel="tag">azw3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobi/" rel="tag">mobi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/" rel="tag">router</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/" rel="tag">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CloudFlare/" rel="tag">CloudFlare</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Command/" rel="tag">Command</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/D-E/" rel="tag">D&amp;E</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DongHae/" rel="tag">DongHae</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded/" rel="tag">Embedded</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eunhyuk/" rel="tag">Eunhyuk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kindle/" rel="tag">Kindle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Manjaro/" rel="tag">Manjaro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTP/" rel="tag">NTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QNAP/" rel="tag">QNAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QTS/" rel="tag">QTS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SourceTree/" rel="tag">SourceTree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/" rel="tag">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Userscript/" rel="tag">Userscript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Valkey/" rel="tag">Valkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azw3/" rel="tag">azw3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mobi/" rel="tag">mobi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/" rel="tag">router</a></li></ul>
     </div>
   </div>
 
@@ -500,7 +503,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Command/" style="font-size: 10px;">Command</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Manjaro/" style="font-size: 10px;">Manjaro</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 16.67px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/QNAP/" style="font-size: 10px;">QNAP</a> <a href="/tags/QTS/" style="font-size: 10px;">QTS</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 13.33px;">Ubuntu</a> <a href="/tags/Valkey/" style="font-size: 10px;">Valkey</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
+      <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Array/" style="font-size: 10px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/CloudFlare/" style="font-size: 10px;">CloudFlare</a> <a href="/tags/Command/" style="font-size: 10px;">Command</a> <a href="/tags/D-E/" style="font-size: 10px;">D&E</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/DongHae/" style="font-size: 10px;">DongHae</a> <a href="/tags/Embedded/" style="font-size: 16.67px;">Embedded</a> <a href="/tags/Eunhyuk/" style="font-size: 10px;">Eunhyuk</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/Manjaro/" style="font-size: 10px;">Manjaro</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/PostgreSQL/" style="font-size: 16.67px;">PostgreSQL</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/QNAP/" style="font-size: 10px;">QNAP</a> <a href="/tags/QTS/" style="font-size: 10px;">QTS</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Ubuntu/" style="font-size: 13.33px;">Ubuntu</a> <a href="/tags/Userscript/" style="font-size: 10px;">Userscript</a> <a href="/tags/Valkey/" style="font-size: 10px;">Valkey</a> <a href="/tags/azw3/" style="font-size: 10px;">azw3</a> <a href="/tags/domain/" style="font-size: 10px;">domain</a> <a href="/tags/mobi/" style="font-size: 10px;">mobi</a> <a href="/tags/router/" style="font-size: 10px;">router</a>
     </div>
   </div>
 
@@ -509,7 +512,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
     </div>
   </div>
 
@@ -520,6 +523,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/01/01/DnE%E6%97%A5%E6%9C%AC%E5%AE%98%E7%BD%91%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/">D&amp;E日本官网图片下载</a>
+          </li>
         
           <li>
             <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
@@ -537,10 +544,6 @@
             <a href="/2023/04/20/chmod%E5%91%BD%E4%BB%A44%E4%BD%8D%E6%9D%83%E9%99%90%E6%95%B0%E5%AD%97%E7%9A%84%E5%90%AB%E4%B9%89/">chmod命令4位权限数字的含义</a>
           </li>
         
-          <li>
-            <a href="/2022/06/24/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8Java%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB/">什么情况下应该使用 Java 的内部类</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -554,7 +557,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2024 Hello Underground<br>
+      &copy; 2025 Hello Underground<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
