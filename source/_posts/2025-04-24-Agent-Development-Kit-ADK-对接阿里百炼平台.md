@@ -14,7 +14,8 @@ Claude code 源码泄露让 MCP 大火，Google 最近又推出了 [Agent Develo
 [A2A](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)，相当于是直接把 MCP Server 和 
 MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。  
 [官方文档](https://google.github.io/adk-docs/agents/models/)中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过 
-LiteLLM 来实现的。如果想要在国内用起来 ADK 肯定还是接入国内平台用起来更方便，下面就是 ADK 接入国内平台的使用方式。
+LiteLLM 来实现的。最新的参考文档是：[Using cloud proprietary models via LiteLLM](https://google.github.io/adk-docs/agents/models/#using-cloud-proprietary-models-via-litellm)。
+如果想要在国内用起来 ADK 肯定还是接入国内平台用起来更方便，下面就是 ADK 接入国内平台的使用方式。
 
 <!--more-->
 
