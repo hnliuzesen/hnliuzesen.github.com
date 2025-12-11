@@ -24,12 +24,12 @@
   
   <title>Agent Development Kit (ADK) 对接阿里百炼平台 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。如果想要在国内用起来">
+  <meta name="description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。最新的参考文档是：Us">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Agent Development Kit (ADK) 对接阿里百炼平台">
 <meta property="og:url" content="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。如果想要在国内用起来">
+<meta property="og:description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。最新的参考文档是：Us">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/example.webp">
 <meta property="article:published_time" content="2025-04-24T16:28:41.000Z">
@@ -127,7 +127,8 @@
         <p>Claude code 源码泄露让 MCP 大火，Google 最近又推出了 <a href="https://google.github.io/adk-docs/" target="_blank" rel="noopener">Agent Development Kit</a> 和 
 <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">A2A</a>，相当于是直接把 MCP Server 和 
 MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。<br><a href="https://google.github.io/adk-docs/agents/models/" target="_blank" rel="noopener">官方文档</a>中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过 
-LiteLLM 来实现的。如果想要在国内用起来 ADK 肯定还是接入国内平台用起来更方便，下面就是 ADK 接入国内平台的使用方式。</p>
+LiteLLM 来实现的。最新的参考文档是：<a href="https://google.github.io/adk-docs/agents/models/#using-cloud-proprietary-models-via-litellm" target="_blank" rel="noopener">Using cloud proprietary models via LiteLLM</a>。
+如果想要在国内用起来 ADK 肯定还是接入国内平台用起来更方便，下面就是 ADK 接入国内平台的使用方式。</p>
 <span id="more"></span>
 
 <p>这里使用<a href="https://bailian.console.aliyun.com/" target="_blank" rel="noopener">阿里百炼</a>平台的 API 举例，只要是 OpenAI 兼容的 API 理论上都可以接入，但是因为要涉及到函数调用，模型需要支持 
@@ -165,7 +166,7 @@ Function Calling 而且需要比较强的指令遵循才能有比较好的效果
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuidLsqmkl_W3Eke-Ye3al065" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuid45Op1Pt9_kCzj2X9TNMg3" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
