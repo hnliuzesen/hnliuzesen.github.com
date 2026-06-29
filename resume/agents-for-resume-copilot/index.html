@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>AGENTS.md for resume-copilot</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f5f1;
+      --text: #1f2933;
+      --muted: #64748b;
+      --border: #d8d3ca;
+      --panel: #fffdf8;
+      --accent: #2563eb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --border: #374151;
+        --panel: #182231;
+        --accent: #60a5fa;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(980px, calc(100vw - 32px));
+      margin: 48px auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    pre {
+      margin: 0;
+      padding: 24px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>AGENTS.md for resume-copilot</h1>
+      <p>Raw AGENTS.md content used for the resume-copilot project.</p>
+    </header>
+    <pre><code id="content">Loading AGENTS.md...</code></pre>
+  </main>
+  <script>
+    fetch("./AGENTS.md", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to load AGENTS.md");
+        }
+        return response.text();
+      })
+      .then((text) => {
+        document.getElementById("content").textContent = text;
+      })
+      .catch((error) => {
+        document.getElementById("content").textContent = error.message;
+      });
+  </script>
+</body>
+</html>
