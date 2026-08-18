@@ -2,6 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@11.22.0",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
@@ -9,10 +10,10 @@
     "server": "hexo server -g"
   },
   "hexo": {
-    "version": "8.1.1"
+    "version": "8.1.2"
   },
   "dependencies": {
-    "hexo": "^8.1.1",
+    "hexo": "^8.1.2",
     "hexo-cli": "^4.3.2",
     "hexo-deployer-git": "^4.0.0",
     "hexo-filter-mermaid-diagrams": "^1.0.5",
