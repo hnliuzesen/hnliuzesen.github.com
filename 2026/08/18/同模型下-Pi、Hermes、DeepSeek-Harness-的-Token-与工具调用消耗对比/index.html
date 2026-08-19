@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-80426918-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-80426918-1');
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0256d46589084276b1a235490b30549c"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+
+  
+  <title>同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比 | Hello Underground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近，DeepSeek 推出了官方的 DeepSeek Harness， 设计理念是一切皆插件，市面上又多了一个可以自己部署的 AI Agent，如果只是想给它安排一些简单的任务，相比功能全面的 hermes 和极简的 pi，哪个更合适？   我对比了一下这三个 Agent 在不同任务上的 Token 消耗，先放结果：     pi Hermes DSH    say hi 4.7K 19.4K">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比">
+<meta property="og:url" content="https://liuzesen.com/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/">
+<meta property="og:site_name" content="Hello Underground">
+<meta property="og:description" content="最近，DeepSeek 推出了官方的 DeepSeek Harness， 设计理念是一切皆插件，市面上又多了一个可以自己部署的 AI Agent，如果只是想给它安排一些简单的任务，相比功能全面的 hermes 和极简的 pi，哪个更合适？   我对比了一下这三个 Agent 在不同任务上的 Token 消耗，先放结果：     pi Hermes DSH    say hi 4.7K 19.4K">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-18T17:01:13.000Z">
+<meta property="article:modified_time" content="2026-08-18T17:01:13.000Z">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Hermes">
+<meta property="article:tag" content="Pi">
+<meta property="article:tag" content="Token Usage">
+<meta property="article:tag" content="Tool Calling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@hnliuzesen">
+  
+    <link rel="alternate" href="/atom.xml" title="Hello Underground" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hello Underground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liuzesen.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-同模型下-Pi、Hermes、DeepSeek-Harness-的-Token-与工具调用消耗对比" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/" class="article-date">
+  <time class="dt-published" datetime="2026-08-18T17:01:13.000Z" itemprop="datePublished">2026-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Artificial-Intelligence/">Artificial Intelligence</a>►<a class="article-category-link" href="/categories/Artificial-Intelligence/Agent-Engineering/">Agent Engineering</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近，DeepSeek 推出了官方的 <a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">DeepSeek Harness</a>，
+设计理念是一切皆插件，市面上又多了一个可以自己部署的 AI Agent，如果只是想给它安排一些简单的任务，相比功能全面的
+<a href="https://github.com/nousresearch/hermes-agent" target="_blank" rel="noopener">hermes</a> 和极简的
+<a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">pi</a>，哪个更合适？  </p>
+<p>我对比了一下这三个 Agent 在不同任务上的 Token 消耗，先放结果：</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">pi</th>
+<th align="center">Hermes</th>
+<th align="center">DSH</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">say hi</td>
+<td align="center">4.7K</td>
+<td align="center">19.4K</td>
+<td align="center">9.5K</td>
+</tr>
+<tr>
+<td align="left">执行任务</td>
+<td align="center">129K</td>
+<td align="center">364K</td>
+<td align="center">270K</td>
+</tr>
+<tr>
+<td align="left">任务结果</td>
+<td align="center">正确</td>
+<td align="center">正确</td>
+<td align="center">正确</td>
+</tr>
+<tr>
+<td align="left">工具调用请求次数</td>
+<td align="center">5</td>
+<td align="center">31</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="left">工具调用成功次数</td>
+<td align="center">5</td>
+<td align="center">31</td>
+<td align="center">7</td>
+</tr>
+</tbody></table>
+<p>在测试过程中，还发现了很多意想不到的差异</p>
+<span id="more"></span>
+
+<h2 id="测试配置"><a href="#测试配置" class="headerlink" title="测试配置"></a>测试配置</h2><p>Pi Coding Agent (文中简称 pi)：<a href="https://www.npmjs.com/package/@earendil-works/pi-coding-agent/v/0.84.2" target="_blank" rel="noopener">v0.84.2</a><br>Hermes Agent (文中简称
+Hermes)：<a href="https://github.com/NousResearch/hermes-agent/releases#release-v2026.8.16.2" target="_blank" rel="noopener">v0.20.3 (2026.8.16.2)</a><br>DeepSeek Harness (文中简称 DSH)：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">0.1.0-rc.5</a><br>模型：<a href="https://www.agnes-ai.com/en/docs/agnes-25-flash" target="_blank" rel="noopener">agnes-2.5-flash</a><br>技能：<a href="https://github.com/xbtlin/ai-berkshire/blob/main/skills/investment-checklist.md" target="_blank" rel="noopener">巴菲特价值投资买入前 Checklist</a></p>
+<h2 id="空载-Say-Hi-测试"><a href="#空载-Say-Hi-测试" class="headerlink" title="空载 Say Hi 测试"></a>空载 Say Hi 测试</h2><p>这一轮测试在三个 Agent 配置好相同的 skills 后，只发送一个单词 <code>hi</code>，记录模型的 Token 消耗，然后在同一 Session 中再次发送
+<code>hi</code>，观察上下文增长情况。</p>
+<h3 id="Pi"><a href="#Pi" class="headerlink" title="Pi"></a>Pi</h3><h4 id="Token-消耗"><a href="#Token-消耗" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><p>使用 <a href="https://pi.dev/docs/latest/sessions#session-commands" target="_blank" rel="noopener"><code>/session</code></a> 命令查看当前会话的用量</p>
+<h5 id="第一次发送"><a href="#第一次发送" class="headerlink" title="第一次发送"></a>第一次发送</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">File: /home/user/.pi/agent/sessions/--home-user--/2026-08-18T03-49-09-788Z_01a012fc-c21c-7488-aa3a-81e0db37bfcc.jsonl</span><br><span class="line">ID: 01a012fc-c21c-7488-aa3a-81e0db37bfcc</span><br><span class="line"></span><br><span class="line">Messages</span><br><span class="line">Total: 2</span><br><span class="line">User: 1</span><br><span class="line">Assistant: 1</span><br><span class="line">Tools: 0 calls, 0 results</span><br><span class="line"></span><br><span class="line">Tokens</span><br><span class="line">Input: 4,743</span><br><span class="line">  Cached: 4,608 (97.2%)</span><br><span class="line">  Uncached: 135</span><br><span class="line">Output: 24</span><br><span class="line">Total: 4,767</span><br></pre></td></tr></table></figure>
+
+<h5 id="第二次发送"><a href="#第二次发送" class="headerlink" title="第二次发送"></a>第二次发送</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Session Info</span><br><span class="line"></span><br><span class="line"> File: /home/user/.pi/agent/sessions/--home-user--/2026-08-18T03-49-09-788Z_01a012fc-c21c-7488-aa3a-81e0db37bfcc.jsonl</span><br><span class="line"> ID: 01a012fc-c21c-7488-aa3a-81e0db37bfcc</span><br><span class="line"></span><br><span class="line"> Messages</span><br><span class="line"> Total: 4</span><br><span class="line"> User: 2</span><br><span class="line"> Assistant: 2</span><br><span class="line"> Tools: 0 calls, 0 results</span><br><span class="line"></span><br><span class="line"> Tokens</span><br><span class="line"> Input: 9,506</span><br><span class="line">   Cached: 4,608 (48.5%)</span><br><span class="line">   Uncached: 4,898</span><br><span class="line"> Output: 50</span><br><span class="line"> Total: 9,556</span><br><span class="line"></span><br><span class="line"> Cost</span><br><span class="line"> Total: $0.000</span><br><span class="line"> Cache Re-billed: 4,743 tokens, 1 miss</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hermes"><a href="#Hermes" class="headerlink" title="Hermes"></a>Hermes</h3><h4 id="Token-消耗-1"><a href="#Token-消耗-1" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><p>使用 <a href="https://hermes-agent.nousresearch.com/docs/reference/slash-commands#info" target="_blank" rel="noopener"><code>/usage</code></a>
+命令查看当前会话的用量</p>
+<h5 id="第一次发送-1"><a href="#第一次发送-1" class="headerlink" title="第一次发送"></a>第一次发送</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">📊 Session Token Usage</span><br><span class="line">────────────────────────────────────────</span><br><span class="line">Model:                     agnes-2.5-flash</span><br><span class="line">Input tokens:                  11,182</span><br><span class="line">Output tokens:                     27</span><br><span class="line">↳ Reasoning (subset):              15</span><br><span class="line">Prompt tokens (total):         19,374</span><br><span class="line">Completion tokens:                 27</span><br><span class="line">Total tokens:                  19,401</span><br><span class="line">API calls:                          1</span><br><span class="line">Session duration:                 27s</span><br><span class="line">────────────────────────────────────────</span><br><span class="line">Current context:  19,374 / 256,000 (8%)</span><br><span class="line">Messages:         2</span><br><span class="line">Compressions:     0</span><br></pre></td></tr></table></figure>
+
+<h5 id="第二次发送-1"><a href="#第二次发送-1" class="headerlink" title="第二次发送"></a>第二次发送</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">📊 Session Token Usage</span><br><span class="line">────────────────────────────────────────</span><br><span class="line">Model:                     agnes-2.5-flash</span><br><span class="line">Input tokens:                  30,577</span><br><span class="line">Output tokens:                     51</span><br><span class="line">↳ Reasoning (subset):              30</span><br><span class="line">Prompt tokens (total):         38,769</span><br><span class="line">Completion tokens:                 51</span><br><span class="line">Total tokens:                  38,820</span><br><span class="line">API calls:                          2</span><br><span class="line">Session duration:                 58s</span><br><span class="line">────────────────────────────────────────</span><br><span class="line">Current context:  19,395 / 256,000 (8%)</span><br><span class="line">Messages:         4</span><br><span class="line">Compressions:     0</span><br></pre></td></tr></table></figure>
+
+<h3 id="DSH"><a href="#DSH" class="headerlink" title="DSH"></a>DSH</h3><h4 id="Token-消耗-2"><a href="#Token-消耗-2" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><p>通过页面右上角 <code>Session log</code> 按钮下载 session 的 jsonl 文件，从文件内获取会话的用量数据<br>DSH 中输入和缓存是分开列出的，所以最终对比时用 <code>inputTokens + cacheReadTokens</code></p>
+<h5 id="第一次发送-2"><a href="#第一次发送-2" class="headerlink" title="第一次发送"></a>第一次发送</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;inputTokens&quot;</span><span class="punctuation">:</span> <span class="number">2889</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;outputTokens&quot;</span><span class="punctuation">:</span> <span class="number">42</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cacheReadTokens&quot;</span><span class="punctuation">:</span> <span class="number">6656</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="第二次发送-2"><a href="#第二次发送-2" class="headerlink" title="第二次发送"></a>第二次发送</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;inputTokens&quot;</span><span class="punctuation">:</span> <span class="number">2918</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;outputTokens&quot;</span><span class="punctuation">:</span> <span class="number">26</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cacheReadTokens&quot;</span><span class="punctuation">:</span> <span class="number">6656</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试 DSH 时，第一次忘记安装相同的 skills，所以用量为 8874 tokens，安装了 skills 后用量增加了 671 tokens (7.6%)
+，说明 DSH 采用了渐进式披露机制</p>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th align="right">Pi</th>
+<th align="right">Hermes</th>
+<th align="right">DSH</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一次 <code>hi</code> prompt</td>
+<td align="right">4,743 (1x)</td>
+<td align="right">19,374 (4x)</td>
+<td align="right">9545 (2x)</td>
+</tr>
+<tr>
+<td>第二次 <code>hi</code> prompt</td>
+<td align="right">4,763 (1x)</td>
+<td align="right">19,395 (4x)</td>
+<td align="right">9574 (2x)</td>
+</tr>
+<tr>
+<td>固定上下文大致规模</td>
+<td align="right">~4.7k (1x)</td>
+<td align="right">~19.3k (4.1x)</td>
+<td align="right">~9.5k (2x)</td>
+</tr>
+</tbody></table>
+<p>空载测量结果 <strong>pi 最轻，DSH 居中，Hermes 最重</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pi       █████                     4.7K  </span><br><span class="line">DSH      ██████████                9.5K  </span><br><span class="line">Hermes   ████████████████████     19.4K</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行任务测试"><a href="#执行任务测试" class="headerlink" title="执行任务测试"></a>执行任务测试</h2><p>提示词: 使用 investment-checklist 检查<code>XX精密</code>，需要搜索时使用
+<a href="https://docs.tavily.com/documentation/agent-skills" target="_blank" rel="noopener">tavily-search</a></p>
+<blockquote>
+<p>为了方便对比结果，这里要求 Agent 都用相同的搜索引擎获取结果</p>
+</blockquote>
+<h3 id="pi"><a href="#pi" class="headerlink" title="pi"></a>pi</h3><h4 id="Token-消耗-3"><a href="#Token-消耗-3" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Session Info</span><br><span class="line"></span><br><span class="line"> File: /home/user/.pi/agent/sessions/--home-user--/2026-08-18T06-10-35-439Z_01a0137e-3d2e-7918-8248-07260b4e4931.jsonl</span><br><span class="line"> ID: 01a0137e-3d2e-7918-8248-07260b4e4931</span><br><span class="line"></span><br><span class="line"> Messages</span><br><span class="line"> Total: 13</span><br><span class="line"> User: 1</span><br><span class="line"> Assistant: 4</span><br><span class="line"> Tools: 8 calls, 8 results</span><br><span class="line"></span><br><span class="line"> Tokens</span><br><span class="line"> Input: 129,492</span><br><span class="line">   Cached: 64,512 (49.8%)</span><br><span class="line">   Uncached: 64,980</span><br><span class="line"> Output: 4,852</span><br><span class="line"> Total: 134,344</span><br><span class="line"></span><br><span class="line"> Cost</span><br><span class="line"> Total: $0.000</span><br><span class="line"> Cache Re-billed: 3,792 tokens, 1 miss</span><br></pre></td></tr></table></figure>
+
+<h4 id="搜索关键词"><a href="#搜索关键词" class="headerlink" title="搜索关键词"></a>搜索关键词</h4><p>pi 的搜索关键词在终端中会展示出来，查看 session 对应的 jsonl 文件也能找到</p>
+<ul>
+<li>XX精密 0023** 基本面 财务数据 ROE 毛利率 2024 2025</li>
+<li>XX精密 估值 PE PB 股价 市值 2025</li>
+<li>XX精密 护城河 竞争优势 竞争对手 市场份额</li>
+<li>XX精密 管理层 董事长 实控人 资本配置 回购分红</li>
+<li>XX精密 最新动态 2025 业绩 收购 风险</li>
+</ul>
+<h4 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">分析报告已写入 <span class="code">`~/巴菲特Checklist-XX精密.md`</span>。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## XX精密（0023<span class="strong">**）Checklist 结论： **</span>❌ 未通过**</span></span><br><span class="line"></span><br><span class="line">[其余内容省略]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hermes-1"><a href="#Hermes-1" class="headerlink" title="Hermes"></a>Hermes</h3><h4 id="Token-消耗-4"><a href="#Token-消耗-4" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">📊 Session Token Usage</span><br><span class="line">  ────────────────────────────────────────</span><br><span class="line">  Model:                     agnes-2.5-flash</span><br><span class="line">  Input tokens:                 119,807</span><br><span class="line">  Output tokens:                  9,844</span><br><span class="line">  ↳ Reasoning (subset):           1,952</span><br><span class="line">  Prompt tokens (total):        363,775</span><br><span class="line">  Completion tokens:              9,844</span><br><span class="line">  Total tokens:                 373,619</span><br><span class="line">  API calls:                         10</span><br><span class="line">  Session duration:                  9m</span><br><span class="line">  ────────────────────────────────────────</span><br><span class="line">  Current context:  54,235 / 512,000 (11%)</span><br><span class="line">  Messages:         27</span><br><span class="line">  Compressions:     0</span><br></pre></td></tr></table></figure>
+
+<h4 id="搜索关键词-1"><a href="#搜索关键词-1" class="headerlink" title="搜索关键词"></a>搜索关键词</h4><p>Hermes 的工具调用存储在 <code>state.db</code> 中的 <code>messages</code> 表的 <code>tool_calls</code> 字段内</p>
+<ul>
+<li>XX精密 股票代码 2026</li>
+<li>XX精密 2024 2025 年报 ROE 毛利率 净利润</li>
+<li>XX精密 竞争护城河 PCB FPC 苹果产业链</li>
+<li>XX精密 管理层 董事长 股权激励 资本配置</li>
+<li>XX精密 负债 现金流 自由现金流 2024 2025</li>
+<li>XX精密 股价 市值 PE 估值 2026</li>
+<li>XX精密 0023** 2024年报 营收 净利润 ROE 毛利率 每股收益 EPS</li>
+<li>XX精密 0023** 2025年报 年度报告 财务数据</li>
+<li>XX精密 2026年一季报 营收 净利润</li>
+<li>XX精密 董事长 缪X根 持股 资本配置 并购 M&amp;A</li>
+<li>XX精密 PCB FPC 柔性电路板 全球市场份额 竞争对手 鹏X 欣X</li>
+<li>XX精密 2025年报 营收 净利润 ROE 毛利率 每股收益 EPS 每股净资产</li>
+<li>XX精密 0023** 最新股价 市值 PE 2026年8月</li>
+<li>XX精密 缪X根 实际控制人 持股 创始人</li>
+<li>XX精密 自由现金流 FCF 资本开支 负债率 2024 2025</li>
+<li>XX精密 鹏X控股 深南电路 PCB FPC 竞争对手 市场份额</li>
+<li>XX精密 2024年年报 净利润 归母净利润 营收 同比</li>
+<li>XX精密 2025年业绩预告 快报 净利润增长</li>
+<li>XX精密 苹果 供应商 iPhone FPC 业务收入占比</li>
+<li>XX精密 员工持股计划 回购 分红 2024 2025</li>
+<li>XX精密 0023** 股价 2026年8月 最新</li>
+<li>XX精密 袁X刚 实际控制人 持股 家族 控制权</li>
+<li>XX精密 索X思 光模块 AI算力 收购 并购</li>
+<li>XX精密 2025年年报 净利润率 毛利率 ROE 每股收益 EPS</li>
+<li>XX精密 0023** 总股本 每股收益 每股净资产 2025年报</li>
+<li>XX精密 自由现金流 经营活动现金流 资本开支 2024 2025</li>
+<li>XX精密 毛利率 净利率 行业对比 PCB FPC</li>
+<li>XX精密 风险 客户集中度 苹果依赖 2025 2026</li>
+<li>XX精密 分红 股息率 2024 2025</li>
+<li>XX精密 员工持股计划 2026 行权价</li>
+<li>XX精密 并购 商誉 减值 2025</li>
+</ul>
+<h4 id="执行结果-1"><a href="#执行结果-1" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">报告已完成，写入 /root/巴菲特Checklist-XX精密.md。</span><br><span class="line"></span><br><span class="line">XX精密 Checklist 结论：❌ 未通过</span><br><span class="line"></span><br><span class="line">[其余内容省略]</span><br></pre></td></tr></table></figure>
+
+<h3 id="DSH-1"><a href="#DSH-1" class="headerlink" title="DSH"></a>DSH</h3><h4 id="Token-消耗-5"><a href="#Token-消耗-5" class="headerlink" title="Token 消耗"></a>Token 消耗</h4><p>DSH 的 JSON Lines 文件只记录了 6 次 LLM 调用各自的用量，因此需要做汇总</p>
+<table>
+<thead>
+<tr>
+<th>调用</th>
+<th align="right">Uncached input</th>
+<th align="right">Cache read</th>
+<th align="right">完整 Prompt</th>
+<th align="right">Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="right">3,017</td>
+<td align="right">6,656</td>
+<td align="right">9,673</td>
+<td align="right">83</td>
+</tr>
+<tr>
+<td>2</td>
+<td align="right">6,686</td>
+<td align="right">6,656</td>
+<td align="right">13,342</td>
+<td align="right">661</td>
+</tr>
+<tr>
+<td>3</td>
+<td align="right">8,439</td>
+<td align="right">13,824</td>
+<td align="right">22,263</td>
+<td align="right">350</td>
+</tr>
+<tr>
+<td>4</td>
+<td align="right">39,488</td>
+<td align="right">22,528</td>
+<td align="right">62,016</td>
+<td align="right">226</td>
+</tr>
+<tr>
+<td>5</td>
+<td align="right">68,623</td>
+<td align="right">9,728</td>
+<td align="right">78,351</td>
+<td align="right">6,398</td>
+</tr>
+<tr>
+<td>6</td>
+<td align="right">6,463</td>
+<td align="right">78,336</td>
+<td align="right">84,799</td>
+<td align="right">527</td>
+</tr>
+</tbody></table>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Uncached input:   132,716</span><br><span class="line">Cache read:       137,728</span><br><span class="line">Prompt total:     270,444</span><br><span class="line">Output:             8,245</span><br><span class="line">Total:            278,689</span><br><span class="line">API calls:              6</span><br></pre></td></tr></table></figure>
+
+<h4 id="搜索关键词-2"><a href="#搜索关键词-2" class="headerlink" title="搜索关键词"></a>搜索关键词</h4><p>DSH 的搜索关键词可以通过页面上方的<code>轨迹</code>页面查看<br>DSH 首次并发调用 tavily-search，6 条命令中 5 条参数错误，只有 1 条执行成功，随后又发起了 4 
+次调用，全部成功，并且第二次调用时还对关键词进行了微调</p>
+<h5 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h5><ul>
+<li>XX精密 0023** 公司概况 主营业务 2025 2026</li>
+<li>XX精密 0023** 财务数据 ROE 毛利率 净利润 2024 2025</li>
+<li>XX精密 0023** 股价 市值 PE PB 估值 2025 2026</li>
+<li>XX精密 护城河 竞争优势 竞争对手 PCB FPC</li>
+<li>XX精密 0023** 管理层 董事长 持股 资本配置</li>
+</ul>
+<h5 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h5><ul>
+<li>XX精密 0023** 最新新闻 重大事件 2025 2026</li>
+<li>XX精密 0023** 财务数据 ROE 毛利率 净利润 2024 2025</li>
+<li>XX精密 0023** 股价 市值 PE 2026年7月</li>
+<li>XX精密 0023** 负债率 现金 商誉 资本开支</li>
+<li>XX精密 创业板 主板 定增 低价 实控人 减持</li>
+<li>XX精密 PCB竞争对手 鹏X控股 深X电路 生X电子 市场份额</li>
+<li>XX精密 0023** 光模块 索X光电 收购 2025 2026 业务结构</li>
+</ul>
+<h4 id="执行结果-2"><a href="#执行结果-2" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">报告已生成并保存至 <span class="code">`巴菲特Checklist-XX精密.md`</span>。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## XX精密 (0023<span class="strong">**.SZ) — Checklist 快速结论</span></span></span><br><span class="line"><span class="strong"><span class="section"></span></span></span><br><span class="line"><span class="strong"><span class="section">[此处内容省略]</span></span></span><br><span class="line"><span class="strong"><span class="section"></span></span></span><br><span class="line"><span class="strong"><span class="section">### 最终结论： **</span>❌ 未通过 Checklist**</span></span><br><span class="line"></span><br><span class="line">[其余内容省略]</span><br></pre></td></tr></table></figure>
+
+<h3 id="对比-1"><a href="#对比-1" class="headerlink" title="对比"></a>对比</h3><table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="right">Prompt&#x2F;Input 总量</th>
+<th align="right">Output</th>
+<th align="right">总 token</th>
+<th align="right">LLM calls</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pi</td>
+<td align="right">129,492 (1.0x)</td>
+<td align="right">4,852 (1.0x)</td>
+<td align="right">134,344 (1.0x)</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td>DSH</td>
+<td align="right">270,444 (2.1x)</td>
+<td align="right">8,245 (1.7x)</td>
+<td align="right">278,689 (2.1x)</td>
+<td align="right">6</td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td align="right">363,775 (2.8x)</td>
+<td align="right">9,844 (2.0x)</td>
+<td align="right">373,619 (2.8x)</td>
+<td align="right">10</td>
+</tr>
+</tbody></table>
+<p>三个 Agent 都得出了一致的结论：不通过</p>
+<p>为了比较真实的结果质量，我将三份报告去除 Agent 名称后发给一位金融从业者朋友进行评价，结果为 <strong>DSH &gt; Pi &gt;&gt; Hermes</strong>。
+这一评价仅代表单一样本下的主观体感判断，不是为了给 Agent 能力做排名。</p>
+<p>统计搜索关键词时，我发现了一个很有意思的差异：Pi 和 DSH 都在阅读 Skill 后直接使用 tvly 命令搜索；Hermes 则调用 
+execute_code 工具编写 Python 代码，将关键词数组传给 subprocess，循环执行 tvly 
+指令。这种做法与任务指导中的搜索次数限制存在偏差，最终产生了 31 次 Tavily 调用</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>在任务执行中，pi 仍然保持优势，token 消耗只有 DSH 的一半，而 Hermes 在复杂任务里固定上下文占比下降，所以从空载时的 4 倍缩小为约
+2.8 倍。</p>
+<p>缓存命中率方面，三者差距不大，命中率都很高。</p>
+<p>三者不仅在 Harness 自身的上下文开销上有所不同，执行效率也存在明显差异。虽然最终结论一致，理由也基本重合，但 pi
+使用了更短的轨迹达成了相同的目标。<br>DSH 首次并发调用工具出错。虽然参数校验失败本身不会产生 Tavily API 用量，但失败信息会进入后续上下文。日志中该阶段之后单轮
+Prompt 从约 22K 增长到约 62K；这部分增长同时包含工具错误信息和后续搜索结果，因此不能全部归因于失败调用，但失败轨迹确实会成为后续每轮携带的额外上下文。
+Hermes 存在搜索过度和工具调用成本失控的风险。Tavily 搜索超出免费额度后会产生费用，pi 调用了 5 次，DSH 调用了 7 次，Hermes
+一共调用了 31 次。其中有很多关键词是重复的，比如 <code>财务数据、ROE、毛利率、EPS</code>:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XX精密 2024 2025 年报 ROE 毛利率 净利润</span><br><span class="line">XX精密 0023** 2024年报 营收 净利润 ROE 毛利率 每股收益 EPS</span><br><span class="line">XX精密 2025年报 营收 净利润 ROE 毛利率 每股收益 EPS 每股净资产</span><br><span class="line">XX精密 2025年年报 净利润率 毛利率 ROE 每股收益 EPS</span><br><span class="line">XX精密 0023** 总股本 每股收益 每股净资产 2025年报</span><br></pre></td></tr></table></figure>
+
+<p><code>现金流</code>:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XX精密 负债 现金流 自由现金流 2024 2025</span><br><span class="line">XX精密 自由现金流 FCF 资本开支 负债率 2024 2025</span><br><span class="line">XX精密 自由现金流 经营活动现金流 资本开支 2024 2025</span><br></pre></td></tr></table></figure>
+
+<p><code>估值</code>:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XX精密 股价 市值 PE 估值 2026</span><br><span class="line">XX精密 0023** 最新股价 市值 PE 2026年8月</span><br><span class="line">XX精密 0023** 股价 2026年8月 最新</span><br></pre></td></tr></table></figure>
+
+<p><code>竞争</code>:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XX精密 PCB FPC 柔性电路板 全球市场份额 竞争对手 鹏X 欣X</span><br><span class="line">XX精密 鹏X控股 深X电路 PCB FPC 竞争对手 市场份额</span><br><span class="line">XX精密 毛利率 净利率 行业对比 PCB FPC</span><br></pre></td></tr></table></figure>
+
+<p>个人猜测，Hermes 可能采用了更偏迭代式研究的策略，每轮先通过 execute_code 生成一组关键词，在 Python 中使用 subprocess 
+循环调用 tvly，工具结果返回后，模型进入下一轮推理，并根据已有结果继续补充搜索。 这种方式可能能获得更充分的信息，但在盲测中没有占优，反而带来了明显的调用放大。 从 
+Hermes 顶层轨迹看，只能看到若干次 execute_code 调用，而一次 execute_code 内部可以循环产生多次付费 API 
+请求。因此，只观察 Agent 的 tool-call 数量，并不能直接反映真实的外部服务调用次数。在长期无人值守场景中，这部分成本很容易忽略。</p>
+<p>DSH 的搜索分为三批。第一轮一次性并发生成了 6 个 Tavily 调用，其中 5 个因参数错误失败，只有 1 个成功。整批结果返回后，因为第一轮有失败，所以又并发生成了
+4 个搜索调用进行了第二轮搜索并全部成功。随后模型判断“数据收集充分，现在进行全面的巴菲特价值投资 Checklist 
+分析”，但分析过程中又补充了 2 次搜索。最终共规划了 12 次搜索调用，其中 7 次成功、5 次参数校验失败，最终只产生了 7 次 Tavily API 调用。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">最新事件</span><br><span class="line">财务</span><br><span class="line">估值</span><br><span class="line">资产负债、商誉、CAPEX</span><br><span class="line">治理、定增</span><br><span class="line">竞争格局</span><br><span class="line">光模块、索X思</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为把 Tavily skills 安装到了公共 Skills 目录，我的 Codex 在需要搜索时没有用内置搜索，也去用了 <code>tvly</code>，而且犯了和 DSH
+相同的参数错误</p>
+</blockquote>
+<p>而 pi 的 5 条搜索更有条理，先按 checklist 的几个维度切分了问题，然后每个维度做宽泛查询:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 基本面、财务</span><br><span class="line">2. 估值</span><br><span class="line">3. 护城河、竞争</span><br><span class="line">4. 管理层、资本配置</span><br><span class="line">5. 最新动态、风险</span><br></pre></td></tr></table></figure>
+
+<p>我的需求是让 Agent 调用 Skill 完成明确任务，因此 Pi 更合适：固定上下文最小，Token 消耗最低，工具调用也最克制。</p>
+<p>这次测试也说明即使模型、Skill、搜索工具和 Prompt 都相同，不同的 Harness 也会显著影响模型的上下文规模、工具调用偏好和最终成本。</p>
+<blockquote>
+<p>又及：DSH 官方目前提供的使用方式以 Web 界面为主。在帮助信息中，除了 <code>dsh --profile web</code>，我还看到了 
+<code>dsh --profile tui</code>，不过后者目前还无法成功运行</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liuzesen.com/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/" data-id="cuidSZZHwVQN8j6ESNgtYrxE3" data-title="同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+  clientID: 'b6df7cac6bd14222537c',
+  clientSecret: '8ac65aa69a0230023632dc095585e73cd72476dd',
+  repo: 'hnliuzesen.github.com',
+  owner: 'hnliuzesen',
+  admin: 'hnliuzesen',
+  id: decodeURI(window.location.pathname).split("/")[4],
+  distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container')
+</script>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeepSeek-Harness/" rel="tag">DeepSeek Harness</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hermes/" rel="tag">Hermes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pi/" rel="tag">Pi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Token-Usage/" rel="tag">Token Usage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool-Calling/" rel="tag">Tool Calling</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Agent Development Kit (ADK) 对接阿里百炼平台</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Artificial-Intelligence/">Artificial Intelligence</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Artificial-Intelligence/Agent-Engineering/">Agent Engineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Artificial-Intelligence/Machine-Learning/">Machine Learning</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Engineering/">Data Engineering</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Engineering/In-Memory-Databases/">In-Memory Databases</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Engineering/PostgreSQL/">PostgreSQL</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Tools/">Digital Tools</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Tools/Browser-Automation/">Browser Automation</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Digital-Tools/E-books/">E-books</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Development/">Software Development</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Development/Algorithms/">Algorithms</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Development/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Development/Systems-Programming/">Systems Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Software-Development/Version-Control/">Version Control</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Systems-and-Operations/">Systems and Operations</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Systems-and-Operations/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Systems-and-Operations/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Systems-and-Operations/Networking/">Networking</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/" rel="tag">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APT/" rel="tag">APT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AT-T-Syntax/" rel="tag">AT&amp;T Syntax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZW3/" rel="tag">AZW3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Alibaba-Cloud-Model-Studio/" rel="tag">Alibaba Cloud Model Studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Annotations/" rel="tag">Annotations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Arrays/" rel="tag">Arrays</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Assembly-Language/" rel="tag">Assembly Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backtracking/" rel="tag">Backtracking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Numbers/" rel="tag">Binary Numbers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/" rel="tag">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bit-Manipulation/" rel="tag">Bit Manipulation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser-Automation/" rel="tag">Browser Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CPU-Registers/" rel="tag">CPU Registers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calibre/" rel="tag">Calibre</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Classification/" rel="tag">Classification</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cloudflare/" rel="tag">Cloudflare</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computational-Graphs/" rel="tag">Computational Graphs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/D-E/" rel="tag">D&amp;E</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDNS/" rel="tag">DDNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRM/" rel="tag">DRM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DeepSeek-Harness/" rel="tag">DeepSeek Harness</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Disassembly/" rel="tag">Disassembly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Divide-and-Conquer/" rel="tag">Divide and Conquer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Factory-Pattern/" rel="tag">Factory Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/File-Permissions/" rel="tag">File Permissions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Floating-Point-Arithmetic/" rel="tag">Floating-Point Arithmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Function-Calling/" rel="tag">Function Calling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCC-Inline-Assembly/" rel="tag">GCC Inline Assembly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GDB/" rel="tag">GDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GRUB/" rel="tag">GRUB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-ADK/" rel="tag">Google ADK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Google-Play/" rel="tag">Google Play</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP-Client/" rel="tag">HTTP Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HackerRank/" rel="tag">HackerRank</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hermes/" rel="tag">Hermes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IEEE-754/" rel="tag">IEEE 754</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPv6/" rel="tag">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ISO-Boot/" rel="tag">ISO Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Image-Downloading/" rel="tag">Image Downloading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Inner-Classes/" rel="tag">Inner Classes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intel-Syntax/" rel="tag">Intel Syntax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iris-Dataset/" rel="tag">Iris Dataset</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JOIN/" rel="tag">JOIN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Reflection/" rel="tag">Java Reflection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JobScheduler/" rel="tag">JobScheduler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kindle/" rel="tag">Kindle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LIMIT/" rel="tag">LIMIT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LiteLLM/" rel="tag">LiteLLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Live-USB/" rel="tag">Live USB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lombok/" rel="tag">Lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MIUI/" rel="tag">MIUI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MOBI/" rel="tag">MOBI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Model-Training/" rel="tag">Model Training</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Multiboot/" rel="tag">Multiboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTP/" rel="tag">NTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nested-Classes/" rel="tag">Nested Classes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Networking/" rel="tag">Networking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORDER-BY/" rel="tag">ORDER BY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-Oriented-Design/" rel="tag">Object-Oriented Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Package-Mirrors/" rel="tag">Package Mirrors</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Padavan/" rel="tag">Padavan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance-Testing/" rel="tag">Performance Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pi/" rel="tag">Pi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QNAP/" rel="tag">QNAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QTS/" rel="tag">QTS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Query-Planning/" rel="tag">Query Planning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Regression/" rel="tag">Regression</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Remote-Branches/" rel="tag">Remote Branches</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-Arrays/" rel="tag">SQL Arrays</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSE/" rel="tag">SSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Schema-Migration/" rel="tag">Schema Migration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shallow-Clone/" rel="tag">Shallow Clone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Softmax/" rel="tag">Softmax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SourceTree/" rel="tag">SourceTree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Special-Permission-Bits/" rel="tag">Special Permission Bits</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Strategy-Pattern/" rel="tag">Strategy Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String-Combinations/" rel="tag">String Combinations</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TensorFlow/" rel="tag">TensorFlow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Termux/" rel="tag">Termux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Time-Synchronization/" rel="tag">Time Synchronization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Token-Usage/" rel="tag">Token Usage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool-Calling/" rel="tag">Tool Calling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Type-Casting/" rel="tag">Type Casting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeHandler/" rel="tag">TypeHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unix-Sockets/" rel="tag">Unix Sockets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Userscript/" rel="tag">Userscript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Valkey/" rel="tag">Valkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chmod/" rel="tag">chmod</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myQNAPcloud/" rel="tag">myQNAPcloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis-benchmark/" rel="tag">redis-benchmark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scikit-learn/" rel="tag">scikit-learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sed/" rel="tag">sed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/x86/" rel="tag">x86</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/x87/" rel="tag">x87</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ADB/" style="font-size: 12.5px;">ADB</a> <a href="/tags/APT/" style="font-size: 10px;">APT</a> <a href="/tags/AT-T-Syntax/" style="font-size: 10px;">AT&T Syntax</a> <a href="/tags/AZW3/" style="font-size: 10px;">AZW3</a> <a href="/tags/Alibaba-Cloud-Model-Studio/" style="font-size: 10px;">Alibaba Cloud Model Studio</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Annotations/" style="font-size: 10px;">Annotations</a> <a href="/tags/Arrays/" style="font-size: 10px;">Arrays</a> <a href="/tags/Assembly-Language/" style="font-size: 10px;">Assembly Language</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Numbers/" style="font-size: 10px;">Binary Numbers</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/Bit-Manipulation/" style="font-size: 10px;">Bit Manipulation</a> <a href="/tags/Browser-Automation/" style="font-size: 10px;">Browser Automation</a> <a href="/tags/CPU-Registers/" style="font-size: 12.5px;">CPU Registers</a> <a href="/tags/Calibre/" style="font-size: 10px;">Calibre</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Cloudflare/" style="font-size: 10px;">Cloudflare</a> <a href="/tags/Computational-Graphs/" style="font-size: 10px;">Computational Graphs</a> <a href="/tags/D-E/" style="font-size: 10px;">D&E</a> <a href="/tags/DDNS/" style="font-size: 12.5px;">DDNS</a> <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/DRM/" style="font-size: 10px;">DRM</a> <a href="/tags/Data-Mining/" style="font-size: 10px;">Data Mining</a> <a href="/tags/DeepSeek-Harness/" style="font-size: 10px;">DeepSeek Harness</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 10px;">Design Patterns</a> <a href="/tags/Disassembly/" style="font-size: 10px;">Disassembly</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Factory-Pattern/" style="font-size: 10px;">Factory Pattern</a> <a href="/tags/File-Permissions/" style="font-size: 10px;">File Permissions</a> <a href="/tags/Floating-Point-Arithmetic/" style="font-size: 10px;">Floating-Point Arithmetic</a> <a href="/tags/Function-Calling/" style="font-size: 10px;">Function Calling</a> <a href="/tags/GCC-Inline-Assembly/" style="font-size: 10px;">GCC Inline Assembly</a> <a href="/tags/GDB/" style="font-size: 10px;">GDB</a> <a href="/tags/GRUB/" style="font-size: 10px;">GRUB</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Google-ADK/" style="font-size: 10px;">Google ADK</a> <a href="/tags/Google-Play/" style="font-size: 10px;">Google Play</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/HTTP-Client/" style="font-size: 10px;">HTTP Client</a> <a href="/tags/HackerRank/" style="font-size: 10px;">HackerRank</a> <a href="/tags/Hermes/" style="font-size: 10px;">Hermes</a> <a href="/tags/IEEE-754/" style="font-size: 10px;">IEEE 754</a> <a href="/tags/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tags/ISO-Boot/" style="font-size: 10px;">ISO Boot</a> <a href="/tags/Image-Downloading/" style="font-size: 10px;">Image Downloading</a> <a href="/tags/Inner-Classes/" style="font-size: 10px;">Inner Classes</a> <a href="/tags/Intel-Syntax/" style="font-size: 10px;">Intel Syntax</a> <a href="/tags/Iris-Dataset/" style="font-size: 10px;">Iris Dataset</a> <a href="/tags/JOIN/" style="font-size: 10px;">JOIN</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Java-Reflection/" style="font-size: 10px;">Java Reflection</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/JobScheduler/" style="font-size: 10px;">JobScheduler</a> <a href="/tags/Kindle/" style="font-size: 10px;">Kindle</a> <a href="/tags/LIMIT/" style="font-size: 10px;">LIMIT</a> <a href="/tags/LeetCode/" style="font-size: 12.5px;">LeetCode</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/LiteLLM/" style="font-size: 10px;">LiteLLM</a> <a href="/tags/Live-USB/" style="font-size: 10px;">Live USB</a> <a href="/tags/Lombok/" style="font-size: 10px;">Lombok</a> <a href="/tags/MIUI/" style="font-size: 10px;">MIUI</a> <a href="/tags/MOBI/" style="font-size: 10px;">MOBI</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/tags/Model-Training/" style="font-size: 10px;">Model Training</a> <a href="/tags/Multiboot/" style="font-size: 10px;">Multiboot</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/NTP/" style="font-size: 10px;">NTP</a> <a href="/tags/Nested-Classes/" style="font-size: 10px;">Nested Classes</a> <a href="/tags/Networking/" style="font-size: 10px;">Networking</a> <a href="/tags/ORDER-BY/" style="font-size: 10px;">ORDER BY</a> <a href="/tags/Object-Oriented-Design/" style="font-size: 10px;">Object-Oriented Design</a> <a href="/tags/Package-Mirrors/" style="font-size: 10px;">Package Mirrors</a> <a href="/tags/Padavan/" style="font-size: 10px;">Padavan</a> <a href="/tags/Performance-Testing/" style="font-size: 10px;">Performance Testing</a> <a href="/tags/Pi/" style="font-size: 10px;">Pi</a> <a href="/tags/PostgreSQL/" style="font-size: 15px;">PostgreSQL</a> <a href="/tags/Proxy/" style="font-size: 10px;">Proxy</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/QNAP/" style="font-size: 10px;">QNAP</a> <a href="/tags/QTS/" style="font-size: 10px;">QTS</a> <a href="/tags/Query-Planning/" style="font-size: 10px;">Query Planning</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Regression/" style="font-size: 10px;">Regression</a> <a href="/tags/Remote-Branches/" style="font-size: 10px;">Remote Branches</a> <a href="/tags/SQL-Arrays/" style="font-size: 12.5px;">SQL Arrays</a> <a href="/tags/SSE/" style="font-size: 10px;">SSE</a> <a href="/tags/Schema-Migration/" style="font-size: 10px;">Schema Migration</a> <a href="/tags/Shallow-Clone/" style="font-size: 10px;">Shallow Clone</a> <a href="/tags/Softmax/" style="font-size: 10px;">Softmax</a> <a href="/tags/SourceTree/" style="font-size: 10px;">SourceTree</a> <a href="/tags/Special-Permission-Bits/" style="font-size: 10px;">Special Permission Bits</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/Strategy-Pattern/" style="font-size: 10px;">Strategy Pattern</a> <a href="/tags/String-Combinations/" style="font-size: 10px;">String Combinations</a> <a href="/tags/TensorFlow/" style="font-size: 12.5px;">TensorFlow</a> <a href="/tags/Termux/" style="font-size: 10px;">Termux</a> <a href="/tags/Time-Synchronization/" style="font-size: 10px;">Time Synchronization</a> <a href="/tags/Token-Usage/" style="font-size: 10px;">Token Usage</a> <a href="/tags/Tool-Calling/" style="font-size: 10px;">Tool Calling</a> <a href="/tags/Type-Casting/" style="font-size: 10px;">Type Casting</a> <a href="/tags/TypeHandler/" style="font-size: 10px;">TypeHandler</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Unix-Sockets/" style="font-size: 10px;">Unix Sockets</a> <a href="/tags/Userscript/" style="font-size: 10px;">Userscript</a> <a href="/tags/Valkey/" style="font-size: 10px;">Valkey</a> <a href="/tags/chmod/" style="font-size: 10px;">chmod</a> <a href="/tags/myQNAPcloud/" style="font-size: 10px;">myQNAPcloud</a> <a href="/tags/redis-benchmark/" style="font-size: 10px;">redis-benchmark</a> <a href="/tags/scikit-learn/" style="font-size: 10px;">scikit-learn</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/x86/" style="font-size: 12.5px;">x86</a> <a href="/tags/x87/" style="font-size: 10px;">x87</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/08/">八月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/">同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/">Agent Development Kit (ADK) 对接阿里百炼平台</a>
+          </li>
+        
+          <li>
+            <a href="/2025/01/01/DnE%E6%97%A5%E6%9C%AC%E5%AE%98%E7%BD%91%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/">D&amp;E日本官网图片下载</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/19/%E8%AE%A9%E5%A8%81%E8%81%94%E9%80%9ADDNS%E6%A3%80%E6%B5%8BIP%E4%B8%8D%E8%B5%B0%E4%BB%A3%E7%90%86/">让威联通DDNS检测IP不走代理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Hello Underground<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+    <script src='https://unpkg.com/mermaid@11.4.0/dist/mermaid.min.js'></script>
+    <script>
+    if (window.mermaid) {
+      var options = {"theme":"default"};
+      mermaid.initialize(options);
+    }
+    </script>
+
+
+
+
+  </div>
+</body>
+</html>
