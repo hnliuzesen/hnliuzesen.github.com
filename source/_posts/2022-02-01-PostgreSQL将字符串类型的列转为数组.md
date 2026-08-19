@@ -2,10 +2,13 @@
 title: PostgreSQL 将字符串类型的列转为数组
 date: 2022-02-01 00:58:29
 categories:
-- Develop
-- Database
+- Data Engineering
+- PostgreSQL
 tags:
 - PostgreSQL
+- SQL Arrays
+- Schema Migration
+- Type Casting
 ---
 
 在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL
@@ -13,7 +16,7 @@ tags:
 
 ## 仅修改字段类型的语句
 如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 [ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html)
-```PostgreSQL
+```postgresql
 ALTER TABLE <table>
     ALTER COLUMN <column> TYPE bigint[];
 ```
@@ -25,7 +28,7 @@ ALTER TABLE <table>
 
 `ERROR: column "<column>" cannot be cast automatically to type bigint[]` `Hint: You might need to specify "USING <column>::bigint[]"`
 
-```PostgreSQL
+```postgresql
 ALTER TABLE <table>
     ALTER COLUMN <column> TYPE bigint[] USING <column>::bigint[];
 ```
@@ -43,7 +46,7 @@ bigint 类型的数据，而是字符串，本身就包含有 `[]{}` 的字符�
 `SELECT array_agg(x)::bigint[] || ARRAY []::bigint[] FROM <table>, jsonb_array_elements_text(<table>.<column>::jsonb) t(x);`
 可以正确返回数组类型的查询结果 `{1,2,3}`，放入 `USING` 字句中
 
-```PostgreSQL
+```postgresql
 ALTER TABLE <table>
     ALTER COLUMN <column> TYPE bigint[] USING (SELECT array_agg(x)::bigint[] || ARRAY []::bigint[]
                                                FROM jsonb_array_elements_text(<column>::jsonb) t(x));
@@ -53,7 +56,7 @@ ALTER TABLE <table>
 后通过 `jsonb_array_elements_text()` 展开成一组文本，然后再通过 `array_agg()` 聚集函数收集到数组中，如果出错就直接返回空数组。这里因为对
 PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这一列字段转换为数组类型，也没有深入研究，直接选择了把查询创建成函数来解决这个报错。
 
-```PostgreSQL
+```postgresql
 -- 创建转换 varchar 数组为 bigint 数组的函数
 CREATE OR REPLACE FUNCTION varchar_arr2bigint_arr(arg varchar)
     RETURNS bigint[]
@@ -93,7 +96,7 @@ ALTER TABLE <table>
 
 #### 查询数组中含有指定值的 SQL
 
-```PostgreSQL
+```postgresql
 -- 修改之前
 SELECT *
 FROM <table>
@@ -107,7 +110,7 @@ WHERE <column> @> ARRAY [1::bigint];
 
 #### 查询数组中与查询条件有交集的 SQL
 
-```PostgreSQL
+```postgresql
 -- 修改之前是下面对查询条件用 <foreach separator=“ OR ”> 来循环拼接
 SELECT *
 FROM <table>

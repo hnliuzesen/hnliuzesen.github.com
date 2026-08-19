@@ -2,17 +2,21 @@
 title: PostgreSQL 默认排序
 date: 2021-07-04 21:04:28
 categories:
-- Develop
-- Database
+- Data Engineering
+- PostgreSQL
 tags:
 - PostgreSQL
+- ORDER BY
+- JOIN
+- LIMIT
+- Query Planning
 ---
 
 刚刚接触到号称功能最强大的开源数据库 PostgreSQL，发现在不加 ORDER BY 的情况下每次查询返回的结果顺序都不一致，推测以下两种情况可能会导致。
 
 ## JOIN 导致结果顺序随机
 第一个遇见的每次查询结果顺序都不一致的 SQL 大致如下：
-```PostgreSQL
+```postgresql
 SELECT a.id, b.id, c.id
 FROM table_a a
          INNER JOIN table_b b on a.b_id = b.id

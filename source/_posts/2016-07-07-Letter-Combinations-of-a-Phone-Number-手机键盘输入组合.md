@@ -1,13 +1,14 @@
 ---
 title: Letter Combinations of a Phone Number 手机键盘输入组合
 date: 2016-07-07 12:50:29
-categories: 
-- Computers & Technology
-- Algorithm
-tags: 
-- Backtracking
-- String
+categories:
+- Software Development
+- Algorithms
+tags:
 - Python
+- LeetCode
+- Backtracking
+- String Combinations
 ---
 ## 题目
 

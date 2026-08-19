@@ -2,12 +2,14 @@
 title: MyBatis 处理 PostgreSQL 数组
 date: 2022-02-04 00:53:35
 categories:
-- Develop
-- Database
-tags:
+- Data Engineering
 - PostgreSQL
+tags:
 - Java
 - MyBatis
+- PostgreSQL
+- TypeHandler
+- SQL Arrays
 ---
 
 [上回书](/2022/02/01/PostgreSQL将字符串类型的列转为数组)说到，我们把数据库存储数组的字符串转为了原生数组 `bigint[]` 类型，SQL

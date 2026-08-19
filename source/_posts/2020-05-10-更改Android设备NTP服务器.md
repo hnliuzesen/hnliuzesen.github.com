@@ -2,11 +2,14 @@
 title: 更改 Android 设备 NTP 服务器
 date: 2020-05-10 18:35:44
 categories:
-- Tip
+- Systems and Operations
 - Android
 tags:
 - Android
+- ADB
 - NTP
+- Time Synchronization
+- Termux
 ---
 
 有时候用软件在淘宝上抢购或者秒杀，总是提示当前时间与淘宝服务器差多少 ms，那么只需要更改手机同步时间的服务器为淘宝的服务器，是不是就能让时差减小呢？大家可以试试效果，其实只需要一行命令即可。

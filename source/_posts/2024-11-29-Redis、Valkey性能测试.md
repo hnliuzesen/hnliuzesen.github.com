@@ -2,11 +2,14 @@
 title: Redis、Valkey 性能测试
 date: 2024-11-29 17:16:24
 categories:
-  - Develop
-  - Database
+  - Data Engineering
+  - In-Memory Databases
 tags:
   - Redis
   - Valkey
+  - redis-benchmark
+  - Performance Testing
+  - Unix Sockets
 ---
 
 最近看到新闻，[Redis 在试图掌管相关的开源仓库](https://www.infoq.cn/article/IEJLgTB9AayJAhOw9dzr?utm_campaign=geek_search&utm_content=geek_search&utm_medium=geek_search&utm_source=geek_search&utm_term=geek_search)，有很多人都提到了转投

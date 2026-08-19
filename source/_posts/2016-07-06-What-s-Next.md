@@ -2,11 +2,13 @@
 title: What's Next?
 date: 2016-07-06 23:34:03
 categories:
-- Computers & Technology
-- Algorithm
+- Software Development
+- Algorithms
 tags:
-- String
 - Python
+- HackerRank
+- Bit Manipulation
+- Binary Numbers
 ---
 ## 题目
 

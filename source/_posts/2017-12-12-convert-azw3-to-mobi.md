@@ -2,12 +2,14 @@
 title: convert azw3 to mobi
 date: 2017-12-12 18:45:05
 categories:
-- Tip
-- Kindle
+- Digital Tools
+- E-books
 tags:
 - Kindle
-- mobi
-- azw3
+- AZW3
+- MOBI
+- Calibre
+- DRM
 ---
 
 亚马逊购买的图书一般下载下来是 azw3 格式，将 azw3 格式转换为 mobi 可以方便发送到邮箱来同步到 kindle。

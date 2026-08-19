@@ -2,12 +2,14 @@
 title: Agent Development Kit (ADK) 对接阿里百炼平台
 date: 2025-04-24 16:28:41
 categories:
-  - Computers & Technology
-  - AI
+  - Artificial Intelligence
+  - Agent Engineering
 tags:
   - Python
-  - ADK
-  - Agent
+  - Google ADK
+  - LiteLLM
+  - Alibaba Cloud Model Studio
+  - Function Calling
 ---
 
 Claude code 源码泄露让 MCP 大火，Google 最近又推出了 [Agent Development Kit](https://google.github.io/adk-docs/) 和 

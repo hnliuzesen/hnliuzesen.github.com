@@ -2,9 +2,14 @@
 title: 同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比
 date: 2026-08-18 17:01:13
 categories:
-  - AI
+  - Artificial Intelligence
+  - Agent Engineering
 tags:
-  - harness
+  - Pi
+  - Hermes
+  - DeepSeek Harness
+  - Token Usage
+  - Tool Calling
 ---
 
 最近，DeepSeek 推出了官方的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，

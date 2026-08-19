@@ -2,12 +2,14 @@
 title: Google Play 下载一直等待 WLAN
 date: 2020-05-11 14:24:38
 categories:
-- Tip
+- Systems and Operations
 - Android
 tags:
 - Android
 - Google Play
 - MIUI
+- ADB
+- JobScheduler
 ---
 
 手机设置了 Play 通过任何网络下载，MIUI 里面的下载管理器也设置了移动流量不限制，可是用另一个手机分享热点更新应用的时候，Google 

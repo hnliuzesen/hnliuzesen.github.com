@@ -2,11 +2,13 @@
 title: TensorFlow 代码模板
 date: 2017-06-07 19:33:25
 categories:
-- Computers & Technology
+- Artificial Intelligence
 - Machine Learning
 tags:
-- TensorFlow
 - Python
+- TensorFlow
+- Model Training
+- Computational Graphs
 ---
 
 通过看《面向机器智能的TensorFlow实践》总结的使用 TensorFlow 的推荐编程方式和注意事项

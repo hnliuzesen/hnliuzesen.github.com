@@ -2,11 +2,13 @@
 title: Spring 获取带参数 bean
 date: 2017-09-19 10:35:32
 categories:
-- Computers & Technology
-- Program
+- Software Development
+- Java
 tags:
 - Java
 - Spring
+- Dependency Injection
+- Java Reflection
 ---
 
 一个方便在不能够自动注入的时候，或者需要动态给构造函数传入参数时获取 Bean 的工具类。

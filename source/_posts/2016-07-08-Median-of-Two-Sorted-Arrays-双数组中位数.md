@@ -1,14 +1,15 @@
 ---
 title: Median of Two Sorted Arrays 双数组中位数
 date: 2016-07-08 16:37:43
-categories: 
-- Computers & Technology
-- Algorithm
-tags: 
-- Binary Search
-- Array
-- Divide and Conquer
+categories:
+- Software Development
+- Algorithms
+tags:
 - Python
+- LeetCode
+- Binary Search
+- Arrays
+- Divide and Conquer
 ---
 ## 题目
 

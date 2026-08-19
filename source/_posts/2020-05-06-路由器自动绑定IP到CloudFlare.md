@@ -3,12 +3,14 @@ title: 路由器自动绑定 IP 到 CloudFlare
 date: 2020-05-06 17:14:14
 comments: true
 categories:
-- Tip
-- WEB
+- Systems and Operations
+- Networking
 tags:
-- domain
-- CloudFlare
-- router
+- Cloudflare
+- DDNS
+- IPv6
+- DNS
+- Padavan
 ---
 
 想要不在家的时候远程控制家里的路由器，如果拨号运营商给分配了公网 IP 地址，可以使用路由器中自带的 DDNS，但是路由里面自带的 DDNS 只有 IPv4 
