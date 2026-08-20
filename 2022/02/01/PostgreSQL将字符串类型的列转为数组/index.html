@@ -24,6 +24,7 @@
   
   <title>PostgreSQL 将字符串类型的列转为数组 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="canonical" href="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/">
   <meta name="description" content="在学习 PostgreSQL 的时候，对于数组类型，之前是直接用了 varchar(2550) 来存储，想将其转换成 bigint[]，期间遇见了 DDL 语句处理已存在的数据无法使用 SELECT 和转换过程中遇见不符合规范的数据会报错之类的一些问题，这里是一些问题解决的方案，和更改类型前后的对比。 仅修改字段类型的语句如果只是修改字段类型的话很简单，使用普通的 DDL 就行。参考 ALTER">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PostgreSQL 将字符串类型的列转为数组">
@@ -172,7 +173,7 @@ PostgreSQL 还是不够熟悉，不知道该怎么用不是查询的方式将这
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="cuidFun4k2pwrugj8e8qoNRGf" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2022/02/01/PostgreSQL%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%97%E8%BD%AC%E4%B8%BA%E6%95%B0%E7%BB%84/" data-id="cuid05x_yxcW97QTRMyMqOuhl" data-title="PostgreSQL 将字符串类型的列转为数组" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
