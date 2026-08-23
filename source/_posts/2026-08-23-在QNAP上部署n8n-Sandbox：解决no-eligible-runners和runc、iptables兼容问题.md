@@ -1,5 +1,5 @@
 ---
-title: 在 QNAP 上部署 n8n Sandbox：解决 no eligible runners 和 runc / iptables 兼容问题
+title: 在 QNAP 上部署 n8n Sandbox：解决 no eligible runners 和 runc、iptables 兼容问题
 date: 2026-08-23 17:00:34
 description: "记录在 QNAP NAS 上部署 n8n Sandbox 时排查 no eligible runners 错误，并通过替换 runc 与调整 Docker 网络配置解决内核和 iptables 兼容问题。"
 categories:
