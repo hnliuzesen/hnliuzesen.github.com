@@ -1,6 +1,7 @@
 ---
 title: convert azw3 to mobi
 date: 2017-12-12 18:45:05
+description: "使用 Calibre 和 DeDRM 将 Kindle AZW3 电子书转换为 MOBI，涵盖完整图书下载、DRM 处理、EPUB 解包与格式转换。"
 categories:
 - Digital Tools
 - E-books

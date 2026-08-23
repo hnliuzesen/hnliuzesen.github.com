@@ -1,6 +1,7 @@
 ---
 title: PostgreSQL 将字符串类型的列转为数组
 date: 2022-02-01 00:58:29
+description: "将 PostgreSQL 字符串列迁移为 bigint[] 原生数组，处理不可转换的历史数据，并对比转换前后的查询方式与性能。"
 categories:
 - Data Engineering
 - PostgreSQL

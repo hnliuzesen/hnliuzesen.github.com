@@ -1,6 +1,7 @@
 ---
 title: Agent Development Kit (ADK) 对接阿里百炼平台
 date: 2025-04-24 16:28:41
+description: "通过 LiteLLM 将 Google Agent Development Kit 接入阿里云百炼的 OpenAI 兼容 API，并配置支持函数调用的通义千问模型。"
 categories:
   - Artificial Intelligence
   - Agent Engineering

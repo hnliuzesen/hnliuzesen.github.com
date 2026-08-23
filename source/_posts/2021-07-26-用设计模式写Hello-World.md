@@ -1,6 +1,7 @@
 ---
 title: 用设计模式写 Hello World
 date: 2021-07-26 00:21:37
+description: "用 Java Hello World 示例组合策略模式与工厂模式，展示消息策略、抽象工厂和消息体之间的协作方式。"
 categories:
 - Software Development
 - Java

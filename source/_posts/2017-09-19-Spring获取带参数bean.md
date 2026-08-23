@@ -1,6 +1,7 @@
 ---
 title: Spring 获取带参数 bean
 date: 2017-09-19 10:35:32
+description: "Spring 动态获取带构造参数 Bean 的工具类，适用于无法自动注入或需要在运行时向构造函数传参的场景。"
 categories:
 - Software Development
 - Java

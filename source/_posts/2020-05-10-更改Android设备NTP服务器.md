@@ -1,6 +1,7 @@
 ---
 title: 更改 Android 设备 NTP 服务器
 date: 2020-05-10 18:35:44
+description: "通过 ADB 或 Termux 修改 Android 设备的 NTP 时间服务器，并介绍配置验证方法及常用公共 NTP 服务地址。"
 categories:
 - Systems and Operations
 - Android

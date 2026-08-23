@@ -1,6 +1,7 @@
 ---
 title: Median of Two Sorted Arrays 双数组中位数
 date: 2016-07-08 16:37:43
+description: "LeetCode 双数组中位数题解：使用二分查找求两个有序数组的中位数，并给出满足 O(log(m+n)) 复杂度要求的 Python 实现。"
 categories:
 - Software Development
 - Algorithms

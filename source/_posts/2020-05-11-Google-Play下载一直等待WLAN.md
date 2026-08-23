@@ -1,6 +1,7 @@
 ---
 title: Google Play 下载一直等待 WLAN
 date: 2020-05-11 14:24:38
+description: "排查 Android 与 MIUI 中 Google Play 下载一直等待 WLAN 的问题，使用 ADB 查看并手动运行下载管理器的 JobScheduler 任务。"
 categories:
 - Systems and Operations
 - Android

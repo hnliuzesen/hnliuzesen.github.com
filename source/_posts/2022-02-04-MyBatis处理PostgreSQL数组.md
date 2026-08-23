@@ -1,6 +1,7 @@
 ---
 title: MyBatis 处理 PostgreSQL 数组
 date: 2022-02-04 00:53:35
+description: "通过自定义 MyBatis TypeHandler 在 Java List 与 PostgreSQL 原生数组之间转换，包含读写处理代码和映射配置。"
 categories:
 - Data Engineering
 - PostgreSQL

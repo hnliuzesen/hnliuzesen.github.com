@@ -1,6 +1,7 @@
 ---
 title: What's Next?
 date: 2016-07-06 23:34:03
+description: "HackerRank What's Next 解题笔记：根据连续 0、1 的压缩数组，寻找更大且置位数量相同的最小二进制数，并给出 Python 实现。"
 categories:
 - Software Development
 - Algorithms

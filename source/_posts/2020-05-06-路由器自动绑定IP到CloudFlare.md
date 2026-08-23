@@ -1,7 +1,7 @@
 ---
 title: 路由器自动绑定 IP 到 CloudFlare
 date: 2020-05-06 17:14:14
-comments: true
+description: "在 Padavan 路由器上通过脚本获取公网 IPv6，并调用 Cloudflare DNS 接口更新 AAAA 记录，实现自建 DDNS 和远程访问。"
 categories:
 - Systems and Operations
 - Networking

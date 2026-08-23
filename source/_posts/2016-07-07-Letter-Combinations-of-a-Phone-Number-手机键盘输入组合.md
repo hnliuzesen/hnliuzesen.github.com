@@ -1,6 +1,7 @@
 ---
 title: Letter Combinations of a Phone Number 手机键盘输入组合
 date: 2016-07-07 12:50:29
+description: "LeetCode 电话号码字母组合题解，分析数字按键排列组合的生成思路，并给出 Python 回溯实现与优化方法。"
 categories:
 - Software Development
 - Algorithms

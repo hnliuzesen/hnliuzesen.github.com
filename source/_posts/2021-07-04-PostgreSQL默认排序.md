@@ -1,6 +1,7 @@
 ---
 title: PostgreSQL 默认排序
 date: 2021-07-04 21:04:28
+description: "分析 PostgreSQL 未使用 ORDER BY 时结果顺序不稳定的原因，说明 JOIN、LIMIT 和查询计划对返回顺序的影响。"
 categories:
 - Data Engineering
 - PostgreSQL

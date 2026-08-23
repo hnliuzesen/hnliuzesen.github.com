@@ -1,6 +1,7 @@
 ---
 title: 同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比
 date: 2026-08-18 17:01:13
+description: "在相同模型和任务下对比 Pi、Hermes 与 DeepSeek Harness 的 Token 消耗、工具调用次数和执行结果，分析不同 Agent Harness 的上下文开销。"
 categories:
   - Artificial Intelligence
   - Agent Engineering

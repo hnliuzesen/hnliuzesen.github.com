@@ -1,6 +1,7 @@
 ---
 title: TensorFlow 代码模板
 date: 2017-06-07 19:33:25
+description: "TensorFlow 模型训练代码模板，整理 inference、loss、train、evaluate、检查点保存等结构及推荐的编程方式。"
 categories:
 - Artificial Intelligence
 - Machine Learning
