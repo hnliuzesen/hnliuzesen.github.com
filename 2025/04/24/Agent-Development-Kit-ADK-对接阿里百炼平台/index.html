@@ -10,12 +10,12 @@
   <title>Agent Development Kit (ADK) 对接阿里百炼平台 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="canonical" href="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/">
-  <meta name="description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。最新的参考文档是：Us">
+  <meta name="description" content="通过 LiteLLM 将 Google Agent Development Kit 接入阿里云百炼的 OpenAI 兼容 API，并配置支持函数调用的通义千问模型。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Agent Development Kit (ADK) 对接阿里百炼平台">
 <meta property="og:url" content="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="Claude code 源码泄露让 MCP 大火，Google 最近又推出了 Agent Development Kit 和  A2A，相当于是直接把 MCP Server 和  MCP Client 都集成到了一起，这就一定要和 LLM 打交道了。官方文档中直接支持的平台就只有自家的 AI Studio 和 Vertex AI，其他平台都是通过  LiteLLM 来实现的。最新的参考文档是：Us">
+<meta property="og:description" content="通过 LiteLLM 将 Google Agent Development Kit 接入阿里云百炼的 OpenAI 兼容 API，并配置支持函数调用的通义千问模型。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/example.webp">
 <meta property="article:published_time" content="2025-04-24T16:28:41.000Z">
@@ -154,7 +154,7 @@ Function Calling 而且需要比较强的指令遵循才能有比较好的效果
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuid8P8ZCvE4WX6RxqRnqMROl" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuidSgpqfvO6I5yc_uUC6vrNq" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -267,7 +267,7 @@ gitalk.render('gitalk-container')
           </li>
         
           <li>
-            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis vs Valkey 性能对比：吞吐量与延迟实测</a>
           </li>
         
           <li>

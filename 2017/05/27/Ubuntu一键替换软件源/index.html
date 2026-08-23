@@ -10,12 +10,12 @@
   <title>Ubuntu 一键更换软件源 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="canonical" href="https://liuzesen.com/2017/05/27/Ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/">
-  <meta name="description" content="使用 Ubuntu 可以直接在设置中测试最快的软件源并更换，但是有时候没有图形化界面，比如在 Server 版，或者 Docker File  中想要批量替换软件源，这时候可以使用 sed 命令，因为 sed 命令在大多数环境中不用安装都可运行，而在最简 Ubuntu Docker 镜像中是没有 vim 的。">
+  <meta name="description" content="使用 sed 命令一键替换 Ubuntu APT 软件源，适用于 Server、Docker 镜像及无图形界面的批量配置场景。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 一键更换软件源">
 <meta property="og:url" content="https://liuzesen.com/2017/05/27/Ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="使用 Ubuntu 可以直接在设置中测试最快的软件源并更换，但是有时候没有图形化界面，比如在 Server 版，或者 Docker File  中想要批量替换软件源，这时候可以使用 sed 命令，因为 sed 命令在大多数环境中不用安装都可运行，而在最简 Ubuntu Docker 镜像中是没有 vim 的。">
+<meta property="og:description" content="使用 sed 命令一键替换 Ubuntu APT 软件源，适用于 Server、Docker 镜像及无图形界面的批量配置场景。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-05-27T09:31:49.000Z">
 <meta property="article:modified_time" content="2017-05-27T09:31:49.000Z">
@@ -124,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2017/05/27/Ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="cuidnhpYmhzQKscYzqqM_Wk_a" data-title="Ubuntu 一键更换软件源" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2017/05/27/Ubuntu%E4%B8%80%E9%94%AE%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90/" data-id="cuidLJ6JrHq-u517Hr7bdP6ib" data-title="Ubuntu 一键更换软件源" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -237,7 +237,7 @@ gitalk.render('gitalk-container')
           </li>
         
           <li>
-            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis vs Valkey 性能对比：吞吐量与延迟实测</a>
           </li>
         
           <li>

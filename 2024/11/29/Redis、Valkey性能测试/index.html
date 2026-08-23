@@ -7,20 +7,20 @@
   
 
   
-  <title>Redis、Valkey 性能测试 | Hello Underground</title>
+  <title>Redis vs Valkey 性能对比：吞吐量与延迟实测 | Hello Underground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="canonical" href="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
-  <meta name="description" content="最近看到新闻，Redis 在试图掌管相关的开源仓库，有很多人都提到了转投 Valkey 阵营，查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是自建了  Redis 和 Valkey 使用 redis-Benchmark  测试了一下。">
+  <meta name="description" content="Redis vs Valkey 性能实测，对比 GET、SET、列表和 Stream 操作的吞吐量、平均延迟、P99 延迟与最大延迟，并分析两者的性能稳定性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis、Valkey 性能测试">
+<meta property="og:title" content="Redis vs Valkey 性能对比：吞吐量与延迟实测">
 <meta property="og:url" content="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
 <meta property="og:site_name" content="Hello Underground">
-<meta property="og:description" content="最近看到新闻，Redis 在试图掌管相关的开源仓库，有很多人都提到了转投 Valkey 阵营，查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是自建了  Redis 和 Valkey 使用 redis-Benchmark  测试了一下。">
+<meta property="og:description" content="Redis vs Valkey 性能实测，对比 GET、SET、列表和 Stream 操作的吞吐量、平均延迟、P99 延迟与最大延迟，并分析两者的性能稳定性。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/redis_1024_sock.webp">
 <meta property="og:image" content="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/valkey_1024_sock.webp">
 <meta property="article:published_time" content="2024-11-29T17:16:24.000Z">
-<meta property="article:modified_time" content="2024-11-29T17:16:24.000Z">
+<meta property="article:modified_time" content="2026-08-23T16:51:28.000Z">
 <meta property="article:tag" content="Performance Testing">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Unix Sockets">
@@ -105,7 +105,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Redis、Valkey 性能测试
+      Redis vs Valkey 性能对比：吞吐量与延迟实测
     </h1>
   
 
@@ -114,9 +114,9 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>最近看到新闻，<a href="https://www.infoq.cn/article/IEJLgTB9AayJAhOw9dzr?utm_campaign=geek_search&utm_content=geek_search&utm_medium=geek_search&utm_source=geek_search&utm_term=geek_search" target="_blank" rel="noopener">Redis 在试图掌管相关的开源仓库</a>，有很多人都提到了转投
-<a href="https://valkey.io/" target="_blank" rel="noopener">Valkey</a> 阵营，查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是自建了 
-Redis 和 Valkey 使用 <a href="https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/benchmarks/" target="_blank" rel="noopener">redis-Benchmark</a> 
-测试了一下。</p>
+<a href="https://valkey.io/" target="_blank" rel="noopener">Valkey</a> 阵营。查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是通过 
+redis-benchmark 对 Redis 和 Valkey 进行性能对比。测试结果显示，Valkey 在多数命令的吞吐量和平均延迟上略优于 
+Redis，但最大延迟普遍更高，性能波动也更明显。</p>
 <span id="more"></span>
 
 <h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>使用的机器是 Xeon ® Platinum 8269CY 8 核 16G 内存。<br>vm.overcommit_memory 设置为 1 总是允许过度分配内存。<br>关闭了透明大页。<br>开启了 14G swap。  </p>
@@ -678,7 +678,7 @@ Reids 要大，这点从硬件资源监控也能发现 Valkey 的 CPU 使用上�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" data-id="cuid2-4Hg0OO0dw3HtzAostkg" data-title="Redis、Valkey 性能测试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" data-id="cuidpQ5AQPHj6lACNL5jwi8IF" data-title="Redis vs Valkey 性能对比：吞吐量与延迟实测" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -791,7 +791,7 @@ gitalk.render('gitalk-container')
           </li>
         
           <li>
-            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis vs Valkey 性能对比：吞吐量与延迟实测</a>
           </li>
         
           <li>

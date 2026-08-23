@@ -159,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/" data-id="cuidvsMO0DKc6Fy71f1l6bYfs" data-title="同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2026/08/18/%E5%90%8C%E6%A8%A1%E5%9E%8B%E4%B8%8B-Pi%E3%80%81Hermes%E3%80%81DeepSeek-Harness-%E7%9A%84-Token-%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E6%B6%88%E8%80%97%E5%AF%B9%E6%AF%94/" data-id="cuidG1EMklAKMfu1JY2b2_YqZ" data-title="同模型下 Pi、Hermes、DeepSeek Harness 的 Token 与工具调用消耗对比" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -214,7 +214,7 @@ LiteLLM 来实现的。最新的参考文档是：<a href="https://google.github
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuid8P8ZCvE4WX6RxqRnqMROl" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2025/04/24/Agent-Development-Kit-ADK-%E5%AF%B9%E6%8E%A5%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%E5%B9%B3%E5%8F%B0/" data-id="cuidSgpqfvO6I5yc_uUC6vrNq" data-title="Agent Development Kit (ADK) 对接阿里百炼平台" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -265,7 +265,7 @@ LiteLLM 来实现的。最新的参考文档是：<a href="https://google.github
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2025/01/01/DnE%E6%97%A5%E6%9C%AC%E5%AE%98%E7%BD%91%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/" data-id="cuid57jLwl58WCj-H-u33-tDW" data-title="D&amp;E日本官网图片下载" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2025/01/01/DnE%E6%97%A5%E6%9C%AC%E5%AE%98%E7%BD%91%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/" data-id="cuidUJ0DUlGLNaLM4tCXaAuEl" data-title="D&amp;E日本官网图片下载" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -299,7 +299,7 @@ LiteLLM 来实现的。最新的参考文档是：<a href="https://google.github
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+      <a class="p-name article-title" href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis vs Valkey 性能对比：吞吐量与延迟实测</a>
     </h1>
   
 
@@ -308,9 +308,9 @@ LiteLLM 来实现的。最新的参考文档是：<a href="https://google.github
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>最近看到新闻，<a href="https://www.infoq.cn/article/IEJLgTB9AayJAhOw9dzr?utm_campaign=geek_search&utm_content=geek_search&utm_medium=geek_search&utm_source=geek_search&utm_term=geek_search" target="_blank" rel="noopener">Redis 在试图掌管相关的开源仓库</a>，有很多人都提到了转投
-<a href="https://valkey.io/" target="_blank" rel="noopener">Valkey</a> 阵营，查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是自建了 
-Redis 和 Valkey 使用 <a href="https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/benchmarks/" target="_blank" rel="noopener">redis-Benchmark</a> 
-测试了一下。</p>
+<a href="https://valkey.io/" target="_blank" rel="noopener">Valkey</a> 阵营。查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是通过 
+redis-benchmark 对 Redis 和 Valkey 进行性能对比。测试结果显示，Valkey 在多数命令的吞吐量和平均延迟上略优于 
+Redis，但最大延迟普遍更高，性能波动也更明显。</p>
         
           <p class="article-more-link">
             <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/#more">Read More</a>
@@ -319,7 +319,7 @@ Redis 和 Valkey 使用 <a href="https://redis.io/docs/latest/operate/oss_and_st
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" data-id="cuid2-4Hg0OO0dw3HtzAostkg" data-title="Redis、Valkey 性能测试" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" data-id="cuidpQ5AQPHj6lACNL5jwi8IF" data-title="Redis vs Valkey 性能对比：吞吐量与延迟实测" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -369,7 +369,7 @@ Redis 和 Valkey 使用 <a href="https://redis.io/docs/latest/operate/oss_and_st
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2023/11/19/%E8%AE%A9%E5%A8%81%E8%81%94%E9%80%9ADDNS%E6%A3%80%E6%B5%8BIP%E4%B8%8D%E8%B5%B0%E4%BB%A3%E7%90%86/" data-id="cuidXg7M2E2ZJXLb9sAmB3V_s" data-title="让威联通DDNS检测IP不走代理" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2023/11/19/%E8%AE%A9%E5%A8%81%E8%81%94%E9%80%9ADDNS%E6%A3%80%E6%B5%8BIP%E4%B8%8D%E8%B5%B0%E4%BB%A3%E7%90%86/" data-id="cuidcUZTucqXmu2lJbuYDm6-C" data-title="让威联通DDNS检测IP不走代理" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -424,7 +424,7 @@ Ubuntu 的时候，可以直接在 Grub 中添加安装菜单项，就能安装�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liuzesen.com/2023/05/03/%E4%BD%BF%E7%94%A8Live-CD%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E5%8F%91%E8%A1%8C%E7%89%88/" data-id="cuide0JKaZ6hblXKN3gcSK3M9" data-title="使用 Live CD 安装其他发行版" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://liuzesen.com/2023/05/03/%E4%BD%BF%E7%94%A8Live-CD%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E5%8F%91%E8%A1%8C%E7%89%88/" data-id="cuidLmJDTl02JebRq0iI86_rS" data-title="使用 Live CD 安装其他发行版" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -509,7 +509,7 @@ Ubuntu 的时候，可以直接在 Grub 中添加安装菜单项，就能安装�
           </li>
         
           <li>
-            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis、Valkey 性能测试</a>
+            <a href="/2024/11/29/Redis%E3%80%81Valkey%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Redis vs Valkey 性能对比：吞吐量与延迟实测</a>
           </li>
         
           <li>
