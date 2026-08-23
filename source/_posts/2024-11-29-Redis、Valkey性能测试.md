@@ -1,6 +1,8 @@
 ---
-title: Redis、Valkey 性能测试
+title: Redis vs Valkey 性能对比：吞吐量与延迟实测
 date: 2024-11-29 17:16:24
+updated: 2026-08-23 16:51:28
+description: Redis vs Valkey 性能实测，对比 GET、SET、列表和 Stream 操作的吞吐量、平均延迟、P99 延迟与最大延迟，并分析两者的性能稳定性。
 categories:
   - Data Engineering
   - In-Memory Databases
@@ -13,9 +15,9 @@ tags:
 ---
 
 最近看到新闻，[Redis 在试图掌管相关的开源仓库](https://www.infoq.cn/article/IEJLgTB9AayJAhOw9dzr?utm_campaign=geek_search&utm_content=geek_search&utm_medium=geek_search&utm_source=geek_search&utm_term=geek_search)，有很多人都提到了转投
-[Valkey](https://valkey.io/) 阵营，查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是自建了 
-Redis 和 Valkey 使用 [redis-Benchmark](https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/benchmarks/) 
-测试了一下。
+[Valkey](https://valkey.io/) 阵营。查询了一下，网上说 Valkey 有很多优化，特别是多线程方面的，但是搜不到具体的性能测试对比，于是通过 
+redis-benchmark 对 Redis 和 Valkey 进行性能对比。测试结果显示，Valkey 在多数命令的吞吐量和平均延迟上略优于 
+Redis，但最大延迟普遍更高，性能波动也更明显。
 
 <!--more-->
 
