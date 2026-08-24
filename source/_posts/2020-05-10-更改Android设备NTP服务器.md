@@ -45,14 +45,14 @@ ntp.aliyun.com
 
 请打开链接查看具体地区的服务器地址
 
-| Area | HostName |
-| ---- | ---- |
-| Worldwide | [pool.ntp.org](pool.ntp.org) |
-| Asia | [asia.pool.ntp.org](asia.pool.ntp.org) |
-| Europe | [europe.pool.ntp.org](europe.pool.ntp.org) |
-| North America | [north-america.pool.ntp.org](north-america.pool.ntp.org) |
-| Oceania | [oceania.pool.ntp.org](oceania.pool.ntp.org) |
-| South  America | [south-america.pool.ntp.org](south-america.pool.ntp.org) |
+| Area           | HostName                     |
+|----------------|------------------------------|
+| Worldwide      | `pool.ntp.org`               |
+| Asia           | `asia.pool.ntp.org`          |
+| Europe         | `europe.pool.ntp.org`        |
+| North America  | `north-america.pool.ntp.org` |
+| Oceania        | `oceania.pool.ntp.org`       |
+| South  America | `south-america.pool.ntp.org` |
 
 ### 阿里云
 <https://help.aliyun.com/document_detail/92704.html>
